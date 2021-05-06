@@ -1,0 +1,30 @@
+site_name: LEMMA Documentation
+repo_name: seelabfhdo/lemma
+repo_url: https://github.com/seelabfhdo/lemma
+edit_uri: https://github.com/seelabfhdo/lemma-docs/edit/main/
+theme:
+  name: material
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue grey
+      accent: blue
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: red
+      accent: red
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.top
+    - toc.integrate
+  plugins:
+    - search
+    - git-revision-date
