@@ -1,7 +1,7 @@
 site_name: LEMMA Documentation
 repo_name: seelabfhdo/lemma
 repo_url: https://github.com/seelabfhdo/lemma
-edit_uri: https://github.com/seelabfhdo/lemma-docs/edit/main/
+edit_uri: https://github.com/seelabfhdo/lemma-docs/edit/main/docs/
 theme:
   name: material
   icon:
