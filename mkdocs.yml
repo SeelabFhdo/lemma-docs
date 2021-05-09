@@ -25,6 +25,7 @@ theme:
     - navigation.instant
     - navigation.top
     - toc.integrate
-  plugins:
-    - search
-    - git-revision-date
+plugins:
+  - search
+  - git-revision-date
+  - macros
