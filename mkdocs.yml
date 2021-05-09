@@ -29,3 +29,24 @@ plugins:
   - search
   - git-revision-date
   - macros
+markdown_extensions:
+  - footnotes
+  - meta
+nav:
+  - 'Welcome': 'index.md'
+  - 'Context and Motivation': 'context-motivation/index.md'
+  - 'Feature Overview': 'feature-overview/index.md'
+  - 'Getting Started':
+    - 'Installation': 'getting-started/index.md'
+    - 'Quick Tour': 'getting-started/tour.md'
+  - 'User Guide': 'user-guide/index.md'
+  - 'Developer Guide': 'developer-guide/index.md'
+  - 'Research': 'research/index.md'
+  - 'Contact': 'contact/index.md'
+extra:
+  devops_culture_url: https://martinfowler.com/bliki/DevOpsCulture.html
+  mde_def_url: https://en.wikipedia.org/wiki/Model-driven_engineering
+  monolith_def_url: https://en.wikipedia.org/wiki/Monolithic_application
+  msa_def_url: https://martinfowler.com/articles/microservices.html
+  ntier_def_url: https://en.wikipedia.org/wiki/Multitier_architecture
+  tech_hetero_def_url: https://www.oreilly.com/library/view/building-microservices/9781491950340/ch01.html#idm46346970503816
