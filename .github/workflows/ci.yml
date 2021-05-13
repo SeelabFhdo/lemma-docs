@@ -24,7 +24,7 @@ jobs:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           nodetail: true
           title: "LEMMA's documentation received an update"
-          description: "${{ github.event.head_commit.message }}"
+          description: "${{ github.event.head_commit.message }}. Catch up at https://seelabfhdo.github.io/lemma-docs."
       - name: Discord notification        
         uses: sarisia/actions-status-discord@v1
         if: ${{ !success() || github.ref != 'refs/heads/main' }}
