@@ -1,0 +1,34 @@
+<!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-file.html 
+--> 
+
+{% import "partials/language.html" as lang with context %}
+
+<!-- Last updated date -->
+{% set label = lang.t("source.file.date.updated") %}
+<hr />
+<div class="md-source-date">
+  <small>
+
+    <!-- mkdocs-git-revision-date-localized-plugin -->
+    {% if page.meta.git_revision_date_localized %}
+      {{ label }}: {{ page.meta.git_revision_date_localized }}
+
+      {% if page.meta.git_creation_date_localized %}
+        <br />{{ lang.t("source.file.date.created") }}: {{ page.meta.git_creation_date_localized }} 
+      {% endif %}
+
+    <!-- mkdocs-git-revision-date-plugin -->
+    {% elif page.meta.revision_date %}
+      {{ label }}: {{ page.meta.revision_date }}
+    {% endif %}
+
+    <!-- EXTENSION BEGIN -->
+    <!-- mkdocs-git-authors-plugin -->
+    {% if git_page_authors %}
+      by {{ git_page_authors | default('enable mkdocs-git-authors-plugin') }}
+    {% endif %}
+    <!-- EXTENSION END -->
+  </small>
+</div>

@@ -4,6 +4,7 @@ repo_url: https://github.com/seelabfhdo/lemma
 edit_uri: https://github.com/seelabfhdo/lemma-docs/edit/main/docs/
 theme:
   name: material
+  custom_dir: docs/overrides
   icon:
     repo: fontawesome/brands/github
   palette:
@@ -27,6 +28,7 @@ theme:
     - toc.integrate
 plugins:
   - search
+  - git-authors
   - git-revision-date
   - macros
 markdown_extensions:
