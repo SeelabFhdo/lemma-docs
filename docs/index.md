@@ -34,7 +34,7 @@ guide and the [Quick Tour](getting-started/tour.md).
 In case you encounter issues with the documentation, have further questions, or
 any sort of feedback, please do not hesitate to contact us by creating an issue
 in [LEMMA's GitHub repository](https://github.com/SeelabFhdo/lemma/) or dropping
-us an [e-mail](mailto:florian.rademacher@fh-dortmund.de).
+us an [e-mail](mailto:{{ info_email }}).
 
 ## Developer Guide
 

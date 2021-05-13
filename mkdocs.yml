@@ -47,6 +47,7 @@ nav:
   - 'Contact': 'contact/index.md'
 extra:
   devops_culture_url: https://martinfowler.com/bliki/DevOpsCulture.html
+  info_email: florian.rademacher@fh-dortmund.de
   mde_def_url: https://en.wikipedia.org/wiki/Model-driven_engineering
   monolith_def_url: https://en.wikipedia.org/wiki/Monolithic_application
   msa_def_url: https://martinfowler.com/articles/microservices.html
