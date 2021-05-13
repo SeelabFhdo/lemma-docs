@@ -31,10 +31,10 @@ with an *increased degree of complexity* compared to
 - **Design Complexity:** Typical challenges in MSA design comprise the
 *identification of microservices*, the *determination of their granularity*, and
 the *design of their APIs*.
-- **Implementation Complexity:** The increased independence of microservices enables
-teams to employ the most suitable technologies to realize their services. These
-technologies may concern, e.g., programming languages, database systems,
-communication protocols, and data formats. However, the resulting
+- **Implementation Complexity:** The increased independence of microservices
+enables teams to employ the most suitable technologies to realize their
+services. These technologies may concern, e.g., programming languages, database
+systems, communication protocols, and data formats. However, the resulting
 [technology heterogeneity]({{ tech_hetero_def_url }}) bears a greater risk for
 technical debt, additional maintainability costs, and steeper learning curves.
 Consequently, it calls for dedicated management activities.
