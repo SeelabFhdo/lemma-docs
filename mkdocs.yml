@@ -32,8 +32,16 @@ plugins:
   - git-revision-date
   - macros
 markdown_extensions:
+  - admonition
+  - attr_list
+  - extra
   - footnotes
   - meta
+  - pymdownx.details
+  - pymdownx.highlight:
+      linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
 nav:
   - 'Welcome': 'index.md'
   - 'Context and Motivation': 'context-motivation/index.md'
@@ -46,9 +54,13 @@ nav:
   - 'Research': 'research/index.md'
   - 'Contact': 'contact/index.md'
 extra:
+  current_eclipse_release: 2021-03
   devops_culture_url: https://martinfowler.com/bliki/DevOpsCulture.html
   info_email: florian.rademacher@fh-dortmund.de
+  lemma_github_url: https://github.com/SeelabFhdo/lemma/
+  lemma_updatesite_url: https://microservices.fh-dortmund.de/lemma/
   mde_def_url: https://en.wikipedia.org/wiki/Model-driven_engineering
+  minimum_eclipse_release: 2020-03
   monolith_def_url: https://en.wikipedia.org/wiki/Monolithic_application
   msa_def_url: https://martinfowler.com/articles/microservices.html
   ntier_def_url: https://en.wikipedia.org/wiki/Multitier_architecture
