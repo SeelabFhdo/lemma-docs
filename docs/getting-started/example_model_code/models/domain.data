@@ -1,0 +1,29 @@
+context ParkingSpace {
+    structure Location<valueObject> {
+        immutable double latitude,
+        immutable double longitude,
+        immutable string street,
+        immutable string zip,
+        immutable string city,
+        immutable string country
+    }
+
+    structure ParkingSpace<aggregate,entity> {
+        long id<identifier>,
+        string name,
+        string description,
+        boolean parkingNotAllowed,
+        VehicleCounts capacities<part>,
+        Location location<part>
+    }
+
+    list ParkingSpaces { ParkingSpace parkingSpace }
+
+    structure VehicleCount<valueObject> {
+        string vehicleClass,
+        int count,
+        date timestamp
+    }
+
+    list VehicleCounts { VehicleCount vehicleCount }
+}

@@ -40,8 +40,11 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.highlight:
       linenums: true
+  - pymdownx.snippets:
+      base_path: ['docs']
   - pymdownx.inlinehilite
   - pymdownx.superfences
+  - pymdownx.tabbed
 nav:
   - 'Welcome': 'index.md'
   - 'Context and Motivation': 'context-motivation/index.md'
@@ -49,19 +52,37 @@ nav:
   - 'Getting Started':
     - 'Installation': 'getting-started/index.md'
     - 'Quick Tour': 'getting-started/tour.md'
-  - 'User Guide': 'user-guide/index.md'
+  - 'User Guide':
+    - 'Introduction': 'user-guide/index.md'
+    - 'Domain Data Modeling Language': 'user-guide/domain-data-modeling-language/index.md'
+    - 'Service Modeling Language': 'user-guide/service-modeling-language/index.md'
+    - 'Technology Modeling Language': 'user-guide/technology-modeling-language/index.md'
   - 'Developer Guide': 'developer-guide/index.md'
   - 'Research': 'research/index.md'
   - 'Contact': 'contact/index.md'
 extra:
+  bounded_context_url: https://martinfowler.com/bliki/BoundedContext.html
   current_eclipse_release: 2021-03
+  cqrs_pattern_def_url: https://microservices.io/patterns/data/cqrs.html
+  ddd_aggregate_def_url: https://martinfowler.com/bliki/DDD_Aggregate.html
+  ddd_def_url: https://en.wikipedia.org/wiki/Domain-driven_design
+  ddd_entity_def_url: https://martinfowler.com/bliki/EvansClassification.html
+  ddd_tactical_patterns_url: https://thedomaindrivendesign.io/what-is-tactical-design/
+  ddd_value_object_def_url: https://martinfowler.com/bliki/ValueObject.html
   devops_culture_url: https://martinfowler.com/bliki/DevOpsCulture.html
   info_email: florian.rademacher@fh-dortmund.de
   lemma_github_url: https://github.com/SeelabFhdo/lemma/
+  lemma_tour_models_project_name: search-for-free-space
   lemma_updatesite_url: https://microservices.fh-dortmund.de/lemma/
   mde_def_url: https://en.wikipedia.org/wiki/Model-driven_engineering
   minimum_eclipse_release: 2020-03
   monolith_def_url: https://en.wikipedia.org/wiki/Monolithic_application
+  msa_bc_url: https://martinfowler.com/articles/microservices.html#DecentralizedDataManagement
   msa_def_url: https://martinfowler.com/articles/microservices.html
+  msa_tech_heterogeneity_url: https://www.oreilly.com/library/view/building-microservices/9781491950340/ch01.html
   ntier_def_url: https://en.wikipedia.org/wiki/Multitier_architecture
-  tech_hetero_def_url: https://www.oreilly.com/library/view/building-microservices/9781491950340/ch01.html#idm46346970503816
+  saga_pattern_def_url: https://microservices.io/patterns/data/saga.html
+  spring_get_mapping_annotation_url: https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/GetMapping.html
+  spring_response_status_annotation_url: https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/ResponseStatus.html
+  spring_url: https://www.spring.io
+  tech_hetero_def_url: https://www.oreilly.com/library/view/building-microservices/9781491950340/ch01.html#idm46346970503816  

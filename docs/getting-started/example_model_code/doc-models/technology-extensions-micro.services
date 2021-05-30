@@ -1,0 +1,27 @@
+import datatypes from "domain.data" as domain
+import technology from "Java.technology" as Java						// EXTENSION (1)
+import technology from "Spring.technology" as Spring					// EXTENSION (2)
+
+@technology(Java)														// EXTENSION (3)
+@technology(Spring)														// EXTENSION (4)
+public functional microservice com.example.pacp.SearchForFreeSpace {
+    interface SearchSpace {
+        ---
+        Search for a free parking space.
+
+        @required inLocation Input location
+        @required distance Search distance around location
+        ---
+        @Spring::_aspects.Get											// EXTENSION (5)
+        searchFreeSpace(
+            sync in inLocation : domain::ParkingSpace.Location,
+            sync in distance : float,
+            @Spring::_aspects.ResponseStatus("OK")						// EXTENSION (6)
+            sync out freeSpaces : domain::ParkingSpace.ParkingSpace,
+            @Spring::_aspects.ResponseStatus("OK")						// EXTENSION (7)
+            sync out allocations : domain::ParkingSpace.VehicleCounts,
+            @Spring::_aspects.ResponseStatus("404")						// EXTENSION (8)
+            sync out fault foundNone : boolean
+        );
+    }
+}

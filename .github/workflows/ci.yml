@@ -3,12 +3,13 @@ on:
   push:
     branches:
       - main
-      - workflow_test
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - run: sudo apt-get install zip
+      - run: cd docs/getting-started/example_model_code/deploy/ && bash create_zip.sh && cd /
       - uses: actions/setup-python@v2
         with:
           python-version: 3.x
@@ -18,7 +19,7 @@ jobs:
       - run: pip install mkdocs-macros-plugin
       - run: pip install git+https://github.com/SeelabFhdo/lemma-pygments-lexers.git
       - run: mkdocs gh-deploy --force
-      - name: Discord success notification        
+      - name: Discord success notification
         uses: sarisia/actions-status-discord@v1
         if: ${{ success() && github.ref == 'refs/heads/main' }}
         with:
@@ -26,7 +27,7 @@ jobs:
           nodetail: true
           title: "LEMMA's documentation received an update"
           description: "${{ github.event.head_commit.message }}. Catch up at https://seelabfhdo.github.io/lemma-docs."
-      - name: Discord notification        
+      - name: Discord notification
         uses: sarisia/actions-status-discord@v1
         if: ${{ !success() || github.ref != 'refs/heads/main' }}
         with:

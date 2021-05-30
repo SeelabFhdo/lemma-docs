@@ -1,0 +1,4 @@
+# File and folder paths are relative to parent directory
+# (/docs/getting-started/example_model_code)
+.project
+models
