@@ -1,4 +1,4 @@
-# Quick Tour
+# Tour
 
 In the following, we will demonstrate some of the basic features of LEMMA
 regarding the construction of models for microservice architectures and their
@@ -6,14 +6,14 @@ processing. To reproduce the presented modeling and processing steps, you may
 first want to [install LEMMA](..) on your computer.
 
 ## The Park and Charge Platform Example
-For the quick tour of LEMMA, we refer to a single microservice from an
-MSA[^1]-based application that allows the management of parking spaces with
-capabilities for electric vehicle charging. More specifically, we will call this
-application the Park and Charge Platform, or short PACP.
+For the tour of LEMMA, we refer to a single microservice from an MSA[^1]-based
+application that allows the management of parking spaces with capabilities for
+electric vehicle charging. More specifically, we will call this application the
+Park and Charge Platform, or short PACP.
 
 The PACP consists of several microservices, e.g., for user management, parking
-space configuration and provisioning, and parking space searching. For the quick
-tour of LEMMA, we are going to model the domain data, API, and deployment of the
+space configuration and provisioning, and parking space searching. For the tour
+of LEMMA, we are going to model the domain data, API, and deployment of the
 latter microservice, i.e., the `SearchForFreeSpace` microservice. This
 microservice shall provide its clients with means to search for spare parking
 spaces with electric vehicle charging capabilities in a given location.

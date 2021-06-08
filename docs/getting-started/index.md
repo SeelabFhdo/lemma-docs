@@ -101,7 +101,7 @@ Eclipse should highlight the model code as follows:
 </figure>
 
 Congratulations, you have successfully installed LEMMA. Now, you may want to
-take the [Quick Tour](tour) and explore some of LEMMA's core features.
+take the [Tour](tour) and explore some of LEMMA's core features.
 
 ## Troubleshooting
 Having trouble with the installation of LEMMA? Please do not hesitate to contact

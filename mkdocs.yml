@@ -51,7 +51,7 @@ nav:
   - 'Feature Overview': 'feature-overview/index.md'
   - 'Getting Started':
     - 'Installation': 'getting-started/index.md'
-    - 'Quick Tour': 'getting-started/tour.md'
+    - 'Tour': 'getting-started/tour.md'
   - 'User Guide':
     - 'Introduction': 'user-guide/index.md'
     - 'Domain Data Modeling Language': 'user-guide/domain-data-modeling-language/index.md'
