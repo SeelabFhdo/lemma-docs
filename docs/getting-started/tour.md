@@ -156,9 +156,10 @@ workspace looks similar to this:
   <img src="../figures/tour-step3-service-model.png" loading="lazy"/>
 </figure>
 
-As for the initial domain model constructed in Step 2, LEMMA does not allow
-empty service models and thus displays an error marker for the `micro.services`
-file. To fix this issue, add the following service model code to the file:
+As for the initial domain model constructed in
+[Step 2](#step-2-create-a-domain-model), LEMMA does not allow empty service
+models and thus displays an error marker for the `micro.services` file. To fix
+this issue, add the following service model code to the file:
 
 ```lemmaservices
 --8<-- "getting-started/example_model_code/doc-models/technology-agnostic-micro.services"
@@ -168,8 +169,10 @@ file. To fix this issue, add the following service model code to the file:
 LEMMA's modeling languages support an `import` statement that enables to
 integrate models for different viewpoints on a microservice architecture. These
 statements always have the following syntactic form:
+
 !!! example ""
     `import [ELEMENT_TYPE] from "[MODEL_PATH]" as [ALIAS]`
+
 In the example service model, the imported `[ELEMENT_TYPE]` is `datatypes`,
 which accounts for the import of domain concepts to be used as data types for
 service operation parameters (see below). The example `[MODEL_PATH]` is
@@ -414,5 +417,184 @@ required by a microservice team and its members. For instance, next to
 technology-related configuration metadata, technology aspects are used to
 integrate patterns such as [CQRS]({{ cqrs_pattern_def_url}}) and
 [Saga]({{ saga_pattern_def_url }}) with LEMMA.
+
+## Step 5: Create an Operation Model
+
+Until now we relied on three LEMMA modeling languages, which enabled us to
+express different viewpoints on the `SearchForFreeSpace` microservice:
+
+Modeling Language                                                               | Viewpoint            | Relevance to `SearchForFreeSpace` microservice                                                                         |
+| :---------------------------------------------------------------------------- | :------------------: | :--------------------------------------------------------------------------------------------------------------------- |
+[Domain Data Modeling Language](../../user-guide/domain-data-modeling-language) | Domain Viewpoint     | [Modeling of structured and sequential domain data based on DDD](#step-2-create-a-domain-model)                        |
+[Service Modeling Language](../../user-guide/service-modeling-language)         | Service Viewpoint    | [Modeling of the microservice's API](#step-3-create-a-service-model)                                                   |
+[Technology Modeling Language](../../user-guide/technology-modeling-language)   | Technology Viewpoint | [Addition of technology information to the microservice](#step-4-enrich-the-service-model-with-technology-information) |
+
+In this section, we will use LEMMA's
+[Operation Modeling Language](../../user-guide/operation-modeling-language) to
+construct an *operation model* for the `SearchForFreeSpace` microservice. In
+LEMMA, operation models specify the deployment of one or more microservices, as
+well as the relevant deployment and operation infrastructure consisting of,
+e.g., service discoveries, API gateways, tracing and monitoring components etc.
+
+By contrast to service models, LEMMA does not support the technology-agnostic
+modeling of operation models. Instead, elements in an operation model must
+always refer to one or more technologies being imported from technology models.
+This circumstance reflects the fact that the deployment and operation of a
+microservice architecture is always bound to a determined set of technologies.
+Consequently, we first need to create an operation-oriented technology model. To
+this end, create a file called `Kubernetes.technology` in the `models` folder of
+the `search-for-free-space` Eclipse project. The Project Explorer of your
+Eclipse workspace should now look similar to this:
+<figure>
+  <img src="../figures/tour-step5-technology-model.png" loading="lazy"/>
+</figure>
+
+Next, copy the model code in the following listing expressed with LEMMA's
+[Technology Modeling Language](../../user-guide/technology-modeling-language) to
+`Kubernetes.technology` file.
+
+!!! note
+    Here, we will not go into further details concerning the construction of
+    technology models. Please refer to the user guide of the 
+    [Technology Modeling Language](../../user-guide/technology-modeling-language)
+    to learn about technology model construction.
+
+```lemmatechnology
+--8<-- "getting-started/example_model_code/models/Kubernetes.technology"
+```
+
+Now, in the `models` folder of the `search-for-free-space` Eclipse project,
+create a file called `deployment.operation` so that the Project Explorer of
+your Eclipse workspace looks similar to this:
+<figure>
+  <img src="../figures/tour-step5-operation-model.png" loading="lazy"/>
+</figure>
+
+The `deployment.operation` file shall store the operation model, which specifies
+the deployment of the `SearchForFreeSpace` microservice in LEMMA's
+[Operation Modeling Language](../../user-guide/operation-modeling-language).
+However, as in the previous steps, LEMMA recognizes empty operation models as
+erroneous. To fix this issue, enter the following model code in the
+`deployment.operation` file:
+
+```lemmaoperation
+--8<-- "getting-started/example_model_code/models/deployment.operation"
+```
+
+### Technology and Microservice Imports
+
+As already mentioned, LEMMA operation models are never technology-agnostic and
+thus must rely on technologies captured in technology models. Hence, an
+operation model must import one or more technology models. The operation model
+for the `SearchForFreeSpace` microservice first imports the model in the
+`Kubernetes.technology` file, which we have created above. Next, it also imports
+the `Spring.technology` model from
+[Step 4](#step-4-enrich-the-service-model-with-technology-information). Notice
+that for technology model imports the [Operation Modeling Language](../../user-guide/operation-modeling-language)
+relies on the same syntactic construct as the 
+[Service Modeling Language](../../user-guide/service-modeling-language):
+
+!!! example ""
+    `import technology from "[MODEL_PATH]" as [ALIAS]`
+
+In case an operation model shall specify the deployment of a microservice or its
+usage of infrastructure components, the model must also import the corresponding
+service model. In the above example code, the operation model imports the 
+`SearchForFreeSpace` microservice from the service model in the file
+`micro.services` (cf. Steps [3](#step-3-create-a-service-model) and
+[4](#step-4-enrich-the-service-model-with-technology-information)). To this end,
+the operation model employs the syntactic form of LEMMA's `import` statement
+with the element type `microservices`:
+
+!!! example ""
+    `import microservices from "[MODEL_PATH]" as [ALIAS]`
+
+### Container Definition
+
+LEMMA relies on the notion of
+*[container-based-deployment]({{ container_def_url }})* to specify the
+deployment of a microservice. More precisely, the
+[Operation Modeling Language](../../user-guide/operation-modeling-language)
+provides the `container` keyword, which expects the name of the container, a
+*deployment technology*, and one or more imported microservices to be deployed,
+followed by a pair of curly brackets:
+
+!!! example ""
+    `container [CONTAINER_NAME]`
+    `deployment technology [IMPORTED_DEPLOYMENT_TECHNOLOGY]`
+    `deploys [IMPORTED_MICROSERVICE1] (, [IMPORTED_MICROSERVICEx])* { ... }`
+
+The deployment technology of a container must originate from an imported
+technology model that is assigned to the container using the built-in
+`@technology` annotation. That is, in the above example operation model, the
+container with the name `SearchForFreeServiceContainer` receives the imported
+technologies `Spring` and `Kubernetes`. The former originates from the
+`Spring.technology` model constructed in
+[Step 4](#step-4-enrich-the-service-model-with-technology-information) and the
+latter refers to the technology model file `Kubernetes.technology`, which we
+constructed at the beginning of the current step. While we require the `Spring`
+technology to configure the endpoints of the container (see below), we use the
+`Kubernetes` technology to determine the deployment technology of the
+`SearchForFreeServiceContainer` using the following pattern to refer to the
+deployment technology imported from the `Kubernetes.technology` model:
+
+!!! example ""
+    `[IMPORTED_TECHNOLOGY_MODEL_ALIAS]::_deployment.[TECHNOLOGY_NAME]`
+
+Notice that the syntax for referencing imported deployment technologies is
+basically consistent with the syntax for referencing imported technology aspects
+(cf. [Step 4](#step-4-enrich-the-service-model-with-technology-information)),
+but expects the namespace `_deployment` instead of `_aspects`. You can read more
+about technology namespaces in the
+[Technology Modeling Language](../../user-guide/technology-modeling-language)
+chapter.
+
+After its deployment technology, a modeled container must state the deployed
+microservices using the `deploys` directive. Microservices originate from
+imported service models and thus we refer to them in operation models using the
+same syntactic form as for typing microservice operation parameters with
+imported domain concepts (cf. [Step 3](#step-3-create-a-service-model)):
+
+!!! example ""
+    `[IMPORTED_SERVICE_MODEL_ALIAS]::[FULLY_QUALIFIED_MICROSERVICE_NAME]`
+
+Since the `SearchForFreeServiceContainer` container shall deploy the
+`SearchForFreeSpace` microservice from the `micro.services` file (cf. 
+Steps [3](#step-3-create-a-service-model) and
+[4](#step-4-enrich-the-service-model-with-technology-information)), which we
+imported with the alias `SearchForFreeService`, we refer to the service for its
+deployment via the example operation model as
+`SearchForFreeService::com.example.pacp.SearchForFreeSpace`.
+
+### Container Configuration
+
+LEMMA allows the configuration of containers and microservice deployments within
+the curly brackets of a `container` definition. In the example operation model,
+we configure the container within the `default values` section. The
+configuration values in this section account for all microservices that a
+container deploys. However, it is also possible to only configure a selected
+microservice or overwrite the default configuration values for a selected
+microservice. You can learn more about service-specific container configurations
+in the
+[Operation Modeling Language](../../user-guide/operation-modeling-language)
+chapter.
+
+Basically, container configurations consist of value assignments to
+technology-specific *configuration properties*. In the example operation model
+above, we specify the values `SearchForFreeService` and `8080` for the
+`springApplicationName` and `serverPort` properties from the
+`Kubernetes.technology` model. Notice that the semantics of the configuration
+properties always depend on the technology model. In this case, the
+`Kubernetes.technology` model uses the properties to extend the configuration of
+Spring-based microservices with deployment-relevant information.
+
+Next to configuration properties, container configurations may contain a
+`basic endpoints` section. It allows for determination of a container's
+*endpoints*. In LEMMA, endpoints are combinations of communication protocols
+specified in technology models, and one or more addresses. The example operation
+model above defines an endpoint for RESTful HTTP interaction (represented by the
+`rest` protocol from the `Spring.technology` model; cf.
+[Step 4](#step-4-enrich-the-service-model-with-technology-information)), which
+is reachable at the physical address `localhost:8080`.
 
 [^1]: MSA: The **M**icro**s**ervice **A**rchitecture style.

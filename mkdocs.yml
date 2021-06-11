@@ -57,11 +57,13 @@ nav:
     - 'Domain Data Modeling Language': 'user-guide/domain-data-modeling-language/index.md'
     - 'Service Modeling Language': 'user-guide/service-modeling-language/index.md'
     - 'Technology Modeling Language': 'user-guide/technology-modeling-language/index.md'
+    - 'Operation Modeling Language': 'user-guide/operation-modeling-language/index.md'
   - 'Developer Guide': 'developer-guide/index.md'
   - 'Research': 'research/index.md'
   - 'Contact': 'contact/index.md'
 extra:
   bounded_context_url: https://martinfowler.com/bliki/BoundedContext.html
+  container_def_url: https://www.docker.com/resources/what-container
   current_eclipse_release: 2021-03
   cqrs_pattern_def_url: https://microservices.io/patterns/data/cqrs.html
   ddd_aggregate_def_url: https://martinfowler.com/bliki/DDD_Aggregate.html
