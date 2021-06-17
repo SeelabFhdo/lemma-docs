@@ -24,4 +24,4 @@ and (iii) [microservice code generation](https://link.springer.com/chapter/10.10
 
 - **Designed for Extensibility**: LEMMA is designed to be extensible, e.g., with
 the support of new frameworks for microservice implementation or deployment.
-Have a look at our [Developer Guide](../developer-guide) for the details.
+Have a look at our [Developer Guide](../developer-guide/index.md) for the details.

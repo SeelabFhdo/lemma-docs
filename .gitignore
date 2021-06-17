@@ -1,8 +1,8 @@
 serve.sh
 site/
-docs/getting-started/example_model_code/generated code/
-docs/getting-started/example_model_code/intermediate
-docs/getting-started/example_model_code/execution.yaml
-docs/getting-started/example_model_code/generate_services.sh
-docs/getting-started/example_model_code/run_model_processor.py
-docs/getting-started/example_model_code/lemma_tour_models.zip
+docs/getting-started/tour/example_model_code/generated code/
+docs/getting-started/tour/example_model_code/intermediate
+docs/getting-started/tour/example_model_code/execution.yaml
+docs/getting-started/tour/example_model_code/generate_services.sh
+docs/getting-started/tour/example_model_code/run_model_processor.py
+docs/getting-started/tour/example_model_code/lemma_tour_models.zip

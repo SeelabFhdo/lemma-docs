@@ -3,7 +3,7 @@
 In the following, we will demonstrate some of the basic features of LEMMA
 regarding the construction of models for microservice architectures and their
 processing. To reproduce the presented modeling and processing steps, you may
-first want to [install LEMMA](..) on your computer.
+first want to [install LEMMA](../index.md) on your computer.
 
 ## The Park and Charge Platform Example
 For the tour of LEMMA, we refer to a single microservice from an MSA[^1]-based
@@ -32,20 +32,20 @@ the constructed models.
 
 The next sections will teach you how to construct the aforementioned LEMMA
 models for the `SearchForFreeSpace` microservice by means of a
-[LEMMA-enabled Eclipse installation](..). If you do not want to construct the
-models on your own, you can also
+[LEMMA-enabled Eclipse installation](../index.md). If you do not want to
+construct the models on your own, you can also
 [download a ZIP archive](example_model_code/{{ lemma_tour_models_project_name }}.zip),
 which includes all three models.
 
 ## Step 1: Creating an Eclipse Project
-In the [LEMMA-enabled Eclipse installation](..), create a new Java project
-called `{{ lemma_tour_models_project_name }}`. We will use this project to
-gather all models for the `SearchForFreeSpace` microservice. In addition, create
-a folder called `models` within the project.
+In the [LEMMA-enabled Eclipse installation](../index.md), create a new Java
+project called `{{ lemma_tour_models_project_name }}`. We will use this project
+to gather all models for the `SearchForFreeSpace` microservice. In addition,
+create a folder called `models` within the project.
 
 The Project Explorer of your Eclipse workspace should now look similar to this:
 <figure>
-  <img src="../figures/tour-step1-project.png" loading="lazy"/>
+  <img src="figures/tour-step1-project.png" loading="lazy"/>
 </figure>
 
 ## Step 2: Create a Domain Model
@@ -53,7 +53,7 @@ LEMMA provides several modeling languages to express different viewpoints on a
 microservice architecture. A crucial viewpoint in almost every software project
 including microservice architecture is the *domain viewpoint*, for which LEMMA
 comprises the
-[Domain Data Modeling Language](../../user-guide/domain-data-modeling-language)
+[Domain Data Modeling Language](../../user-guide/domain-data-modeling-language/index.md)
 that enables domain experts and microservice developers to collaboratively
 construct *domain models*.
 
@@ -67,23 +67,23 @@ it with `Yes`.
 
 The Project Explorer of your Eclipse workspace should now look similar to this:
 <figure>
-  <img src="../figures/tour-step2-domain-model.png" loading="lazy"/>
+  <img src="figures/tour-step2-domain-model.png" loading="lazy"/>
 </figure>
 
 As you can see, Eclipse displays an error marker for the model. That is, because
 LEMMA's
-[Domain Data Modeling Language](../../user-guide/domain-data-modeling-language)
+[Domain Data Modeling Language](../../user-guide/domain-data-modeling-language/index.md)
 does not allow empty domain models. To fix this issue, add the following model
 code to the `domain.data` file by double-clicking the file in Eclipse's Project
 Explorer and entering the code in the text editor that just opened:
 
 ```lemmadomaindata
---8<-- "getting-started/example_model_code/models/domain.data"
+--8<-- "getting-started/tour/example_model_code/models/domain.data"
 ```
 
 ### Bounded Contexts
 The
-[Domain Data Modeling Language](../../user-guide/domain-data-modeling-language)
+[Domain Data Modeling Language](../../user-guide/domain-data-modeling-language/index.md)
 enables to organize the concepts of a microservice's domain excerpt within
 contexts. You can introduce a context with the keyword `context` followed by the
 name of the context and a pair of curly brackets. With this approach, the
@@ -143,8 +143,8 @@ example domain model, i.e., `ParkingSpaces` and `VehicleCounts`, have one field
 
 ## Step 3: Create a Service Model
 In this step, we use LEMMA's
-[Service Modeling Language](../../user-guide/service-modeling-language) to
-construct a *service model* for the `SearchForFreeSpace` microservice. The
+[Service Modeling Language](../../user-guide/service-modeling-language/index.md)
+to construct a *service model* for the `SearchForFreeSpace` microservice. The
 modeling language covers the concerns of microservice developers, thereby
 providing a means to express the *service viewpoint* on a microservice
 architecture.
@@ -153,7 +153,7 @@ In the `models` folder of the `search-for-free-space` Eclipse project, create a
 file called `micro.services` so that the Project Explorer of your Eclipse
 workspace looks similar to this:
 <figure>
-  <img src="../figures/tour-step3-service-model.png" loading="lazy"/>
+  <img src="figures/tour-step3-service-model.png" loading="lazy"/>
 </figure>
 
 As for the initial domain model constructed in
@@ -162,7 +162,7 @@ models and thus displays an error marker for the `micro.services` file. To fix
 this issue, add the following service model code to the file:
 
 ```lemmaservices
---8<-- "getting-started/example_model_code/doc-models/technology-agnostic-micro.services"
+--8<-- "getting-started/tour/example_model_code/doc-models/technology-agnostic-micro.services"
 ```
 
 ### Domain Concept Imports
@@ -235,7 +235,7 @@ consists of a single operation, `searchFreeSpace`, which has five parameters
 (see below).
 
 In addition, the
-[Service Modeling Language](../../user-guide/service-modeling-language)
+[Service Modeling Language](../../user-guide/service-modeling-language/index.md)
 integrates a special syntax for *API operation comments* that allows the
 immediate documentation of an operation's purpose and can later be translated,
 e.g., into [OpenAPI specifications](https://www.openapis.org). An API operation
@@ -301,14 +301,15 @@ From the definitions of the parameters, we can phrase the purpose of the
 
 ## Step 4: Enrich the Service Model with Technology Information
 So far, we have used LEMMA's
-[Domain Data Modeling Language](../../user-guide/domain-data-modeling-language)
+[Domain Data Modeling Language](../../user-guide/domain-data-modeling-language/index.md)
 and
-[Service Modeling Language](../../user-guide/service-modeling-language) to
-construct the domain and service model of the `SearchForFreeSpace` microservice.
-Recall that LEMMA organizes its modeling languages into different architecture
-viewpoints on microservice architectures. That is, the example domain model
-reifies the concepts of the domain view on the `SearchForFreeSpace` microservice
-and the example service model represents the service view on the microservice.
+[Service Modeling Language](../../user-guide/service-modeling-language/index.md)
+to construct the domain and service model of the `SearchForFreeSpace`
+microservice. Recall that LEMMA organizes its modeling languages into different
+architecture viewpoints on microservice architectures. That is, the example
+domain model reifies the concepts of the domain view on the `SearchForFreeSpace`
+microservice and the example service model represents the service view on the
+microservice.
 
 Next to domain and service characteristics, another crucial aspect of MSA is
 technology or, more precisely, the possibility to employ an arbitrary number of
@@ -321,8 +322,8 @@ new team members.
 
 LEMMA treats technology heterogeneity as a dedicated concern in microservice
 development and thus provides the
-[Technology Modeling Language](../../user-guide/technology-modeling-language) to
-cluster technology information in *technology models* that are flexibly
+[Technology Modeling Language](../../user-guide/technology-modeling-language/index.md)
+to cluster technology information in *technology models* that are flexibly
 applicable to modeled microservices.
 
 In the following, we enrich the technology-agnostic example service model from 
@@ -337,7 +338,7 @@ the files `Java.technology` and `Spring.technology` in the `models` folder of
 the `search-for-free-space` Eclipse project so that the Project Explorer of your
 Eclipse workspace looks similar to this:
 <figure>
-  <img src="../figures/tour-step4-technology-models.png" loading="lazy"/>
+  <img src="figures/tour-step4-technology-models.png" loading="lazy"/>
 </figure>
 
 Next, copy the contents of the following two listings to the corresponding
@@ -346,19 +347,19 @@ technology model file.
 !!! note
     Here, we will not go into further details concerning the construction of
     technology models. Please refer to the user guide of the 
-    [Technology Modeling Language](../../user-guide/technology-modeling-language)
+    [Technology Modeling Language](../../user-guide/technology-modeling-language/index.md)
     to learn about technology model construction.
 
 === "Java.technology"
 
     ```lemmatechnology
-    --8<-- "getting-started/example_model_code/models/Java.technology"
+    --8<-- "getting-started/tour/example_model_code/models/Java.technology"
     ```
 
 === "Spring.technology"
 
     ```lemmatechnology
-    --8<-- "getting-started/example_model_code/models/Spring.technology"
+    --8<-- "getting-started/tour/example_model_code/models/Spring.technology"
     ```
 
 With the technology models at hand, you can now extend the example service model
@@ -366,7 +367,7 @@ and its elements with the technology information identified by the
 `// EXTENSION` comments:
 
 ```lemmaservices
---8<-- "getting-started/example_model_code/doc-models/technology-extensions-micro.services"
+--8<-- "getting-started/tour/example_model_code/doc-models/technology-extensions-micro.services"
 ```
 
 ### Technology Model Imports and Applications
@@ -410,7 +411,7 @@ returned.
 
 In fact, the technology aspect mechanism is not constrained to technology alone.
 Instead, the
-[Technology Modeling Language](../../user-guide/technology-modeling-language)
+[Technology Modeling Language](../../user-guide/technology-modeling-language/index.md)
 does not constrain the semantic scope of metadata, thereby making technology
 aspects a powerful feature that allows semantic enrichment of LEMMA models as
 required by a microservice team and its members. For instance, next to
@@ -423,14 +424,14 @@ integrate patterns such as [CQRS]({{ cqrs_pattern_def_url}}) and
 Until now we relied on three LEMMA modeling languages, which enabled us to
 express different viewpoints on the `SearchForFreeSpace` microservice:
 
-Modeling Language                                                               | Viewpoint            | Relevance to `SearchForFreeSpace` microservice                                                                         |
-| :---------------------------------------------------------------------------- | :------------------: | :--------------------------------------------------------------------------------------------------------------------- |
-[Domain Data Modeling Language](../../user-guide/domain-data-modeling-language) | Domain Viewpoint     | [Modeling of structured and sequential domain data based on DDD](#step-2-create-a-domain-model)                        |
-[Service Modeling Language](../../user-guide/service-modeling-language)         | Service Viewpoint    | [Modeling of the microservice's API](#step-3-create-a-service-model)                                                   |
-[Technology Modeling Language](../../user-guide/technology-modeling-language)   | Technology Viewpoint | [Addition of technology information to the microservice](#step-4-enrich-the-service-model-with-technology-information) |
+Modeling Language                                                                        | Viewpoint            | Relevance to `SearchForFreeSpace` microservice                                                                         |
+| :------------------------------------------------------------------------------------- | :------------------: | :--------------------------------------------------------------------------------------------------------------------- |
+[Domain Data Modeling Language](../../user-guide/domain-data-modeling-language/index.md) | Domain Viewpoint     | [Modeling of structured and sequential domain data based on DDD](#step-2-create-a-domain-model)                        |
+[Service Modeling Language](../../user-guide/service-modeling-language/index.md)         | Service Viewpoint    | [Modeling of the microservice's API](#step-3-create-a-service-model)                                                   |
+[Technology Modeling Language](../../user-guide/technology-modeling-language/index.md)   | Technology Viewpoint | [Addition of technology information to the microservice](#step-4-enrich-the-service-model-with-technology-information) |
 
 In this section, we will use LEMMA's
-[Operation Modeling Language](../../user-guide/operation-modeling-language) to
+[Operation Modeling Language](../../user-guide/operation-modeling-language/index.md) to
 construct an *operation model* for the `SearchForFreeSpace` microservice. In
 LEMMA, operation models specify the deployment of one or more microservices, as
 well as the relevant deployment and operation infrastructure consisting of,
@@ -446,39 +447,39 @@ this end, create a file called `Kubernetes.technology` in the `models` folder of
 the `search-for-free-space` Eclipse project. The Project Explorer of your
 Eclipse workspace should now look similar to this:
 <figure>
-  <img src="../figures/tour-step5-technology-model.png" loading="lazy"/>
+  <img src="figures/tour-step5-technology-model.png" loading="lazy"/>
 </figure>
 
 Next, copy the model code in the following listing expressed with LEMMA's
-[Technology Modeling Language](../../user-guide/technology-modeling-language) to
-`Kubernetes.technology` file.
+[Technology Modeling Language](../../user-guide/technology-modeling-language/index.md)
+to `Kubernetes.technology` file.
 
 !!! note
     Here, we will not go into further details concerning the construction of
     technology models. Please refer to the user guide of the 
-    [Technology Modeling Language](../../user-guide/technology-modeling-language)
+    [Technology Modeling Language](../../user-guide/technology-modeling-language/index.md)
     to learn about technology model construction.
 
 ```lemmatechnology
---8<-- "getting-started/example_model_code/models/Kubernetes.technology"
+--8<-- "getting-started/tour/example_model_code/models/Kubernetes.technology"
 ```
 
 Now, in the `models` folder of the `search-for-free-space` Eclipse project,
 create a file called `deployment.operation` so that the Project Explorer of
 your Eclipse workspace looks similar to this:
 <figure>
-  <img src="../figures/tour-step5-operation-model.png" loading="lazy"/>
+  <img src="figures/tour-step5-operation-model.png" loading="lazy"/>
 </figure>
 
 The `deployment.operation` file shall store the operation model, which specifies
 the deployment of the `SearchForFreeSpace` microservice in LEMMA's
-[Operation Modeling Language](../../user-guide/operation-modeling-language).
+[Operation Modeling Language](../../user-guide/operation-modeling-language/index.md).
 However, as in the previous steps, LEMMA recognizes empty operation models as
 erroneous. To fix this issue, enter the following model code in the
 `deployment.operation` file:
 
 ```lemmaoperation
---8<-- "getting-started/example_model_code/models/deployment.operation"
+--8<-- "getting-started/tour/example_model_code/models/deployment.operation"
 ```
 
 ### Technology and Microservice Imports
@@ -490,9 +491,10 @@ for the `SearchForFreeSpace` microservice first imports the model in the
 `Kubernetes.technology` file, which we have created above. Next, it also imports
 the `Spring.technology` model from
 [Step 4](#step-4-enrich-the-service-model-with-technology-information). Notice
-that for technology model imports the [Operation Modeling Language](../../user-guide/operation-modeling-language)
+that for technology model imports the
+[Operation Modeling Language](../../user-guide/operation-modeling-language/index.md)
 relies on the same syntactic construct as the 
-[Service Modeling Language](../../user-guide/service-modeling-language):
+[Service Modeling Language](../../user-guide/service-modeling-language/index.md):
 
 !!! example ""
     `import technology from "[MODEL_PATH]" as [ALIAS]`
@@ -514,7 +516,7 @@ with the element type `microservices`:
 LEMMA relies on the notion of
 *[container-based-deployment]({{ container_def_url }})* to specify the
 deployment of a microservice. More precisely, the
-[Operation Modeling Language](../../user-guide/operation-modeling-language)
+[Operation Modeling Language](../../user-guide/operation-modeling-language/index.md)
 provides the `container` keyword, which expects the name of the container, a
 *deployment technology*, and one or more imported microservices to be deployed,
 followed by a pair of curly brackets:
@@ -546,7 +548,7 @@ basically consistent with the syntax for referencing imported technology aspects
 (cf. [Step 4](#step-4-enrich-the-service-model-with-technology-information)),
 but expects the namespace `_deployment` instead of `_aspects`. You can read more
 about technology namespaces in the
-[Technology Modeling Language](../../user-guide/technology-modeling-language)
+[Technology Modeling Language](../../user-guide/technology-modeling-language/index.md)
 chapter.
 
 After its deployment technology, a modeled container must state the deployed
@@ -576,7 +578,7 @@ container deploys. However, it is also possible to only configure a selected
 microservice or overwrite the default configuration values for a selected
 microservice. You can learn more about service-specific container configurations
 in the
-[Operation Modeling Language](../../user-guide/operation-modeling-language)
+[Operation Modeling Language](../../user-guide/operation-modeling-language/index.md)
 chapter.
 
 Basically, container configurations consist of value assignments to

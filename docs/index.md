@@ -22,14 +22,14 @@ If you have not yet heard of LEMMA, you may first want to have a look at its
 [Context and Motivation](context-motivation) as well as the
 [Feature Overview](feature-overview). In addition, you can read the
 [Getting Started](getting-started) guide and then take the
-[Tour](getting-started/tour.md) to get a first impression of LEMMA's
-practical usage.
+[Tour](getting-started/tour) to get a first impression of LEMMA's practical
+usage.
 
 ## User Guide
 
 We provide a [User Guide](user-guide) as LEMMA's reference documentation. It
 draws on the information provided by the [Getting Started](getting-started)
-guide and the [Tour](getting-started/tour.md).
+guide and the [Tour](getting-started/tour).
 
 In case you encounter issues with the documentation, have further questions, or
 any sort of feedback, please do not hesitate to contact us by creating an issue

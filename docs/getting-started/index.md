@@ -70,13 +70,13 @@ currently installed version of LEMMA.
 </figure>
 
 In addition, you can verify if the installation of LEMMA was successful by
-creating a model in one of [LEMMA's modeling languages](../user-guide):
+creating a model in one of [LEMMA's modeling languages](../user-guide/index.md):
 
 1. Create a new Java project in Eclipse.
 2. Within the project, create a new file called `test.data`. Note that it is
 mandatory to use the extension `.data` as otherwise Eclipse will not be able to
 associate the file with
-[LEMMA's Domain Data Modeling Language](../user-guide).  
+[LEMMA's Domain Data Modeling Language](../user-guide/domain-data-modeling-language/index.md).  
 In case the "Configure Xtext" dialog appears, just hit "Yes":  
 <figure>
   <img src="figures/configure_xtext.png" loading="lazy"/>
@@ -101,7 +101,7 @@ Eclipse should highlight the model code as follows:
 </figure>
 
 Congratulations, you have successfully installed LEMMA. Now, you may want to
-take the [Tour](tour) and explore some of LEMMA's core features.
+take the [Tour](tour/index.md) and explore some of LEMMA's core features.
 
 ## Troubleshooting
 Having trouble with the installation of LEMMA? Please do not hesitate to contact

@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: sudo apt-get install zip
-      - run: cd docs/getting-started/example_model_code/deploy/ && bash create_zip.sh && cd /
+      - run: cd docs/getting-started/tour/example_model_code/deploy/ && bash create_zip.sh && cd /
       - uses: actions/setup-python@v2
         with:
           python-version: 3.x

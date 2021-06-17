@@ -7,7 +7,7 @@ FILES_DIR="$SCRIPT_DIR/.."
 
 # Determine ZIP name from the 'lemma_tour_models_project_name' property in the
 # mkdocs.yml configuration file
-ZIP_NAME="$(grep "lemma_tour_models_project_name" ../../../../mkdocs.yml | sed -n -e 's/^.*: //p')"
+ZIP_NAME="$(grep "lemma_tour_models_project_name" ../../../../../mkdocs.yml | sed -n -e 's/^.*: //p')"
 if [ -z "$ZIP_NAME" ]
 then
     ZIP_NAME="lemma_tour_models"
