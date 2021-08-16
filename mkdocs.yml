@@ -64,7 +64,7 @@ nav:
 extra:
   bounded_context_url: https://martinfowler.com/bliki/BoundedContext.html
   container_def_url: https://www.docker.com/resources/what-container
-  current_eclipse_release: 2021-03
+  current_eclipse_release: 2021-06
   cqrs_pattern_def_url: https://microservices.io/patterns/data/cqrs.html
   ddd_aggregate_def_url: https://martinfowler.com/bliki/DDD_Aggregate.html
   ddd_def_url: https://en.wikipedia.org/wiki/Domain-driven_design
@@ -77,7 +77,7 @@ extra:
   lemma_tour_models_project_name: search-for-free-space
   lemma_updatesite_url: https://microservices.fh-dortmund.de/lemma/
   mde_def_url: https://en.wikipedia.org/wiki/Model-driven_engineering
-  minimum_eclipse_release: 2020-03
+  minimum_eclipse_release: 2021-03
   monolith_def_url: https://en.wikipedia.org/wiki/Monolithic_application
   msa_bc_url: https://martinfowler.com/articles/microservices.html#DecentralizedDataManagement
   msa_def_url: https://martinfowler.com/articles/microservices.html
@@ -87,4 +87,4 @@ extra:
   spring_get_mapping_annotation_url: https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/GetMapping.html
   spring_response_status_annotation_url: https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/ResponseStatus.html
   spring_url: https://www.spring.io
-  tech_hetero_def_url: https://www.oreilly.com/library/view/building-microservices/9781491950340/ch01.html#idm46346970503816  
+  tech_hetero_def_url: https://www.oreilly.com/library/view/building-microservices/9781491950340/ch01.html#idm46346970503816
