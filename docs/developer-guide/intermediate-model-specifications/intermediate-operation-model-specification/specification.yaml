@@ -22,7 +22,7 @@ intermediate_operation_model_specification:
                     type:
                         name: IntermediateImport
                         multiplicity: "*"
-                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-data-model-specification/#concept-IntermediateImport
+                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateImport
                     description:
                         References to imported
                         [technology models](https://seelabfhdo.github.io/lemma-docs/user-guide/technology-modeling-language),
@@ -67,7 +67,7 @@ intermediate_operation_model_specification:
                     type:
                         name: IntermediateImport
                         multiplicity: "1..*"
-                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-data-model-specification/#concept-IntermediateImport
+                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateImport
                     description:
                         References to imported
                         [technology models](https://seelabfhdo.github.io/lemma-docs/user-guide/technology-modeling-language).
@@ -124,7 +124,7 @@ intermediate_operation_model_specification:
                     type:
                         name: IntermediateImportedAspect
                         multiplicity: "*"
-                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-data-model-specification/#concept-IntermediateImportedAspect
+                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateImportedAspect
                     description:
                         Aspects of the operation node.
                 getEffectiveConfigurationValues:
@@ -359,7 +359,7 @@ intermediate_operation_model_specification:
                 import:
                     type:
                         name: IntermediateImport
-                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-data-model-specification/#concept-IntermediateImport
+                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateImport
                     description:
                         In case the operation node is
                         [imported](#attribute-IntermediateOperationNodeReference-imported),
@@ -553,7 +553,7 @@ intermediate_operation_model_specification:
                     type:
                         name: IntermediateImport
                         multiplicity: 1
-                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-data-model-specification/#concept-IntermediateImport
+                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateImport
                     description:
                         The import of the technology model, which defines the
                         referenced deployment technology.
@@ -596,7 +596,7 @@ intermediate_operation_model_specification:
                     type:
                         name: IntermediateImport
                         multiplicity: 1
-                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-data-model-specification/#concept-IntermediateImport
+                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateImport
                     description:
                         The import of the technology model, which defines the
                         referenced infrastructure technology.
