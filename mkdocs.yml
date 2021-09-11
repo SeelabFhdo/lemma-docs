@@ -47,6 +47,7 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets:
       base_path: ['docs']
+      check_paths: true
   - pymdownx.inlinehilite
   - pymdownx.superfences
   - pymdownx.tabbed
