@@ -1,0 +1,83 @@
+{% set source_code_uri = specification['____source_code_uri____'] %}
+The source code of the metamodel specification can be found at
+[{{ source_code_uri }}]({{ source_code_uri }}).
+
+Each of the following sections describes certain concepts of the metamodel.
+
+!!! note
+    Attributes that may contain more than one value but exhibit a `*`
+    multiplicity, i.e., they may contain an arbitrary number of values or even
+    none at all (`*` is shorthand UML notation for `0..*`), are never null.
+
+    In case no multiplicity is stated after the object type of an attribute, the
+    attribute may be null. For example, an attribute defined as `String name`
+    implicitly has a multiplicity `0..1` and in the zero-case the String may be
+    null.
+
+    However, in case the attribute's type is a built-in primitive Java type,
+    e.g. `int`, the attribute will never be null but exhibits the type's default
+    value in case it did not receive an explicit value.
+
+<!-- Macro: Print possible introduction of concept category -->
+{% macro print_introduction(concepts) -%}
+    {% if '____introduction____' in concepts %}
+{{ concepts['____introduction____'] }}
+    {% endif %}
+{%- endmacro %}
+
+<!-- Macro: Get reusable prefix for concept links -->
+{% macro concept_link_prefix() -%}
+concept
+{%- endmacro %}
+
+<!-- Macro: Print hints -->
+{% macro print_hints(hints_info) -%}
+        {% for hint in hints_info['hints'] %}
+<div class="admonition hint" markdown="1"><p class="admonition-title">Hint</p>
+    <p>{{ hint }}</p>
+</div>
+        {% endfor %}
+{%- endmacro %}
+
+<!-- Macro: Print notes --> 
+{% macro print_notes(notes_info) -%}
+            {% for note in notes_info['notes'] %}
+<div class="admonition note" markdown="1"><p class="admonition-title">Note</p>
+    <p>{{ note }}</p>
+</div>
+        {% endfor %} 
+{%- endmacro %}
+
+{% for category, concepts in specification.items() if not category.startswith('____') and not category.endswith('____') %}
+## {{ category }}
+{{ print_introduction(concepts) }}
+
+    {% for concept, concept_info in concepts.items() if not concept.startswith('____') and not concept.endswith('____') %}
+<h3 id="{{ concept_link_prefix() }}-{{ concept }}" markdown="1">
+{{ print_concept(concept, concept_info) }}
+</h3>
+
+{{ concept_info['description'] }}
+
+        {% if 'attributes' in concept_info %}
+            {% set attributes = concept_info['attributes'] %}
+        {% else %}
+            {% set attributes = {} %}
+        {% endif %}
+
+        {% for attribute, attribute_info in attributes.items() %}
+<div style="margin-left: {{ default_indent_level1 }}" markdown="1">
+#### {{ print_attribute(concept, attribute, attribute_info) }}
+
+<div style="margin-left: {{ default_indent_level1 }}" markdown="1">
+{{ attribute_info['description'] }}
+{{ print_hints(attribute_info) }}
+{{ print_notes(attribute_info) }}
+</div> 
+</div>
+        {% endfor %}
+
+{{ print_hints(concept_info) }}
+{{ print_notes(concept_info) }}
+    {% endfor %}
+{% endfor %}

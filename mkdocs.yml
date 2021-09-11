@@ -30,7 +30,12 @@ plugins:
   - search
   - git-authors
   - git-revision-date
-  - macros
+  - macros:
+      module_name: additional_macros
+      include_yaml:
+        - docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/specification.yaml
+        - docs/developer-guide/intermediate-model-specifications/intermediate-operation-model-specification/specification.yaml
+        - docs/developer-guide/intermediate-model-specifications/intermediate-service-model-specification/specification.yaml
 markdown_extensions:
   - admonition
   - attr_list
@@ -40,6 +45,7 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.highlight:
       linenums: true
+  - pymdownx.inlinehilite
   - pymdownx.snippets:
       base_path: ['docs']
   - pymdownx.inlinehilite
@@ -58,10 +64,18 @@ nav:
     - 'Service Modeling Language': 'user-guide/service-modeling-language/index.md'
     - 'Technology Modeling Language': 'user-guide/technology-modeling-language/index.md'
     - 'Operation Modeling Language': 'user-guide/operation-modeling-language/index.md'
-  - 'Developer Guide': 'developer-guide/index.md'
+  - 'Developer Guide':
+    - 'Introduction': 'developer-guide/index.md'
+    - 'Intermediate Model Specifications':
+        - 'Introduction': 'developer-guide/intermediate-model-specifications/index.md'
+        - 'Obtaining Intermediate Models': 'developer-guide/intermediate-model-specifications/obtaining-intermediate-models/index.md'
+        - 'Intermediate Domain Model Specification': 'developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/index.md'
+        - 'Intermediate Service Model Specification': 'developer-guide/intermediate-model-specifications/intermediate-service-model-specification/index.md'
+        - 'Intermediate Operation Model Specification': 'developer-guide/intermediate-model-specifications/intermediate-operation-model-specification/index.md'
   - 'Research': 'research/index.md'
   - 'Contact': 'contact/index.md'
 extra:
+  atl_url: https://www.eclipse.org/atl
   bounded_context_url: https://martinfowler.com/bliki/BoundedContext.html
   container_def_url: https://www.docker.com/resources/what-container
   current_eclipse_release: 2021-06
@@ -71,10 +85,14 @@ extra:
   ddd_entity_def_url: https://martinfowler.com/bliki/EvansClassification.html
   ddd_tactical_patterns_url: https://thedomaindrivendesign.io/what-is-tactical-design/
   ddd_value_object_def_url: https://martinfowler.com/bliki/ValueObject.html
+  default_indent_level1: 2%
+  default_indent_level2: 4%
   devops_culture_url: https://martinfowler.com/bliki/DevOpsCulture.html
   info_email: florian.rademacher@fh-dortmund.de
   lemma_github_url: https://github.com/SeelabFhdo/lemma/
   lemma_tour_models_project_name: search-for-free-space
+  lemma_tour_domain_model_file: domain.data
+  lemma_tour_service_model_file: micro.services
   lemma_updatesite_url: https://microservices.fh-dortmund.de/lemma/
   mde_def_url: https://en.wikipedia.org/wiki/Model-driven_engineering
   minimum_eclipse_release: 2021-03
@@ -88,3 +106,5 @@ extra:
   spring_response_status_annotation_url: https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/ResponseStatus.html
   spring_url: https://www.spring.io
   tech_hetero_def_url: https://www.oreilly.com/library/view/building-microservices/9781491950340/ch01.html#idm46346970503816
+  xmi_url: 'https://www.omg.org/spec/XMI/2.5.1/About-XMI'
+  xtext_standalone_url: https://www.typefox.io/blog/how-and-why-use-xtext-without-the-ide

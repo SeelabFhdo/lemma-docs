@@ -1,0 +1,1495 @@
+intermediate_domain_model_specification:
+    ____source_code_uri____: https://github.com/SeelabFhdo/lemma/blob/main/de.fhdo.lemma.data.intermediate.metamodel/model/IntermediateDataModel.xcore
+
+    Model Root:
+        IntermediateDataModel:
+            description:
+                Root of an intermediate domain model.
+            attributes:
+                sourceModelUri:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description: >
+                        `file://` URI pointing to the source domain model file
+                        from which this intermediate domain model was derived.
+                    notes:
+                        - Model processors must not depend on this URI being
+                          absolute or relative. Both cases may occur in practice
+                          and are up to the modeler.
+                imports:
+                    type:
+                        name: IntermediateImport
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        References to the intermediate representations of
+                        imported domain models.
+                versions:
+                    type:
+                        name: IntermediateVersion
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        Versions being defined in the source domain model.
+                contexts:
+                    type:
+                        name: IntermediateContext
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        Contexts being defined in the source domain model. If a
+                        domain model has
+                        [`versions`](#attribute-IntermediateDataModel-versions)
+                        it may not have `contexts` under the model root. They
+                        are, instead, encapsulated within the
+                        [`versions`](#attribute-IntermediateDataModel-versions)
+                        attribute.
+                complexTypes:
+                    type:
+                        name: IntermediateComplexType
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description: >
+                        [`IntermediateDataStructure`](#concept-IntermediateDataStructure),
+                        [`IntermediateListType`](#concept-IntermediateListType),
+                        and
+                        [`IntermediateEnumeration`](#concept-IntermediateEnumeration),
+                        instances being defined in the source domain model. If a
+                        domain model has
+                        [`versions`](#attribute-IntermediateDataModel-versions)
+                        or
+                        [`contexts`](#attribute-IntermediateDataModel-contexts),
+                        it may not have `complexTypes` under the model root.
+                        They are, instead, encapsulated within the
+                        [`versions`](#attribute-IntermediateDataModel-versions)
+                        or
+                        [`contexts`](#attribute-IntermediateDataModel-contexts)
+                        attributes
+                    notes:
+                        - At least one of the attributes
+                          [`versions`](#attribute-IntermediateDataModel-versions),
+                          [`contexts`](#attribute-IntermediateDataModel-contexts),
+                          or `compexTypes` will have values, because LEMMA does
+                          not allow empty domain models.
+    Imports:
+        ____introduction____:
+            LEMMA models and their elements may refer to each other. For
+            instance, a service model may refer to domain-specific types defined
+            in a domain model. This *interlinkage* of the different LEMMA model
+            kinds and their elements is realized on the basis of an import
+            mechanism. That is, a service model may import a domain model to
+            enable the modeler to refer to modeled domain-specific types.
+            However, certain model kinds also allow for importing instances of
+            the same type. A domain model, for example, may import other domain
+            models to use their
+            [data structures](#concept-IntermediateDataStructure) as types for the
+            fields of its own structures.
+        IntermediateImport:
+            description:
+                Concept to represent the import of a domain model into the
+                source domain model.
+            attributes:
+                name:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Alias of the import. Unique within the same
+                        [domain model](#concept-IntermediateDataModel).
+                importUri:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Unique `file://` URI that points to the location of the
+                        intermediate representation of the imported domain
+                        model.
+                    notes:
+                        - Model processors must not depend on this URI being
+                          absolute or relative. Both cases may occur in practice
+                          and are up to the modeler.
+                importTypeName:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Name of the import type. For domain models, the value of
+                        this attribute is always "DATATYPES".
+                dataModel:
+                    type:
+                        name: IntermediateDataModel
+                        multiplicity: 1
+                        internal_ref_kind: concept
+                    description:
+                        Link to the containing `IntermediateDataModel` instance.
+                getImportTypeNameForDatatypes:
+                    kind: method
+                    type:
+                        name: String
+                        multiplicity: 1
+                    parameters:
+                    description:
+                        Helper that returns the name of the import type for
+                        domain-specific types. This method will always return
+                        the value "DATATYPES", which corresponds to the only
+                        possible value of the
+                        [`importTypeName`](#attribute-IntermediateImport-importTypeName)
+                        attribute.
+    Namespace Concepts:
+        ____introduction____:
+            Namespace concepts allow for organizing a domain model.
+            Conceptually, they correspond to Java's package mechanism.
+        IntermediateVersion:
+            description:
+                A namespace concept to organize evolved contents of a domain
+                model in different versions.
+            attributes:
+                name:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Name of the version. Unique within the same
+                        [domain model](#concept-IntermediateDataModel).
+                complexTypes:
+                    type:
+                        name: IntermediateComplexType
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        Complex types defined directly within the version.
+                contexts:
+                    type:
+                        name: IntermediateContext
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        Contexts encapsulated by the version.
+                    notes:
+                        - For the same `IntermediateVersion`, either the
+                          [`complexTypes`](#attribute-IntermediateVersion-complexTypes)
+                          or the `contexts` attribute will contain values but
+                          neither both.
+                dataModel:
+                    type:
+                        name: IntermediateDataModel
+                        multiplicity: 1
+                        internal_ref_kind: concept
+                    description:
+                        Link to the containing `IntermediateDataModel` instance.
+        IntermediateContext:
+            description:
+                A namespace concept to organize domain-specific types of a
+                domain model in semantic domains that may correspond to
+                [Bounded Contexts](https://martinfowler.com/bliki/BoundedContext.html).
+            notes:
+                - Contexts may not be nested.
+            attributes:
+                name:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Name of the context. Unique within the same
+                        [domain model](#concept-IntermediateDataModel) or
+                        [version](#concept-IntermediateVersion).
+                qualifiedName:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Qualified name of the context. The qualified name of the
+                        context consists of the name of the
+                        [`version`](#concept-IntermediateVersion), if any, and
+                        the name of the context separated by a dot. In case the
+                        context is not part of a
+                        [`version`](#concept-IntermediateVersion), the
+                        `qualifiedName` equals the context's
+                        [`name`](#attribute-IntermediateContext-name).
+                    hints:
+                        - The
+                          [`IntermedateVersion`](#concept-IntermedateVersion)
+                          class does not comprise a `qualifiedName` attribute,
+                          because versions may not be contained within an
+                          instance of another model concept's class except for
+                          the nameless
+                          [`model root`](#concept-IntermediateDataModel).
+                complexTypes:
+                    type:
+                        name: IntermediateComplexType
+                        multiplicity: 1..*
+                        internal_ref_kind: concept
+                    description:
+                        Complex types being defined within the context.
+                dataModel:
+                    type:
+                        name: IntermediateDataModel
+                        internal_ref_kind: concept
+                    description:
+                        Link to the containing `IntermediateDataModel` instance.
+                version:
+                    type:
+                        name: IntermediateVersion
+                        internal_ref_kind: concept
+                    description:
+                        Link to the containing `IntermediateVersion` instance.
+                    notes:
+                        - Only one of the attributes
+                          [`dataModel`](#attribute-IntermediateContext-dataModel)
+                          or `version` has a value, depending on whether the
+                          context is defined directly under the
+                          [`model root`](#concept-IntermediateDataModel) or
+                          within a [`version`](#concept-IntermediateVersion).
+    Built-in Type System:
+        ____introduction____:
+            This subsection describes concepts that are part of LEMMA's built-in
+            type system provided by the Domain Data Modeling Language. The type
+            system is aligned to Java and contains all built-in Java primitive
+            types as well as the native types `date`, `string`, and
+            `unspecified`.
+
+
+            Besides the `unspecified` type, the type conversions observe Java's
+            [*widening primitive conversions*](https://docs.oracle.com/javase/specs/jls/se11/html/jls-5.html#jls-5.1.2)
+            for primitively typed [`fields`](#concept-IntermediateDataField).
+            The `unspecified` type, however, is not compatible with any other
+            type. More precisely, two distinct fields with the `unspecified`
+            type are not considered to be compatible. That is, the `unspecified`
+            type communicates the intended current absence of a type, e.g., to
+            determine that a typing decision has not been taken, yet.
+
+
+            Two [`data structures`](#concept-IntermediateDataStructure) are
+            compatible, if their fields are compatible, independent of their
+            type ordering. Two distinct
+            [`enumerations`](#concept-IntermediateEnumeration) are compatible,
+            if the value-receiving enumeration comprises all initialization
+            values of the value-providing enumeration.
+        IntermediateTypeKind:
+            description:
+                Enumeration to specify the kind of an
+                [`IntermediateType`](#concept-IntermediateType) instance being
+                referenced in some place.
+            kind: enum
+            attributes:
+                ENUMERATION:
+                    description:
+                        Referenced type is an
+                        [`IntermediateEnumeration`](#concept-IntermediateEnumeration).
+                LIST:
+                    description:
+                        Referenced type is an
+                        [`IntermediateListType`](#concept-IntermediateListType).
+                PRIMITIVE:
+                    description:
+                        Referenced type is an
+                        [`IntermediatePrimitiveType`](#concept-IntermediatePrimitiveType).
+                STRUCTURE:
+                    description:
+                        Referenced type is an
+                        [`IntermediateDataStructure`](#concept-IntermediateDataStructure).
+        IntermediateTypeOrigin:
+            description:
+                Enumeration to specify the origin of an
+                [`IntermediateType`](#concept-IntermediateType) instance being referenced in some place.
+            kind: enum
+            attributes:
+                DATA_MODEL:
+                    description:
+                        Type is an
+                        [`IntermediateComplexType`](#concept-IntermediateComplexType)
+                        defined in a domain model.
+                BUILTIN:
+                    description:
+                        Type is a built-in type.
+                TECHNOLOGY:
+                    description:
+                        Type is technology-specific. Technology-specific types
+                        may be used to map built-in primitive types to
+                        technology-specific types, e.g., `float` to `float32` in
+                        the [Go programming language](https://www.golang.org).
+                        Moreover, they may be used to declare
+                        technology-specific structure or list types. Code
+                        generators need to be able to interpret
+                        technology-specific types that were defined in a LEMMA
+                        technology model.
+            hints:
+                - >
+                    Currently, the following combinations of
+                    [`IntermediateTypeKind`](#concept-IntermediateTypeKind)
+                    and
+                    [`IntermediateTypeOrigin`](#concept-IntermediateTypeOrigin)
+                    values are possible:
+                    <table>
+                        <tr>
+                            <th>Kind</th>
+                            <th>Origin</th>
+                        </tr>
+                        <tr>
+                            <td><code>ENUMERATION</code></td>
+                            <td><code>DATA_MODEL</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>LIST</code></td>
+                            <td>
+                                <code>DATA_MODEL</code>,
+                                <code>TECHNOLOGY</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>PRIMITIVE</code></td>
+                            <td>
+                                <code>BUILTIN</code>,
+                                <code>TECHNOLOGY</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>STRUCTURE</code></td>
+                            <td>
+                                <code>DATA_MODEL</code>,
+                                <code>TECHNOLOGY</code>
+                            </td>
+                        </tr>
+                    </table>
+        IntermediateType:
+            description:
+                Abstract super class for all types.
+            kind: abstract class
+            attributes:
+                name:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Name of the type.
+                origin:
+                    type:
+                        name: IntermediateTypeOrigin
+                        multiplicity: 1
+                        internal_ref_kind: concept
+                    description:
+                        Origin of the type.
+                kind:
+                    type:
+                        name: IntermediateTypeKind
+                        multiplicity: 1
+                        internal_ref_kind: concept
+                    description:
+                        Kind of the type.
+                dataField:
+                    type:
+                        name: IntermediateDataField
+                        multiplicity: 1
+                        internal_ref_kind: concept
+                    description:
+                        Data field that is typed by this type's instance.
+        IntermediatePrimitiveType:
+            description:
+                Representation of a primitive type being used within the domain
+                model.
+            references:
+                super_concept:
+                    name: IntermediateType
+                    internal_ref_kind: concept
+            attributes:
+                size:
+                    type:
+                        name: Integer
+                    description: >
+                        Size of the primitive type in bits. The built-in
+                        primitive types have the following sizes:
+                        <table>
+                            <tr>
+                                <th>Type</th>
+                                <th>Size (in bits)</th>
+                            </tr>
+                            <tr>
+                                <td><code>boolean</code></td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td><code>byte</code></td>
+                                <td>8</td>
+                            </tr>
+                            <tr>
+                                <td><code>char</code></td>
+                                <td>16</td>
+                            </tr>
+                            <tr>
+                                <td><code>date</code></td>
+                                <td>null (object type)</td>
+                            </tr>
+                            <tr>
+                                <td><code>double</code></td>
+                                <td><code>64</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>float</code></td>
+                                <td><code>32</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>int</code></td>
+                                <td><code>32</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>long</code></td>
+                                <td><code>64</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>short</code></td>
+                                <td><code>16</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>string</code></td>
+                                <td>null (object type)</td>
+                            </tr>
+                            <tr>
+                                <td><code>unspecified</code></td>
+                                <td>null (communicates type absence)</td>
+                            </tr>
+                        </table>
+                initializedDataField:
+                    type:
+                        name: IntermediateDataField
+                        internal_ref_kind: concept
+                    description:
+                        Link to the `IntermediateDataField`, whose
+                        initialization value is compatible with this primitive
+                        type.
+                initializedEnumerationField:
+                    type:
+                        name: IntermediateEnumerationField
+                        internal_ref_kind: concept
+                    description:
+                        Link to the `IntermediateEnumerationField`, whose
+                        initialization value is compatible with this primitive
+                        type.
+    Custom, Domain-Specific Types:
+        IntermediateComplexType:
+            description:
+                Super class of complex types like
+                [`IntermediateDataStructure`](#concept-IntermediateDataStructure),
+                [`IntermediateListType`](#concept-IntermediateListType), and
+                [`IntermediateEnumeration`](#concept-IntermediateEnumeration).
+            references:
+                super_concept:
+                    name: IntermediateType
+                    internal_ref_kind: concept
+            attributes:
+                qualifiedName:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Qualified name of the type. Corresponds to the name of
+                        the type prefixed by its
+                        [version](#concept-IntermediateVersion), if any, and
+                        its [context](#concept-IntermediateContext), if any.
+                        The qualifying fragments are separated by dots.
+                aspects:
+                    type:
+                        name: IntermediateImportedAspect
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        The aspects that were assigned to the complex type.
+                dataModel:
+                    type:
+                        name: IntermediateDataModel
+                        internal_ref_kind: concept
+                    description:
+                        Link to the containing `IntermediateDataModel` instance.
+                version:
+                    type:
+                        name: IntermediateVersion
+                        internal_ref_kind: concept
+                    description:
+                        Link to the containing `IntermediateVersion` instance.
+                context:
+                    type:
+                        name: IntermediateContext
+                        internal_ref_kind: concept
+                    description:
+                        Link to the containing `IntermediateContext` instance.
+                    notes:
+                        - Only one of the attributes
+                          [`dataModel`](#attribute-IntermediateComplexType-dataModel),
+                          [`version`](#attribute-IntermediateComplexType-version),
+                          or
+                          [`context`](#attribute-IntermediateComplexType-context)
+                          has a value, depending on whether the type is defined
+                          directly under the
+                          [`model root`](#concept-IntermediateDataModel),
+                          within a [`version`](#concept-IntermediateVersion),
+                          or within a [`context`](#concept-IntermediateContext).
+        IntermediateImportedComplexType:
+            description:
+                This class represents an
+                [`IntermediateComplexType`](#concept-IntermediateComplexType)
+                that has been imported from another domain model.
+            references:
+                super_concept:
+                    name: IntermediateComplexType
+                    internal_ref_kind: concept
+            attributes:
+                import:
+                    type:
+                        name: IntermediateImport
+                        internal_ref_kind: concept
+                    description:
+                        The import from which the complex type originates.
+        IntermediateDataStructure:
+            description:
+                A domain-specific data structure that usually comprises a
+                variety of typed [fields](#concept-IntermediateDataField).
+            references:
+                super_concept:
+                    name: IntermediateComplexType
+                    internal_ref_kind: concept
+            attributes:
+                featureNames:
+                    type:
+                        name: String
+                        multiplicity: "*"
+                    description: >
+                        This attribute contains the names of all features
+                        specified for the data structure. The following values
+                        are possible:
+                        <table>
+                            <tr>
+                                <th>Feature Name</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr>
+                                <td>"AGGREGATE"</td>
+                                <td>
+                                    Data structure is an Aggregate in the sense of
+                                    [Domain-driven Design (DDD)](https://en.wikipedia.org/wiki/Domain-driven_design).
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>"APPLICATION_SERVICE"</td>
+                                <td>
+                                    Data structure is a Service with application
+                                    focus in the sense of DDD.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>"DOMAIN_EVENT"</td>
+                                <td>
+                                    Data structure is a Domain Event in the
+                                    sense of DDD.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>"DOMAIN_SERVICE"</td>
+                                <td>
+                                    Data structure is a Service with domain
+                                    focus in the sense of DDD.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>"ENTITY"</td>
+                                <td>
+                                    Data structure is an Entity in the sense of
+                                    DDD.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>"FACTORY"</td>
+                                <td>
+                                    Data structure is a Factory in the sense of
+                                    DDD.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>"INFRASTRUCTURE_SERVICE"</td>
+                                <td>
+                                    Data structure is a Service with
+                                    infrastructure focus in the sense of DDD.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>"REPOSITORY"</td>
+                                <td>
+                                    Data structure is a Repository in the sense
+                                    of DDD.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>"SERVICE"</td>
+                                <td>
+                                    Data structure is a Service in the sense of
+                                    DDD.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>"SPECIFICATION"</td>
+                                <td>
+                                    Data structure is a Specification in the
+                                    sense of DDD.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>"VALUE_OBJECT"</td>
+                                <td>
+                                    Data structure is a Value Object in the
+                                    sense of DDD.
+                                </td>
+                            </tr>
+                        </table>
+                    notes:
+                        - DDD-related features should follow the constraints
+                          described
+                          [here](https://ieeexplore.ieee.org/document/8354426).
+                          LEMMA's Domain Data Modeling Language currently only
+                          issues warnings in case constraints are violated.
+                          Model processors are however free to deny functioning
+                          and yield errors in case they detect constraint
+                          violations.
+                super:
+                    type:
+                        name: IntermediateDataStructure
+                        internal_ref_kind: concept
+                    description:
+                        The super data structure from which this data structure
+                        inherits.
+                    notes:
+                        - LEMMA's Domain Data Modeling Language supports single
+                          inheritance only. Furthermore, the super data
+                          structure must be defined within the same domain
+                          model. It cannot be imported from another domain
+                          model.
+                dataFields:
+                    type:
+                        name: IntermediateDataField
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        Data fields of the structure.
+                    hints:
+                        - In case the data structure inherits from a super
+                          structure, the attribute also contains inherited,
+                          non-hidden fields. Inherited fields of a  structure
+                          can be distinguished from "local" fields by means of
+                          the `IntermediateDataField` concept's
+                          [`inherited` attribute](#attribute-IntermediateDataField-inherited).
+                operations:
+                    type:
+                        name: IntermediateDataOperation
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        Operations of the structure.
+                    hints:
+                        - In case the data structure inherits from a super
+                          structure, the attribute also contains inherited,
+                          non-hidden operations. Inherited operations of a
+                          structure can be distinguished from "local" operations
+                          by means of the `IntermediateOperation` concept's
+                          [`inherited`](#attribute-IntermediateOperation-inherited)
+                          attribute.
+        IntermediateDataOperation:
+            description:
+                An operation within an
+                [`IntermediateDataStructure`](#concept-IntermediateDataStructure).
+            attributes:
+                name:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Name of the operation. Unique within the same
+                        [structure](#concept-IntermediateDataStructure).
+                qualifiedName:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Qualified name of the operation. Corresponds to the name
+                        of the operation prefixed by the
+                        [qualified name](#attribute-IntermediateComplexType-qualifiedName)
+                        of the defining
+                        [`IntermediateDataStructure`](#concept-IntermediateDataStructure).
+                        The name fragments are separated by dots.
+                hidden:
+                    type:
+                        name: boolean
+                    description:
+                        Flag to indicate if the operation is hidden.
+                        Semantically, this flag corresponds to Java's `private`
+                        accessibility modifier. However, the flag differs in
+                        that an inherited operation may also be set to hidden.
+                        That is, operations' visibility may be overridden. A
+                        hidden operation is not visible in any of the following
+                        levels of the inheritance hierarchy.
+                inherited:
+                    type:
+                        name: boolean
+                    description:
+                        Flag to indicate if the operation was inherited from a
+                        [super structure](#attribute-IntermediateDataStructure-super).
+                featureNames:
+                    type:
+                        name: String
+                        multiplicity: "*"
+                    description: >
+                        This attribute contains the names of all features
+                        specified for the operation. The following values are
+                        possible:
+                        <table>
+                            <tr>
+                                <th>Feature Name</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr>
+                                <td>"CLOSURE"</td>
+                                <td>
+                                    Operation is a Closure in the sense of DDD.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>"IDENTIFIER"</td>
+                                <td>
+                                    Operation acts as identifier for an Entity
+                                    in the sense of DDD (see also the
+                                    [`featureNames` attribute of the `IntermediateDataStructure` concept](#attribute-IntermediateDataStructure-featureNames)).
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>"SIDE_EFFECT_FREE"</td>
+                                <td>
+                                    Operation is side-effect-free in the sense
+                                    of DDD.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>"VALIDATOR"</td>
+                                <td>
+                                    Operation acts as validator for a
+                                    Specification in the sense of DDD (see also
+                                    the
+                                    [`featureNames` attribute of the `IntermediateDataStructure` concept](#attribute-IntermediateDataStructure-featureNames)).
+                                </td>
+                            </tr>
+                        </table>
+                    notes:
+                        - DDD-related features should follow the constraints
+                          described
+                          [here](https://ieeexplore.ieee.org/document/8354426).
+                          LEMMA's Domain Data Modeling Language currently only
+                          issues warnings in case constraints are violated.
+                          Model processors are however free to deny functioning
+                          and yield errors in case they detect constraint
+                          violations.
+                returnType:
+                    type:
+                        name: IntermediateDataOperationReturnType
+                        internal_ref_kind: concept
+                    description:
+                        The return type of the operation. This attribute is
+                        empty when no return type was specified.
+                parameters:
+                    type:
+                        name: IntermediateDataOperationParameter
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        The parameters of the operation.
+                aspects:
+                    type:
+                        name: IntermediateImportedAspect
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        The aspects that were assigned to the operation.
+        IntermediateDataOperationReturnType:
+            description:
+                The return type of an
+                [`IntermediateDataOperation`](#concept-IntermediateDataOperation).
+            attributes:
+                type:
+                    type:
+                        name: IntermediateType
+                        multiplicity: 1
+                        internal_ref_kind: concept
+                    description:
+                        The return type.
+                    hints:
+                        - The attribute always holds a unique
+                          [`IntermediateType`](#concept-IntermediateType)
+                          instance , i.e., instances of the same types are
+                          not reused.
+                        - Model processors must use this type as the operation's
+                          return type and not the
+                          [`originalType`](#attribute-IntermediateDataOperationReturnType-originalType).
+                originalType:
+                    type:
+                        name: IntermediateType
+                        multiplicity: 1
+                        internal_ref_kind: concept
+                    description:
+                        The original return type of the operation.
+                    hints:
+                        - The attribute always holds a value. In case the value
+                          differs from that of the
+                          [`type` attribute](#attribute-IntermediateDataOperationReturnType-type),
+                          the return type got altered in a
+                          [mapping model](https://seelabfhdo.github.io/lemma-docs/user-guide/service-technology-mapping-modeling-language)
+                          and the
+                          [`type` attribute](#attribute-IntermediateDataOperationReturnType-type)
+                          attribute holds an instance of the
+                          [`IntermediateImportedTechnologySpecificType`](#concept-IntermediateImportedTechnologySpecificType)
+                          concept that identifies the technology-specific type
+                          to which the original return type was mapped.
+                aspects:
+                    type:
+                        name: IntermediateImportedAspect
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        The aspects that were assigned to the return type within
+                        a
+                        [mapping model](https://seelabfhdo.github.io/lemma-docs/user-guide/service-technology-mapping-modeling-language).
+        IntermediateDataOperationParameter:
+            description:
+                A parameter within an
+                [`IntermediateDataOperation`](#concept-IntermediateDataOperation).
+            attributes:
+                name:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Name of the parameter. Unique within the same
+                        [operation](#concept-IntermediateDataOperation).
+                qualifiedName:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Qualified name of the parameter. Corresponds to the name
+                        of the parameter prefixed by the
+                        [qualified name](#attribute-IntermediateDataOperation-qualifiedName)
+                        of the defining
+                        [`IntermediateDataOperation`](#concept-IntermediateDataOperation).
+                        The name fragments are separated by dots.
+                type:
+                    type:
+                        name: IntermediateType
+                        multiplicity: 1
+                        internal_ref_kind: concept
+                    description:
+                        The type of the parameter.
+                    hints:
+                        - The attribute always holds a unique
+                          [`IntermediateType`](#concept-IntermediateType)
+                          instance , i.e., instances of the same types are
+                          not reused.
+                        - Model processors must use this type as the operation's
+                          return type and not the
+                          [`originalType`](#attribute-IntermediateDataOperationParameter-originalType).
+                originalType:
+                    type:
+                        name: IntermediateType
+                        multiplicity: 1
+                        internal_ref_kind: concept
+                    description:
+                        The original type of the parameter.
+                    hints:
+                        - The attribute always holds a value. In case the value
+                          differs from that of the
+                          [`type` attribute](#attribute-IntermediateDataOperationParameter-type),
+                          the type got altered in a
+                          [mapping model](https://seelabfhdo.github.io/lemma-docs/user-guide/service-technology-mapping-modeling-language)
+                          and the
+                          [`type` attribute](#attribute-IntermediateDataOperationParameter-type)
+                          attribute holds an instance of the
+                          [`IntermediateImportedTechnologySpecificType`](#concept-IntermediateImportedTechnologySpecificType)
+                          concept that identifies the technology-specific type
+                          to which the parameter's original type was mapped.
+                aspects:
+                    type:
+                        name: IntermediateImportedAspect
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        The aspects that were assigned to the return type within
+                        a
+                        [mapping model](https://seelabfhdo.github.io/lemma-docs/user-guide/service-technology-mapping-modeling-language).
+        IntermediateDataField:
+            description:
+                A field within an
+                [`IntermediateDataStructure`](#concept-IntermediateDataStructure).
+            attributes:
+                name:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Name of the field. Unique within the same
+                        [structure](#concept-IntermediateDataStructure) or
+                        [list type](#concept-IntermediateListType).
+                qualifiedName:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Qualified name of the field. Corresponds to the name
+                        of the field prefixed by the
+                        [qualified name](#attribute-IntermediateDataStructure-qualifiedName)
+                        of the defining
+                        [`IntermediateDataStructure`](#concept-IntermediateDataStructure).
+                        The name fragments are separated by dots.
+                hidden:
+                    type:
+                        name: boolean
+                    description:
+                        Flag to indicate if the field is hidden. Semantically,
+                        this flag corresponds to Java's `private` accessibility
+                        modifier. However, the flag differs in that an inherited
+                        field may also be set to hidden. That is, fields'
+                        visibility may be overridden. A hidden field is not
+                        visible in any of the following levels of the
+                        inheritance hierarchy.
+                immutable:
+                    type:
+                        name: boolean
+                    description:
+                        Flag to indicate whether the field is immutable or not.
+                        In Java, for example, an immutable field could
+                        correspond to a field that has no public setter.
+                inherited:
+                    type:
+                        name: boolean
+                    description:
+                        Flag to indicate if the field was inherited from a
+                        [super structure](#attribute-IntermediateDataStructure-super).
+                featureNames:
+                    type:
+                        name: String
+                        multiplicity: "*"
+                    description: >
+                        This attribute contains the names of all features
+                        specified for the field. The following values are
+                        possible:
+                        <table>
+                            <tr>
+                                <th>Feature Name</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr>
+                                <td>"IDENTIFIER"</td>
+                                <td>
+                                    Field acts as identifier for an Entity in
+                                    the sense of DDD (see also the
+                                    [`featureNames` attribute of the `IntermediateDataStructure` concept](#attribute-IntermediateDataStructure-featureNames)).
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>"NEVER_EMPTY"</td>
+                                <td>
+                                    Field should never be empty.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>"PART"</td>
+                                <td>
+                                    Field is a *part* of a DDD Aggregate (see
+                                    also the
+                                    [`featureNames` attribute of the `IntermediateDataStructure` concept](#attribute-IntermediateDataStructure-featureNames)).
+                                </td>
+                            </tr>
+                        </table>
+                    notes:
+                        - DDD-related features should follow the constraints
+                          described
+                          [here](https://ieeexplore.ieee.org/document/8354426).
+                          LEMMA's Domain Data Modeling Language currently only
+                          issues warnings in case constraints are violated.
+                          Model processors are however free to deny functioning
+                          and yield errors in case they detect constraint
+                          violations.
+                initializationValue:
+                    type:
+                        name: String
+                    description:
+                        If the field has an initialization value, it is encoded
+                        in this attribute. It is guaranteed that the
+                        initialization value is compatible to all
+                        [primitive types](#concept-IntermediatePrimitiveType) in the
+                        [`initializationValueCompatibleTypes`](#attribute-IntermediateDataField-initializationValueCompatibleTypes)
+                        attribute.
+                    notes:
+                        - Only fields defined in
+                          [data structures](#concept-IntermediateDataStructure)
+                          can receive an initialization value.
+                        - A field with the built-in primitive type `unspecified`
+                          cannot receive an initialization value.
+                initializationValueCompatibleTypes:
+                    type:
+                        name: IntermediatePrimitiveType
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        If the field exhibits an initialization value, this
+                        attribute comprises all
+                        [primitive types](#concept-IntermediatePrimitiveType)
+                        to which the initialization value is compatible.
+                    notes:
+                        - There is no determined order in which the primitive
+                          types appear in the attribute.
+                type:
+                    type:
+                        name: IntermediateType
+                        multiplicity: 1
+                        internal_ref_kind: concept
+                    description:
+                        The type of the field.
+                    hints:
+                        - The attribute always holds a unique
+                          [`IntermediateType`](#concept-IntermediateType)
+                          instance , i.e., instances of the same types are
+                          not reused.
+                        - Model processors must use this type as the field's
+                          type and not the
+                          [`originalType`](#attribute-IntermediateDataField-originalType).
+                originalType:
+                    type:
+                        name: IntermediateType
+                        multiplicity: 1
+                        internal_ref_kind: concept
+                    description:
+                        The original type of the field.
+                    hints:
+                        - The attribute always holds a value. In case the value
+                          differs from that of the
+                          [`type` attribute](#attribute-IntermediateDataField-type),
+                          the type got altered in a
+                          [mapping model](https://seelabfhdo.github.io/lemma-docs/user-guide/service-technology-mapping-modeling-language)
+                          and the
+                          [`type` attribute](#attribute-IntermediateDataOperationParameter-type)
+                          attribute holds an instance of the
+                          [`IntermediateImportedTechnologySpecificType`](#concept-IntermediateImportedTechnologySpecificType)
+                          concept that identifies the technology-specific type
+                          to which the field's original type was mapped.
+                aspects:
+                    type:
+                        name: IntermediateImportedAspect
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        The aspects that were assigned to the field within a
+                        [mapping model](https://seelabfhdo.github.io/lemma-docs/user-guide/service-technology-mapping-modeling-language).
+                dataStructure:
+                    type:
+                        name: IntermediateDataStructure
+                        internal_ref_kind: concept
+                    description:
+                        Link to the defining `IntermediateDataStructure`
+                        instance.
+        IntermediateListType:
+            description:
+                A domain-specific list type.
+            references:
+                super_concept:
+                    name: IntermediateComplexType
+                    internal_ref_kind: concept
+            attributes:
+                primitiveList:
+                    type:
+                        name: boolean
+                    description:
+                        Flag to indicate if this is a list that contains a
+                        sequence of primitive values.
+                structuredList:
+                    type:
+                        name: boolean
+                    description:
+                        Flag to indicate if this list consists of one or more
+                        [data fields](#concept-IntermediateDataField).
+                    notes:
+                        - Exactly one of the flags
+                          [`primitiveList`](#attribute-IntermediateListType-primitiveList)
+                          or `structuredList` will always be `true`.
+                primitiveType:
+                    type:
+                        name: IntermediatePrimitiveType
+                        internal_ref_kind: concept
+                    description:
+                        In case the list is a
+                        [primitive list](#attribute-IntermediateListType-primitiveList),
+                        this attribute contains the
+                        [`IntermediatePrimitiveType`](#concept-IntermediatePrimitiveType)
+                        instance that identifies the primitive type of the
+                        list's values.
+                dataFields:
+                    type:
+                        name: IntermediateDataField
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        In case the list is a
+                        [structured list](#attribute-IntermediateListType-structuredList),
+                        this attribute contains the
+                        [`IntermediateDataStructure`](#concept-IntermediateDataStructure)
+                        instances that prescribe the structure of the list's
+                        values.
+        IntermediateEnumeration:
+            description:
+                A domain-specific enumeration.
+            references:
+                super_concept:
+                    name: IntermediateComplexType
+                    internal_ref_kind: concept
+            attributes:
+                featureNames:
+                    type:
+                        name: String
+                        multiplicity: "*"
+                    description: >
+                        This attribute contains the names of all features
+                        specified for the enumeration. The following values are
+                        possible:
+                        <table>
+                            <tr>
+                                <th>Feature Name</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr>
+                                <td>"DOMAIN_EVENT"</td>
+                                <td>
+                                    Enumeration is a Domain Event in the sense
+                                    of DDD.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>"VALUE_OBJECT"</td>
+                                <td>
+                                    Enumeration is a Value Object in the sense
+                                    of DDD.
+                                </td>
+                            </tr>
+                        </table>
+                    notes:
+                        - DDD-related features should follow the constraints
+                          described
+                          [here](https://ieeexplore.ieee.org/document/8354426).
+                          LEMMA's Domain Data Modeling Language currently only
+                          issues warnings in case constraints are violated.
+                          Model processors are however free to deny functioning
+                          and yield errors in case they detect constraint
+                          violations.
+                fields:
+                    type:
+                        name: IntermediateEnumerationField
+                        multiplicity: "1..*"
+                        internal_ref_kind: concept
+                    description:
+                        The fields of the enumeration.
+        IntermediateEnumerationField:
+            description:
+                A field of an
+                [`IntermediateEnumeration`](#concept-IntermediateEnumeration).
+            attributes:
+                name:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Name of the field. Unique within the same
+                        [enumeration](#concept-IntermediateEnumeration).
+                qualifiedName:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Qualified name of the field. Corresponds to the name
+                        of the field prefixed by the
+                        [qualified name](#attribute-IntermediateEnumeration-qualifiedName)
+                        of the defining
+                        [`IntermediateEnumeration`](#concept-IntermediateEnumeration).
+                        The name fragments are separated by dots.
+                initializationValue:
+                    type:
+                        name: String
+                    description:
+                        Initialization value of the field. It is guaranteed that
+                        the initialization value is compatible to all
+                        [primitive types](#concept-IntermediatePrimitiveType) in the
+                        [`initializationValueCompatibleTypes`](#attribute-IntermediateEnumerationField-initializationValueCompatibleTypes)
+                        attribute.
+                initializationValueCompatibleTypes:
+                    type:
+                        name: IntermediatePrimitiveType
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        If the field exhibits an initialization value, this
+                        attribute comprises all
+                        [primitive types](#concept-IntermediatePrimitiveType)
+                        to which the initialization value is compatible.
+                    notes:
+                        - There is no determined order in which the primitive
+                          types appear in the attribute.
+                enumeration:
+                    type:
+                        name: IntermediateEnumeration
+                        internal_ref_kind: concept
+                    description:
+                        Link to the defining `IntermediateEnumeration` instance.
+    Technologies:
+        ____introduction____:
+            In the following, concepts for technology assignment, e.g., to
+            [complex types](#concept-IntermediateComplexType) and intermediate
+            concepts for constructs from other modeling languages such as
+            [`IntermediateMicroservice`](https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-service-model-specification/#concept-IntermediateMicroservice)
+            are described.
+        IntermediateImportedTechnologySpecificType:
+            description:
+                Intermediate representation of a type defined within a
+                [technology model](https://seelabfhdo.github.io/lemma-docs/user-guide/technology-modeling-language).
+            references:
+                super_concept:
+                    name: IntermediateType
+                    internal_ref_kind: concept
+            attributes:
+                qualifiedName:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Qualified name of the type. Consists of the name of the
+                        defining technology, the "_types" prefix as internal
+                        qualifier within the technology model, and the name of
+                        the type, separated by dots.
+                import:
+                    type:
+                        name: IntermediateImport
+                        multiplicity: 1
+                        internal_ref_kind: concept
+                    description:
+                        The `IntermediateImport` instance pointing to the
+                        technology model from which the type was imported.
+        IntermediateImportedAspect:
+            description:
+                Aspects allow semantic refinement of modeled
+                [complex types](#concept-IntermediateComplexType),
+                [operations](#concept-IntermediateDataOperation),
+                their [parameters](#concept-IntermediateDataOperationParameter)
+                and [return types](#concept-IntermediateDataOperationReturnType),
+                as well as [fields](#concept-IntermediateDataField). Next to
+                domain-specific modeling concepts, aspects also target
+                constructs from other LEMMA modeling languages and their
+                intermediate representations, e.g.,
+                [`IntermediateMicroservice`](https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-service-model-specification/#concept-IntermediateMicroservice)
+                and
+                [`IntermediateOperationNode`](https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-operation-model-specification/#concept-IntermediateOperationNode).
+
+
+                Aspects are defined within
+                [technology models](https://seelabfhdo.github.io/lemma-docs/user-guide/technology-modeling-language).
+                An aspect definition might be accompanied with properties and
+                have their applicability constrained to certain peculiarities of
+                concept instances to which they apply. With this mechanism it is
+                possible to create, e.g., aspects for the OR mapping of data
+                structures or the specification of HTTP status codes returned by
+                a microservice operation.
+            attributes:
+                name:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Name of the aspect.
+                qualifiedName:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Qualified name of the aspect. Consists of the name of
+                        the defining technology, the "_aspects" prefix as
+                        internal qualifier within the technology model, and the
+                        name of the aspect, separated by dots.
+                featureNames:
+                    type:
+                        name: String
+                        multiplicity: "*"
+                    description: >
+                        This attribute contains the names of all features
+                        specified for the aspect. The following values are
+                        possible:
+                        <table>
+                            <tr>
+                                <th>Feature Name</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr>
+                                <td>"SINGE_VALUED"</td>
+                                <td>
+                                    Flag to indicate that an aspect may only
+                                    be applied once at a target element.
+                                </td>
+                            </tr>
+                        </table>
+                import:
+                    type:
+                        name: IntermediateImport
+                        multiplicity: 1
+                        internal_ref_kind: concept
+                    description:
+                        The `IntermediateImport` instance pointing to the
+                        technology model from which the type was imported.
+                properties:
+                    type:
+                        name: IntermediateAspectProperty
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        Properties of the aspect as defined in its technology
+                        model.
+                propertyValues:
+                    type:
+                        name: IntermediateAspectPropertyValue
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        Values for aspect properties as assigned in the aspect's
+                        application within the source model.
+                complexType:
+                    type:
+                        name: IntermediateComplexType
+                        internal_ref_kind: concept
+                    description: >
+                        `IntermediateComplexType` to which the aspect was
+                        applied.
+                operation:
+                    type:
+                        name: IntermediateDataOperation
+                        internal_ref_kind: concept
+                    description: >
+                        `IntermediateDataOperation` to which the aspect was
+                        applied.
+                parameter:
+                    type:
+                        name: IntermediateDataOperationParameter
+                        internal_ref_kind: concept
+                    description: >
+                        `IntermediateDataOperationParameter` to which the aspect
+                        was applied.
+                dataField:
+                    type:
+                        name: IntermediateDataField
+                        internal_ref_kind: concept
+                    description: >
+                        `IntermediateDataField` to which the aspect was applied.
+        IntermediateAspectProperty:
+            description:
+                Specification of an [aspect](#concept-IntermediateImportedAspect)
+                property.
+            attributes:
+                name:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Name of the property. Unique within the same
+                        [aspect](#concept-IntermediateAspect).
+                type:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description: >
+                        Name of the property's
+                        [primitive type](#concept-IntermediatePrimitiveType).
+                        The attribute can receive one of the following values:
+                        <ul>
+                            <li>"boolean"</li>
+                            <li>"byte"</li>
+                            <li>"char"</li>
+                            <li>"date"</li>
+                            <li>"double"</li>
+                            <li>"float"</li>
+                            <li>"int"</li>
+                            <li>"long"</li>
+                            <li>"short"</li>
+                            <li>"string"</li>
+                        </ul>
+                    notes:
+                        - A property cannot be of the built-in primitive type
+                          `unspecified`.
+                defaultValue:
+                    type:
+                        name: String
+                    description:
+                        This attribute encodes a possible default value of the
+                        property. It is guaranteed that this value fits the
+                        property's
+                        [type](#attribute-IntermediateAspectProperty-type).
+                featureNames:
+                    type:
+                        name: String
+                        multiplicity: "*"
+                    description: >
+                        This attribute contains the names of all features
+                        specified for the property. The following values are
+                        possible:
+                        <table>
+                            <tr>
+                                <th>Feature Name</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr>
+                                <td>"MANDATORY"</td>
+                                <td>
+                                    Flag to indicate that the property needs to
+                                    receive a value. It is guaranteed that all
+                                    mandatory properties receive a value during
+                                    the application of the respective
+                                    [aspect](#concept-IntermediateImportedAspect).
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>"SINGE_VALUED"</td>
+                                <td>
+                                    Flag to indicate that a property may only
+                                    receive a value once. It is guaranteed that
+                                    all single-valued properties receive at most
+                                    one value during the application of the
+                                    respective
+                                    [aspect](#concept-IntermediateImportedAspect).
+                                </td>
+                            </tr>
+                        </table>
+                aspect:
+                    type:
+                        name: IntermediateImportedAspect
+                        internal_ref_kind: concept
+                    description:
+                        The aspect to which the property belongs.
+        IntermediateAspectPropertyValue:
+            description:
+                Value of an
+                [`IntermediateAspectProperty`](#concept-IntermediateAspectProperty).
+            attributes:
+                value:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        The value encoded as a String.
+                property:
+                    type:
+                        name: IntermediateAspectProperty
+                        multiplicity: 1
+                        internal_ref_kind: concept
+                    description:
+                        The aspect property for which the value was specified.
+                aspect:
+                    type:
+                        name: IntermediateImportedAspect
+                        internal_ref_kind: concept
+                    description:
+                        The aspect application to which the property value
+                        belongs.

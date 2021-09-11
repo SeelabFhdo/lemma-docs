@@ -1,0 +1,697 @@
+intermediate_operation_model_specification:
+    ____source_code_uri____: https://github.com/SeelabFhdo/lemma/blob/main/de.fhdo.lemma.operation.intermediate.metamodel/model/IntermediateOperationModel.xcore
+
+    Model Root:
+        IntermediateOperationModel:
+            description:
+                Root of an intermediate operation model.
+            attributes:
+                sourceModelUri:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description: >
+                        `file://` URI pointing to the source operation model
+                        file from which this intermediate operation model was
+                        derived.
+                    notes:
+                        - Model processors must not depend on this URI being
+                          absolute or relative. Both cases may occur in practice
+                          and are up to the modeler.
+                imports:
+                    type:
+                        name: IntermediateImport
+                        multiplicity: "*"
+                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-data-model-specification/#concept-IntermediateImport
+                    description:
+                        References to imported
+                        [technology models](https://seelabfhdo.github.io/lemma-docs/user-guide/technology-modeling-language),
+                        intermediate operation models, or
+                        [intermediate service models](https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-service-model-specification/#concept-IntermediateServiceModel).
+                containers:
+                    type:
+                        name: IntermediateContainer
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        Containers defined in the operation model.
+                infrastructureNodes:
+                    type:
+                        name: IntermediateInfrastructureNode
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        Infrastructure nodes defined in the operation model.
+                    notes:
+                        - Operation models must not be empty. Consequently, at
+                          least one of the attributes
+                          [`containers`](#attribute-IntermediateOperationModel-containers)
+                          or `infrastructureNodes` is never empty.
+    Operation Nodes:
+        IntermediateOperationNode:
+            description:
+                Super class of
+                [`IntermediateContainer`](#concept-IntermediateContainer)
+                and
+                [`IntermediateInfrastructureNode`](#concept-IntermediateInfrastructureNode).
+            kind: abstract class
+            attributes:
+                name:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Name of the operation node. Unique within the same
+                        [operation model](#concept-IntermediateOperationModel).
+                imports:
+                    type:
+                        name: IntermediateImport
+                        multiplicity: "1..*"
+                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-data-model-specification/#concept-IntermediateImport
+                    description:
+                        References to imported
+                        [technology models](https://seelabfhdo.github.io/lemma-docs/user-guide/technology-modeling-language).
+                operationEnvironment:
+                    type:
+                        name: IntermediateOperationEnvironment
+                        multiplicity: 1
+                        internal_ref_kind: concept
+                    description:
+                        The node's operation environment.
+                deployedServices:
+                    type:
+                        name: OperationMicroserviceReference
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        References to the microservices that are associated with
+                        the node.
+                    notes:
+                        - In case the concrete instance of the node is an
+                          [`IntermediateInfrastructureNode`](#concept-IntermediateInfrastructureNode)
+                          and despite its name, the attribute identifies the
+                          microservices that *use* the node.
+                endpoints:
+                    type:
+                        name: IntermediateEndpoint
+                        multiplicity: "1..*"
+                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-service-model-specification/#concept-IntermediateEndpoint
+                    description:
+                        Endpoints specified for the node.
+                specifications:
+                    type:
+                        name: IntermediateServiceDeploymentSpecification
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        Deployment specifications for 
+                        [services that are associated with the node](#attribute-IntermediateOperationNode-deployedServices).
+                defaultValues:
+                    type:
+                        name: IntermediateTechnologySpecificPropertyValue
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        Default values for technology-specific configuration
+                        properties. In general, these values account for all
+                        [services that are associated with the node](#attribute-IntermediateOperationNode-deployedServices).
+                    hints:
+                        - The 
+                          [`getEffectiveConfigurationValues` method](#attribute-IntermediateOperationNode-getEffectiveConfigurationValues)
+                          allows the retrieval of the effective configuration
+                          values of a given associated service.
+                aspects:
+                    type:
+                        name: IntermediateImportedAspect
+                        multiplicity: "*"
+                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-data-model-specification/#concept-IntermediateImportedAspect
+                    description:
+                        Aspects of the operation node.
+                getEffectiveConfigurationValues:
+                    kind: method
+                    type:
+                        name: IntermediateTechnologySpecificPropertyValue
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    parameters:
+                        service:
+                            type:
+                                name: OperationMicroserviceReference
+                                internal_ref_kind: concept
+                    description:
+                        Helper to return the effective configuration values of
+                        the operation node for the given
+                        [`OperationMicroserviceReference`](#concept-OperationMicroserviceReference).
+                        The effective configuration values consist of the 
+                        [default values](#attribute-IntermediateOperationNode-defaultValues)
+                        for the
+                        [technology-specific properties](#concept-IntermediateTechnologySpecificPropertyValue)
+                        on the node and the
+                        [property values specific to the service's deployment](#attribute-IntermediateServiceDeploymentSpecification-propertyValues).
+                    hints:
+                        - Service-specific property values overwrite default
+                          values.
+        IntermediateOperationEndpoint:
+            description:
+                Intermediate representation of an endpoint on an
+                [operation node](#concept-IntermediateOperationNode). This
+                representation extends the
+                [`IntermediateEndpoint`](https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-service-model-specification/#concept-IntermediateEndpoint)
+                concept from the intermediate service model specification by the
+                endpoint's technology.
+            references:
+                super_concept:
+                    name: IntermediateEndpoint
+                    external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-service-model-specification/#concept-IntermediateEndpoint
+            attributes:
+                endpointTechnology:
+                    type:
+                        name: IntermediateEndpointTechnology
+                        multiplicity: 1
+                        internal_ref_kind: concept
+                    description:
+                        Technology of the endpoint.
+                node:
+                    type:
+                        name: IntermediateOperationNode
+                        multiplicity: 1
+                        internal_ref_kind: concept
+                    description:
+                        Operation node for which the endpoint was specified.
+        IntermediateEndpointTechnology:
+            description:
+                Intermediate representation of the technology of an
+                [operation node's endpoint](#concept-IntermediateOperationEndpoint).
+                This representation extends the
+                [`IntermediateTechnology`](https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-service-model-specification/#concept-IntermediateTechnology)
+                concept from the intermediate service model specification to
+                make the technology information on operation node endpoints
+                specific to operation models.
+            references:
+                super_concept:
+                    name: IntermediateTechnology
+                    external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-service-model-specification/#concept-IntermediateTechnology
+            attributes:
+                endpoint:
+                    type:
+                        name: IntermediateOperationEndpoint
+                        multiplicity: 1
+                        internal_ref_kind: concept
+                    description:
+                        The endpoint to which this technology was assigned.
+        IntermediateTechnologySpecificPropertyValue:
+            description:
+                Represents the value of a
+                [technology-specific property](#concept-IntermediateTechnologySpecificProperty).
+            attributes:
+                value:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        The property's value.
+                    hints:
+                        - The value is represented as a string but is always
+                          compatible to the property's
+                          [type](#attribute-IntermediateTechnologySpecificProperty-type).
+                technologySpecificProperty:
+                    type:
+                        name: IntermediateTechnologySpecificProperty
+                        multiplicity: 1
+                        internal_ref_kind: concept
+                    description:
+                        The property for which the value was specified.
+                specification:
+                    type:
+                        name: IntermediateServiceDeploymentSpecification
+                        internal_ref_kind: concept
+                    description:
+                        The service deployment specification that this value
+                        configures.
+                operationNode:
+                    type:
+                        name: IntermediateOperationNode
+                        internal_ref_kind: concept
+                    description:
+                        The operation node that this value configures.
+        IntermediateContainer:
+            description:
+                This concept reifies a container as a certain kind of operation
+                node.
+            references:
+                super_concept:
+                    name: IntermediateOperationNode
+                    internal_ref_kind: concept
+            attributes:
+                qualifiedDeploymentTechnologyName:
+                    type:
+                        name: String
+                    description:
+                        Qualified name of the container's deployment technology.
+                technologyReference:
+                    type:
+                        name: IntermediateDeploymentTechnologyReference
+                        multiplicity: 1
+                        internal_ref_kind: concept
+                    description:
+                        Reference to the container's deployment technology.
+                operationModel:
+                    type:
+                        name: IntermediateOperationModel
+                        multiplicity: 1
+                        internal_ref_kind: concept
+                    description:
+                        The container's defining operation model.
+                dependsOnNodes:
+                    type:
+                        name: IntermediateOperationNodeReference
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        Dependencies of a container on other nodes, e.g.,
+                        databases or service discoveries required by 
+                        [deployed microservices](#attribute-IntermediateOperationNode-deployedServices).
+                usedByNodes:
+                    type:
+                        name: IntermediateOperationNodeReference
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        Usage relationships of a container to other nodes that
+                        make use of the container's infrastructure-related
+                        capabilities.
+                    notes:
+                        - The attribute models the dependency of another node on
+                          a container. The
+                          [`dependsOnNodes` attribute](#attribute-IntermediateContainer-dependsOnNodes)
+                          takes the opposite perspective and reflects the
+                          dependency of a container on another node.
+        IntermediateInfrastructureNode:
+            description:
+                This concept reifies an infrastructure node as a certain kind of
+                operation node.
+            references:
+                super_concept:
+                    name: IntermediateOperationNode
+                    internal_ref_kind: concept
+            attributes:
+                qualifiedInfrastructureTechnologyName:
+                    type:
+                        name: String
+                    description:
+                        Qualified name of the infrastructure node's technology.
+                reference:
+                    type:
+                        name: IntermediateInfrastructureTechnologyReference
+                        multiplicity: 1
+                        internal_ref_kind: concept
+                    description:
+                        Reference to the infrastructure node's technology.
+                operationModel:
+                    type:
+                        name: IntermediateOperationModel
+                        multiplicity: 1
+                        internal_ref_kind: concept
+                    description:
+                        The infrastructure node's defining operation model.
+                dependsOnNodes:
+                    type:
+                        name: IntermediateOperationNodeReference
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        Dependencies of an infrastructure node on other nodes,
+                        e.g., databases or service discoveries required for the
+                        node's intended infrastructure capability.
+                usedByNodes:
+                    type:
+                        name: IntermediateOperationNodeReference
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        Usage relationships of an infrastructure node to other
+                        nodes that make use of the node's infrastructure-related
+                        capabilities.
+                    notes:
+                        - The attribute models the dependency of another node on
+                          an infrastructure node. The
+                          [`dependsOnNodes` attribute](#attribute-IntermediateInfrastructureNode-dependsOnNodes)
+                          takes the opposite perspective and reflects the
+                          dependency of an infrastructure node on another node.
+        IntermediateOperationNodeReference:
+            description:
+                A reference to an
+                [operation node](#concept-IntermediateOperationNode).
+            attributes:
+                name:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Name of the referenced operation node. 
+                imported:
+                    type:
+                        name: boolean
+                    description:
+                        This flag indicates whether the operation node reference
+                        originates from another operation model or is located in
+                        the same operation model where it occurs.
+                import:
+                    type:
+                        name: IntermediateImport
+                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-data-model-specification/#concept-IntermediateImport
+                    description:
+                        In case the operation node is
+                        [imported](#attribute-IntermediateOperationNodeReference-imported),
+                        this attribute points to the import of the operation
+                        model that defines the node.
+                qualifiedTechnologyName:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Name of the referenced operation node's technology. 
+                dependsOnNode:
+                    type:
+                        name: IntermediateOperationNode
+                        internal_ref_kind: concept
+                    description:
+                        Link to the operation node that depends on the
+                        referenced operation node.
+                    hints:
+                        - The attribute only receives a value in case the
+                          linked operation node is local and not
+                          [imported](#attribute-IntermediateOperationNodeReference-imported)
+                          from another operation model.
+                usedByNode:
+                    type:
+                        name: IntermediateOperationNode
+                        internal_ref_kind: concept
+                    description:
+                        Link to the operation node that uses the referenced
+                        operation node.
+                    hints:
+                        - The attribute only receives a value in case the
+                          linked operation node is local and not
+                          [imported](#attribute-IntermediateOperationNodeReference-imported)
+                          from another operation model.
+    Operation Technologies:
+        IntermediateOperationTechnology:
+            description:
+                Super class for operation technologies.
+            kind: abstract class
+            attributes:
+                name:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Name of the operation technology.
+                environment:
+                    type:
+                        name: IntermediateOperationEnvironment                    
+                        multiplicity: 1
+                        internal_ref_kind: concept
+                    description:
+                        The technology's operation environment.
+                properties:
+                    type:
+                        name: IntermediateTechnologySpecificProperty                    
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        Technology-specific properties provided by the operation
+                        technology.
+        IntermediateOperationEnvironment:
+            description:
+                The operation environment of a certain operation technology.
+                Operation environments may refer to technology that is mandatory
+                to execute modeled operation nodes. For example, an operation
+                environment may explicitly determine the version of the used
+                operation technology.
+            attributes:
+                environmentName:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Name of the operation environment.
+                default:
+                    type:
+                        name: boolean
+                    description:
+                        Flag to indicate whether this is the default operation
+                        environment of an operation technology.
+                operationTechnology:
+                    type:
+                        name: IntermediateOperationTechnology
+                        multiplicity: 1
+                        internal_ref_kind: concept
+                    description:
+                        The operation technology to which this environment
+                        belongs.
+        IntermediateTechnologySpecificProperty:
+            description:
+                A property of a certain operation technology.
+            attributes:
+                name:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        The name of the property.
+                type:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description: >
+                        The name of the property's
+                        [primitive type](https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediatePrimitiveType).
+                        The following values are possible:
+                        <ul>
+                            <li>"boolean"</li>
+                            <li>"byte"</li>
+                            <li>"char"</li>
+                            <li>"date"</li>
+                            <li>"double"</li>
+                            <li>"float"</li>
+                            <li>"int"</li>
+                            <li>"long"</li>
+                            <li>"short"</li>
+                            <li>"string"</li>
+                        </ul>
+                    notes:
+                        - A property cannot be of the built-in primitive type
+                         [`unspecified`](https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#built-in-type-system).
+                defaultValue:
+                    type:
+                        name: String
+                    description:
+                        This attribute encodes the possible default value of the
+                        property. it is guaranteed that the default value fits
+                        the property's
+                        [type](#attribute-IntermediateTechnologySpecificProperty-type).
+                featureNames:
+                    type:
+                        name: String
+                        multiplicity: "*"
+                    description: >
+                        This attribute contains the names of all features
+                        specified for the property. The following values are
+                        possible:
+                        <table>
+                            <tr>
+                                <th>Feature Name</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr>
+                                <td>"MANDATORY"</td>
+                                <td>
+                                    Flag to indicate that the property needs to
+                                    receive a value. It is guaranteed that all
+                                    mandatory properties receive a value.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>"SINGE_VALUED"</td>
+                                <td>
+                                    Flag to indicate that a property may only
+                                    receive a value once. It is guaranteed that
+                                    all single-valued properties receive at most
+                                    one value.
+                                </td>
+                            </tr>
+                        </table>
+                operationTechnology:
+                    type:
+                        name: IntermediateOperationTechnology
+                        internal_ref_kind: concept
+                    description:
+                        The operation technology to which the property belongs.
+        IntermediateDeploymentTechnology:
+            description:
+                A concrete operation technology that represents a deployment
+                technology.
+            references:
+                super_concept:
+                    name: IntermediateOperationTechnology
+                    internal_ref_kind: concept
+            attributes:
+                reference:
+                    type:
+                        name: IntermediateDeploymentTechnologyReference
+                        multiplicity: 1
+                        internal_ref_kind: concept
+                    description:
+                        The technology reference that points to this deployment
+                        technology.
+        IntermediateDeploymentTechnologyReference:
+            description:
+                A reference to a deployment technology.
+            attributes:
+                import:
+                    type:
+                        name: IntermediateImport
+                        multiplicity: 1
+                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-data-model-specification/#concept-IntermediateImport
+                    description:
+                        The import of the technology model, which defines the
+                        referenced deployment technology.
+                technology:
+                    type:
+                        name: IntermediateDeploymentTechnology
+                        multiplicity: 1
+                        internal_ref_kind: concept
+                    description:
+                        The referenced deployment technology.
+                container:
+                    type:
+                        name: IntermediateContainer
+                        multiplicity: 1
+                        internal_ref_kind: concept
+                    description:
+                        The container that uses the deployment technology.
+        IntermediateInfrastructureTechnology:
+            description:
+                A concrete operation technology that represents an
+                infrastructure technology.
+            references:
+                super_concept:
+                    name: IntermediateOperationTechnology
+                    internal_ref_kind: concept
+            attributes:
+                reference:
+                    type:
+                        name: IntermediateInfrastructureTechnologyReference
+                        multiplicity: 1
+                        internal_ref_kind: concept
+                    description:
+                        The technology reference that points to this
+                        infrastructure technology.
+        IntermediateInfrastructureTechnologyReference:
+            description:
+                A reference to an infrastructure technology.
+            attributes:
+                import:
+                    type:
+                        name: IntermediateImport
+                        multiplicity: 1
+                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-data-model-specification/#concept-IntermediateImport
+                    description:
+                        The import of the technology model, which defines the
+                        referenced infrastructure technology.
+                technology:
+                    type:
+                        name: IntermediateInfrastructureTechnology
+                        multiplicity: 1
+                        internal_ref_kind: concept
+                    description:
+                        The referenced infrastructure technology.
+                container:
+                    type:
+                        name: IntermediateInfrastructureNode
+                        multiplicity: 1
+                        internal_ref_kind: concept
+                    description:
+                        The infrastructure node that uses the infrastructure
+                        technology.
+    Service Deployment Specifications:
+        IntermediateServiceDeploymentSpecification:
+            description:
+                Specification of a microservice's deployment/usage of an
+                operation node.
+            attributes:
+                operationMicroserviceReference:
+                    type:
+                        name: OperationMicroserviceReference
+                        multiplicity: 1
+                        internal_ref_kind: concept
+                    description:
+                        The microservice targeted by the specification.
+                endpoints:
+                    type:
+                        name: IntermediateOperationEndpoint
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        Endpoints specified for the microservice.
+                propertyValues:
+                    type:
+                        name: IntermediateTechnologySpecificPropertyValue
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        Configuration values specific to the microservice.
+                operationNode:
+                    type:
+                        name: IntermediateOperationNode
+                        multiplicity: 1
+                        internal_ref_kind: concept
+                    description:
+                        The operation node to which the microservice is
+                        assigned.
+        OperationMicroserviceReference:
+            description:
+                Reference to a microservice imported from an
+                [intermediate service model](https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-service-model-specification/#concept-IntermediateMicroservice).
+                The concept extends the 
+                [`MicroserviceReference` concept](https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-service-model-specification/#concept-MicroserviceReference)
+                from the intermediate service model specification and adds
+                operation-related information.
+            references:
+                super_concept:
+                    name: MicroserviceReference
+                    external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-service-model-specification/#concept-MicroserviceReference
+            attributes:
+                effectivelyImplemented:
+                    type:
+                        name: boolean
+                    description:
+                        The value of the attribute corresponds to that of the
+                        [`effectivelyImplemented` flag](https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-service-model-specification/#attribute-IntermediateMicroservice-effectivelyImplemented)
+                        of the referenced microservice.
+                microserviceType:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        The value of the attribute corresponds to that of the
+                        [`type` attribute](https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-service-model-specification/#attribute-IntermediateMicroservice-type)
+                        of the referenced microservice.
+                visibility:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        The value of the attribute corresponds to that of the
+                        [`visibility` attribute](https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-service-model-specification/#attribute-IntermediateMicroservice-visibility)
+                        of the referenced microservice.
+                node:
+                    type:
+                        name: IntermediateOperationNode
+                        multiplicity: 1
+                        internal_ref_kind: concept
+                    description:
+                        The operation node to which the referenced microservice is
+                        [deployed or that is used by](#attribute-IntermediateOperationNode-deployedServices)
+                        the microservice.
