@@ -61,9 +61,11 @@ nav:
   - 'User Guide':
     - 'Introduction': 'user-guide/index.md'
     - 'Domain Data Modeling Language': 'user-guide/domain-data-modeling-language/index.md'
-    - 'Service Modeling Language': 'user-guide/service-modeling-language/index.md'
     - 'Technology Modeling Language': 'user-guide/technology-modeling-language/index.md'
+    - 'Service Modeling Language': 'user-guide/service-modeling-language/index.md'
+    - 'Service Technology Mapping Modeling Language': 'user-guide/service-technology-mapping-modeling-language/index.md'
     - 'Operation Modeling Language': 'user-guide/operation-modeling-language/index.md'
+    - 'Model Processing': 'user-guide/model-processing/index.md'
   - 'Developer Guide':
     - 'Introduction': 'developer-guide/index.md'
     - 'Intermediate Model Specifications':
@@ -72,6 +74,9 @@ nav:
         - 'Intermediate Domain Model Specification': 'developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/index.md'
         - 'Intermediate Service Model Specification': 'developer-guide/intermediate-model-specifications/intermediate-service-model-specification/index.md'
         - 'Intermediate Operation Model Specification': 'developer-guide/intermediate-model-specifications/intermediate-operation-model-specification/index.md'
+    - 'Model Processing Framework': 'developer-guide/model-processing-framework/index.md'
+    - 'Extending the Java Base Generator': 'developer-guide/java-base-generator-extension/index.md'
+    - 'Static Analysis Library': 'developer-guide/static-analysis-library/index.md'
   - 'Research': 'research/index.md'
   - 'Contact': 'contact/index.md'
 extra:
