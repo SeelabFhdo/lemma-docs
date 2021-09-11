@@ -21,7 +21,7 @@ intermediate_service_model_specification:
                     type:
                         name: IntermediateImport
                         multiplicity: "*"
-                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-data-model-specification/#concept-IntermediateImport
+                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateImport
                     description:
                         References to imported
                         [technology models](https://seelabfhdo.github.io/lemma-docs/user-guide/technology-modeling-language),
@@ -251,7 +251,7 @@ intermediate_service_model_specification:
                     type:
                         name: IntermediateImportedAspect
                         multiplicity: "*"
-                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-data-model-specification/#concept-IntermediateImportedAspect
+                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateImportedAspect
                     description:
                         Aspects of the microservice.
                 serviceModel:
@@ -435,7 +435,7 @@ intermediate_service_model_specification:
                     type:
                         name: IntermediateImportedAspectconcept-
                         multiplicity: "*"
-                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-data-model-specification/#concept-IntermediateImportedAspect
+                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateImportedAspect
                     description:
                         Aspects of the interface.
                 microservice:
@@ -583,7 +583,7 @@ intermediate_service_model_specification:
                     type:
                         name: IntermediateImportedAspect
                         multiplicity: "*"
-                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-data-model-specification/#concept-IntermediateImportedAspect
+                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateImportedAspect
                     description:
                         Aspects of the operation.
                 interface:
@@ -916,7 +916,7 @@ intermediate_service_model_specification:
                     type:
                         name: IntermediateImportedAspect
                         multiplicity: "*"
-                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-data-model-specification/#concept-IntermediateImportedAspect
+                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateImportedAspect
                     description:
                         Aspects of the parameter.
                 fieldAspects:
@@ -980,7 +980,7 @@ intermediate_service_model_specification:
                     type:
                         name: IntermediateImportedAspect
                         multiplicity: "1..*"
-                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-data-model-specification/#concept-IntermediateImportedAspect
+                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateImportedAspect
                     description:
                         The aspects that were assigned to the field in the
                         context of the parameter.
@@ -1087,7 +1087,7 @@ intermediate_service_model_specification:
                     type:
                         name: IntermediateImportedAspect
                         multiplicity: "*"
-                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-data-model-specification/#concept-IntermediateImportedAspect
+                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateImportedAspect
                     description:
                         Aspects of the referred operation.
                 referringInterface:
@@ -1283,7 +1283,7 @@ intermediate_service_model_specification:
                     type:
                         name: IntermediateImport
                         multiplicity: 1
-                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-data-model-specification/#concept-IntermediateImport
+                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateImport
                     description:
                         Intermediate representation of the technology model's
                         import.
@@ -1333,7 +1333,7 @@ intermediate_service_model_specification:
                 import:
                     type:
                         name: IntermediateImport
-                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-data-model-specification/#concept-IntermediateImport
+                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateImport
                     description:
                         The import, which points to the imported service model
                         from which the referenced microservice originates. Iff
@@ -1397,7 +1397,7 @@ intermediate_service_model_specification:
                 import:
                     type:
                         name: IntermediateImport
-                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-data-model-specification/#concept-IntermediateImport
+                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateImport
                     description:
                         The import, which points to the imported service model
                         from which the referenced interface originates. Iff the
@@ -1457,7 +1457,7 @@ intermediate_service_model_specification:
                 import:
                     type:
                         name: IntermediateImport
-                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-data-model-specification/#concept-IntermediateImport
+                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateImport
                     description:
                         The import, which points to the imported service model
                         from which the referenced operation originates. Iff the
