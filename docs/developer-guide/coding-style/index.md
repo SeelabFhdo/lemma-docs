@@ -5,7 +5,7 @@ template: main_with_numbered_headings.html
 
 This page describes the preferred coding style for LEMMA. To quote Linus
 Torvalds in the 
-[Linux Kernel Documentation]((https://www.kernel.org/doc/html/latest/process/coding-style.html)):
+[Linux Kernel Documentation](https://www.kernel.org/doc/html/latest/process/coding-style.html):
 
 !!!quote
      Coding style is very personal, and I won't **force** my views on anybody, but
