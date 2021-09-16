@@ -68,6 +68,7 @@ nav:
     - 'Model Processing': 'user-guide/model-processing/index.md'
   - 'Developer Guide':
     - 'Introduction': 'developer-guide/index.md'
+    - 'Coding Style': 'developer-guide/coding-style/index.md'
     - 'Intermediate Model Specifications':
         - 'Introduction': 'developer-guide/intermediate-model-specifications/index.md'
         - 'Obtaining Intermediate Models': 'developer-guide/intermediate-model-specifications/obtaining-intermediate-models/index.md'
@@ -82,6 +83,9 @@ nav:
 extra:
   atl_url: https://www.eclipse.org/atl
   bounded_context_url: https://martinfowler.com/bliki/BoundedContext.html
+  coding_style_column_width: 100
+  coding_style_language: American English
+  coding_style_tab_size: 4
   container_def_url: https://www.docker.com/resources/what-container
   current_eclipse_release: 2021-06
   cqrs_pattern_def_url: https://microservices.io/patterns/data/cqrs.html
@@ -94,7 +98,9 @@ extra:
   default_indent_level2: 4%
   devops_culture_url: https://martinfowler.com/bliki/DevOpsCulture.html
   info_email: florian.rademacher@fh-dortmund.de
+  kr_coding_style_url: https://en.wikipedia.org/wiki/Indentation_style#K&R_style
   lemma_github_url: https://github.com/SeelabFhdo/lemma/
+  lemma_main_branch_name: main
   lemma_tour_models_project_name: search-for-free-space
   lemma_tour_domain_model_file: domain.data
   lemma_tour_service_model_file: micro.services
@@ -106,10 +112,13 @@ extra:
   msa_def_url: https://martinfowler.com/articles/microservices.html
   msa_tech_heterogeneity_url: https://www.oreilly.com/library/view/building-microservices/9781491950340/ch01.html
   ntier_def_url: https://en.wikipedia.org/wiki/Multitier_architecture
+  pep8_url: https://www.python.org/dev/peps/pep-0008
   saga_pattern_def_url: https://microservices.io/patterns/data/saga.html
   spring_get_mapping_annotation_url: https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/GetMapping.html
   spring_response_status_annotation_url: https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/ResponseStatus.html
   spring_url: https://www.spring.io
   tech_hetero_def_url: https://www.oreilly.com/library/view/building-microservices/9781491950340/ch01.html#idm46346970503816
-  xmi_url: 'https://www.omg.org/spec/XMI/2.5.1/About-XMI'
+  xcore_url: https://wiki.eclipse.org/Xcore
+  xmi_url: https://www.omg.org/spec/XMI/2.5.1/About-XMI
+  xtend_url: https://www.eclipse.org/xtend
   xtext_standalone_url: https://www.typefox.io/blog/how-and-why-use-xtext-without-the-ide
