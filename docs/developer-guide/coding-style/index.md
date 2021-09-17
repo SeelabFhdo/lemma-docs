@@ -751,7 +751,7 @@ class Example {
 ```
 
 In case you developed a JVM function/method that consists of several logical
-steps, whose decomposition into other methods doesn't make sense, you may use
+steps, whose decomposition into other methods does not make sense, you may use
 multi-line comments to separate coherent steps and single-line comments within a
 compound of coherent steps. However, this form of commenting (and organizing
 functions/methods) should be avoided at all sane costs.
@@ -793,7 +793,7 @@ getExampleInstance().myStaticMethod()
 Example.myStaticMethod()
 ```
 
-### Don't Reinvent Utility Functions
+### Do Not Reinvent Utility Functions
 
 LEMMA comes with an extensive set of utility functions, e.g., in the
 [`LemmaUtils` class](https://github.com/SeelabFhdo/lemma/blob/{{ lemma_main_branch_name }}/de.fhdo.lemma.utils/src/de/fhdo/lemma/utils/LemmaUtils.xtend)
