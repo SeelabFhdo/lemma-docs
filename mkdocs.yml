@@ -87,7 +87,7 @@ extra:
   coding_style_language: American English
   coding_style_tab_size: 4
   container_def_url: https://www.docker.com/resources/what-container
-  current_eclipse_release: 2021-06
+  current_eclipse_release: 2021-09
   cqrs_pattern_def_url: https://microservices.io/patterns/data/cqrs.html
   ddd_aggregate_def_url: https://martinfowler.com/bliki/DDD_Aggregate.html
   ddd_def_url: https://en.wikipedia.org/wiki/Domain-driven_design
