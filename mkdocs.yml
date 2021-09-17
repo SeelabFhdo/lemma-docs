@@ -99,7 +99,7 @@ extra:
   devops_culture_url: https://martinfowler.com/bliki/DevOpsCulture.html
   info_email: florian.rademacher@fh-dortmund.de
   kr_coding_style_url: https://en.wikipedia.org/wiki/Indentation_style#K&R_style
-  lemma_github_url: https://github.com/SeelabFhdo/lemma/
+  lemma_github_url: https://github.com/SeelabFhdo/lemma
   lemma_main_branch_name: main
   lemma_tour_models_project_name: search-for-free-space
   lemma_tour_domain_model_file: domain.data

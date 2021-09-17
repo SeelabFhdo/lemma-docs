@@ -33,8 +33,8 @@ guide and the [Tour](getting-started/tour).
 
 In case you encounter issues with the documentation, have further questions, or
 any sort of feedback, please do not hesitate to contact us by creating an issue
-in [LEMMA's GitHub repository](https://github.com/SeelabFhdo/lemma/) or dropping
-us an [e-mail](mailto:{{ info_email }}).
+in [LEMMA's GitHub repository]({{ lemma_github_url }}) or dropping us an
+[e-mail](mailto:{{ info_email }}).
 
 ## Developer Guide
 

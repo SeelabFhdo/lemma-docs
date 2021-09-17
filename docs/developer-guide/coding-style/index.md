@@ -796,7 +796,7 @@ Example.myStaticMethod()
 ### Do Not Reinvent Utility Functions
 
 LEMMA comes with an extensive set of utility functions, e.g., in the
-[`LemmaUtils` class](https://github.com/SeelabFhdo/lemma/blob/{{ lemma_main_branch_name }}/de.fhdo.lemma.utils/src/de/fhdo/lemma/utils/LemmaUtils.xtend)
+[`LemmaUtils` class]({{ lemma_github_url }}/blob/{{ lemma_main_branch_name }}/de.fhdo.lemma.utils/src/de/fhdo/lemma/utils/LemmaUtils.xtend)
 or [Xcore]({{ xcore_url }}) metamodel specifications. Please use such functions
 rather than explicitly coding some variant of them yourself.
 
@@ -821,7 +821,7 @@ Your commits should always reflect coherent changes to LEMMA's codebase. For
 example, you should not add two different major functionalities in the same
 commit. However, a commit **must always** result in a functioning (compileable
 and buildable)
-[`{{ lemma_main_branch_name }}`](https://github.com/SeelabFhdo/lemma/tree/{{ lemma_main_branch_name }})
+[`{{ lemma_main_branch_name }}`]({{ lemma_github_url }}/tree/{{ lemma_main_branch_name }})
 branch and not break any tests. In you own feature branches, your commits might
 introduce compile and/or build failures, which is totally fine as long as the
 commits are isolated from `{{ lemma_main_branch_name }}`. However, before
@@ -1001,7 +1001,7 @@ Some LEMMA Module: Add the foo to the bar
 ```
 
 A real-world example of a "long git commit message" can be found in LEMMA commit
-[9237b941](https://github.com/SeelabFhdo/lemma/commit/9237b941562b6dc0950b1fc2b775c5e96dbbc8c7):
+[9237b941]({{ lemma_github_url }}/commit/9237b941562b6dc0950b1fc2b775c5e96dbbc8c7):
 
 ```
 Live Validation Framework: Refactor towards loosely coupled Java implementation
