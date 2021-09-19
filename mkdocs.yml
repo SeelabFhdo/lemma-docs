@@ -65,7 +65,9 @@ nav:
     - 'Service Modeling Language': 'user-guide/service-modeling-language/index.md'
     - 'Service Technology Mapping Modeling Language': 'user-guide/service-technology-mapping-modeling-language/index.md'
     - 'Operation Modeling Language': 'user-guide/operation-modeling-language/index.md'
-    - 'Model Processing': 'user-guide/model-processing/index.md'
+    - 'Model Processing':
+      - 'Introduction': 'user-guide/model-processing/index.md'
+      - 'Static Analysis': 'user-guide/model-processing/static-analysis/index.md'
   - 'Developer Guide':
     - 'Introduction': 'developer-guide/index.md'
     - 'Coding Style': 'developer-guide/coding-style/index.md'
@@ -76,6 +78,7 @@ nav:
         - 'Intermediate Service Model Specification': 'developer-guide/intermediate-model-specifications/intermediate-service-model-specification/index.md'
         - 'Intermediate Operation Model Specification': 'developer-guide/intermediate-model-specifications/intermediate-operation-model-specification/index.md'
     - 'Model Processing Framework': 'developer-guide/model-processing-framework/index.md'
+    - "Integrating New Modules With LEMMA's Continuous Integration Pipeline": 'developer-guide/continuous-integration/index.md'
     - 'Extending the Java Base Generator': 'developer-guide/java-base-generator-extension/index.md'
     - 'Static Analysis Library': 'developer-guide/static-analysis-library/index.md'
   - 'Research': 'research/index.md'
@@ -97,16 +100,31 @@ extra:
   default_indent_level1: 2%
   default_indent_level2: 4%
   devops_culture_url: https://martinfowler.com/bliki/DevOpsCulture.html
+  employed_gradle_releases: 5.2.1, 6.1.1, 6.3, 6.8, 7.1.1
+  gradle_url: https://gradle.org
   info_email: florian.rademacher@fh-dortmund.de
   kr_coding_style_url: https://en.wikipedia.org/wiki/Indentation_style#K&R_style
+  lemma_build_server_url: https://build.seelab.fh-dortmund.de
+  lemma_build_job_url: https://build.seelab.fh-dortmund.de/job/SeelabFhdo/job/lemma
   lemma_github_url: https://github.com/SeelabFhdo/lemma
   lemma_main_branch_name: main
+  lemma_repository_server_url: https://repository.seelab.fh-dortmund.de/
+  lemma_repository_artifacts_url: https://repository.seelab.fh-dortmund.de/#browse/search/maven
+  lemma_repository_docker_images_url: https://repository.seelab.fh-dortmund.de/#browse/search/docker
   lemma_tour_models_project_name: search-for-free-space
   lemma_tour_domain_model_file: domain.data
   lemma_tour_service_model_file: micro.services
   lemma_updatesite_url: https://microservices.fh-dortmund.de/lemma/
+  maven_url: https://maven.apache.org
+  maven_build_profiles_url: https://maven.apache.org/guides/introduction/introduction-to-profiles.html
+  maven_pom_url: https://maven.apache.org/pom.html
   mde_def_url: https://en.wikipedia.org/wiki/Model-driven_engineering
   minimum_eclipse_release: 2021-03
+  minimum_java_release: 11
+  minimum_linux_release: Ubuntu 18.04 LTS (Bionic Beaver)
+  minimum_linux_release_for_docker: Debian GNU/Linux 10 (buster)
+  minimum_maven_release: 3.6.3
+  minimum_windows_release: 10
   monolith_def_url: https://en.wikipedia.org/wiki/Monolithic_application
   msa_bc_url: https://martinfowler.com/articles/microservices.html#DecentralizedDataManagement
   msa_def_url: https://martinfowler.com/articles/microservices.html
