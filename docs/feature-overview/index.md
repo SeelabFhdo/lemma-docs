@@ -7,9 +7,9 @@ the following features in the design, development and, deployment of
 - **Concern-oriented Modeling Languages:** LEMMA aims to reduce the inherent
 complexity of microservice architectures by providing its users with dedicated
 modeling languages for the various challenges in the engineering of microservice
-architectures. Specifically, these modeling languages languages focus on 
+architectures. Specifically, these modeling languages focus on
 *domain-driven microservice design*, *technology-agnostic API modeling*, and
-*concise deployment and operation specification*.  
+*concise deployment and operation specification*.
   All modeling languages of LEMMA come with **IDE support** including syntax
 highlighting, code completion, and as-you-type validation.
 
