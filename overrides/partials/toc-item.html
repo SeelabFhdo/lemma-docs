@@ -1,0 +1,57 @@
+<!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+{% if page.meta['activate_specification_toc_handling'] %}
+    {% if toc_item.level > 2 %}
+        <!--
+            Don't consider possible super concept part ": superConceptName" for
+            determining the navigation item's title
+        -->
+        {% set super_sep_index = toc_item.title.find(':') %}
+        {% if super_sep_index > -1 %}
+            {% set item_title = toc_item.title[:super_sep_index].strip() %}
+        {% else %}
+            {% set item_title = toc_item.title %}
+        {% endif %}
+
+        {% set item_title_parts = item_title.split() %}
+        {% set item_title = item_title_parts[-1] %}
+    {% else %}
+        {% set item_title = toc_item.title %}
+    {% endif%}
+{% else %}
+        {% set item_title = toc_item.title %}
+{% endif %}
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="{{ toc_item.url }}" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    {{ item_title }}
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  {% if toc_item.children %}
+    <nav class="md-nav" aria-label="{{ toc_item.title }}">
+      <ul class="md-nav__list">
+        {% for toc_item in toc_item.children %}
+          {% include "partials/toc-item.html" %}
+        {% endfor %}
+      </ul>
+    </nav>
+  {% endif %}
+</li>

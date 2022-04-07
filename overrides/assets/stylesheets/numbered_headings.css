@@ -1,0 +1,104 @@
+body {
+    counter-reset : h2;
+}
+
+h2 {
+    counter-reset : h3;
+}
+
+h3 {
+    counter-reset : h4;
+}
+
+h4 {
+    counter-reset : h5;
+}
+
+h5 {
+    counter-reset : h6;
+}
+
+h2::before {
+    content : "§" counter(h2,decimal) " ";
+    counter-increment : h2;
+}
+
+.md-typeset h2:target:before {
+    content : "§" counter(h2,decimal) " ";
+    counter-increment : h2;
+}
+
+h3::before {
+    content : "§" counter(h2,decimal) "." counter(h3,decimal) " ";
+    counter-increment : h3;
+}
+
+.md-typeset h3:target:before {
+    content : "§" counter(h2,decimal) "." counter(h3,decimal) " ";
+    counter-increment : h3;
+}
+
+h4::before {
+    content : "§" counter(h2,decimal) "." counter(h3,decimal) "." counter(h4,decimal) " ";
+    counter-increment : h4;
+}
+
+.md-typeset h4:target:before {
+    content : "§" counter(h2,decimal) "." counter(h3,decimal) "." counter(h4,decimal) " ";
+    counter-increment : h4;
+}
+
+h5::before {
+    content : "§" counter(h2,decimal) "." counter(h3,decimal) "." counter(h4,decimal) "." counter(h5,decimal) " ";
+    counter-increment : h5;
+}
+
+.md-typeset h5:target:before {
+    content : "§" counter(h2,decimal) "." counter(h3,decimal) "." counter(h4,decimal) "." counter(h5,decimal) " ";
+    counter-increment : h5;
+}
+
+h6::before {
+    content : "§" counter(h2,decimal) "." counter(h3,decimal) "." counter(h4,decimal) "." counter(h5,decimal) "." counter(h6,decimal) " ";
+    counter-increment : h6;
+}
+
+.md-typeset h6:target:before {
+    content : "§" counter(h2,decimal) "." counter(h3,decimal) "." counter(h4,decimal) "." counter(h5,decimal) "." counter(h6,decimal) " ";
+    counter-increment : h6;
+}
+
+h2.nocount::before, h3.nocount::before, h4.nocount::before, h5.nocount::before, h6.nocount::before {
+    content : "";
+    counter-increment : none;
+}
+
+/* First navigation level */
+nav.md-nav.md-nav--secondary {
+    counter-reset : firstNavLevel;
+}
+
+nav.md-nav.md-nav--secondary ul.md-nav__list li.md-nav__item a.md-nav__link {
+    counter-reset : secondNavLevel;
+}
+
+nav.md-nav.md-nav--secondary ul.md-nav__list li.md-nav__item a.md-nav__link:before {
+    content : "§" counter(firstNavLevel,decimal) " ";
+    counter-increment : firstNavLevel;
+}
+
+/* Second navigation level */
+nav.md-nav.md-nav--secondary ul.md-nav__list li.md-nav__item nav.md-nav ul.md-nav__list li.md-nav__item a.md-nav__link {
+    counter-reset : thirdNavLevel;
+}
+
+nav.md-nav.md-nav--secondary ul.md-nav__list li.md-nav__item nav.md-nav ul.md-nav__list li.md-nav__item a.md-nav__link:before {
+    content : "§" counter(firstNavLevel,decimal) "." counter(secondNavLevel,decimal) " ";
+    counter-increment : secondNavLevel;
+}
+
+/* Third navigation level */
+nav.md-nav.md-nav--secondary ul.md-nav__list li.md-nav__item nav.md-nav ul.md-nav__list li.md-nav__item nav.md-nav ul.md-nav__list li.md-nav__item a.md-nav__link:before {
+    content : "§" counter(firstNavLevel,decimal) "." counter(secondNavLevel,decimal) "." counter(thirdNavLevel,decimal) " ";
+    counter-increment : thirdNavLevel;
+}

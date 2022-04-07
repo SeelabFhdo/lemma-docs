@@ -1,0 +1,12 @@
+technology Kubernetes {
+    deployment technologies {
+        Kubernetes {
+            operation environments = "openjdk:11-jdk-slim" default;
+
+            service properties {
+                string springApplicationName<mandatory>;
+                int serverPort<mandatory>;
+            }
+        }
+    }
+}

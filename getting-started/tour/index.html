@@ -1,0 +1,3345 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.8">
+    
+    
+      
+        <title>Tour - LEMMA Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.644de097.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tour" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="LEMMA Documentation" class="md-header__button md-logo" aria-label="LEMMA Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LEMMA Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Tour
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="red"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/seelabfhdo/lemma" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    seelabfhdo/lemma
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Welcome
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../context-motivation/" class="md-tabs__link">
+      Context and Motivation
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../feature-overview/" class="md-tabs__link">
+      Feature Overview
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../" class="md-tabs__link md-tabs__link--active">
+        Getting Started
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../user-guide/" class="md-tabs__link">
+        User Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../developer-guide/" class="md-tabs__link">
+        Developer Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../research/" class="md-tabs__link">
+      Research
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../contact/" class="md-tabs__link">
+      Contact
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="LEMMA Documentation" class="md-nav__button md-logo" aria-label="LEMMA Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    LEMMA Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/seelabfhdo/lemma" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    seelabfhdo/lemma
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Welcome
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../context-motivation/" class="md-nav__link">
+        Context and Motivation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../feature-overview/" class="md-nav__link">
+        Feature Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Getting Started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Getting Started
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Tour
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Tour
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#the-park-and-charge-platform-example" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    The Park and Charge Platform Example
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+      
+        <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#what-you-will-learn-during-the-tour" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    What you will Learn During the Tour
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+      
+        <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#step-1-creating-an-eclipse-project" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Step 1: Creating an Eclipse Project
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+      
+        <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#step-2-create-a-domain-model" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Step 2: Create a Domain Model
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+    <nav class="md-nav" aria-label="Step 2: Create a Domain Model">
+      <ul class="md-nav__list">
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#bounded-contexts" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Bounded Contexts
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#structured-domain-concepts-and-domain-driven-design" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Structured Domain Concepts and Domain-Driven Design
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#list-type-domain-concepts" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    List Type Domain Concepts
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#step-3-create-a-service-model" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Step 3: Create a Service Model
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+    <nav class="md-nav" aria-label="Step 3: Create a Service Model">
+      <ul class="md-nav__list">
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#domain-concept-imports" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Domain Concept Imports
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#microservice-definition" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Microservice Definition
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#interface-definition" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Interface Definition
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#operation-definition" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Operation Definition
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#parameter-definition" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Parameter Definition
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#step-4-enrich-the-service-model-with-technology-information" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Step 4: Enrich the Service Model with Technology Information
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+    <nav class="md-nav" aria-label="Step 4: Enrich the Service Model with Technology Information">
+      <ul class="md-nav__list">
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#technology-model-imports-and-applications" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Technology Model Imports and Applications
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#technology-aspects" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Technology Aspects
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#step-5-create-an-operation-model" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Step 5: Create an Operation Model
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+    <nav class="md-nav" aria-label="Step 5: Create an Operation Model">
+      <ul class="md-nav__list">
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#technology-and-microservice-imports" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Technology and Microservice Imports
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#container-definition" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Container Definition
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#container-configuration" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Container Configuration
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          User Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="User Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          User Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/domain-data-modeling-language/" class="md-nav__link">
+        Domain Data Modeling Language
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/technology-modeling-language/" class="md-nav__link">
+        Technology Modeling Language
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/service-modeling-language/" class="md-nav__link">
+        Service Modeling Language
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/service-technology-mapping-modeling-language/" class="md-nav__link">
+        Service Technology Mapping Modeling Language
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/operation-modeling-language/" class="md-nav__link">
+        Operation Modeling Language
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_7" type="checkbox" id="__nav_5_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_7">
+          Model Processing
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Model Processing" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_7">
+          <span class="md-nav__icon md-icon"></span>
+          Model Processing
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/model-processing/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/model-processing/static-analysis/" class="md-nav__link">
+        Static Analysis
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Developer Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Developer Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Developer Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer-guide/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer-guide/coding-style/" class="md-nav__link">
+        Coding Style
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_3" type="checkbox" id="__nav_6_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_3">
+          Intermediate Model Specifications
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Intermediate Model Specifications" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_3">
+          <span class="md-nav__icon md-icon"></span>
+          Intermediate Model Specifications
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer-guide/intermediate-model-specifications/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer-guide/intermediate-model-specifications/obtaining-intermediate-models/" class="md-nav__link">
+        Obtaining Intermediate Models
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/" class="md-nav__link">
+        Intermediate Domain Model Specification
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer-guide/intermediate-model-specifications/intermediate-service-model-specification/" class="md-nav__link">
+        Intermediate Service Model Specification
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer-guide/intermediate-model-specifications/intermediate-operation-model-specification/" class="md-nav__link">
+        Intermediate Operation Model Specification
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer-guide/model-processing-framework/" class="md-nav__link">
+        Model Processing Framework
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer-guide/continuous-integration/" class="md-nav__link">
+        Integrating New Modules With LEMMA's Continuous Integration Pipeline
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer-guide/java-base-generator-extension/" class="md-nav__link">
+        Extending the Java Base Generator
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer-guide/static-analysis-library/" class="md-nav__link">
+        Static Analysis Library
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research/" class="md-nav__link">
+        Research
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contact/" class="md-nav__link">
+        Contact
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#the-park-and-charge-platform-example" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    The Park and Charge Platform Example
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+      
+        <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#what-you-will-learn-during-the-tour" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    What you will Learn During the Tour
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+      
+        <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#step-1-creating-an-eclipse-project" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Step 1: Creating an Eclipse Project
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+      
+        <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#step-2-create-a-domain-model" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Step 2: Create a Domain Model
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+    <nav class="md-nav" aria-label="Step 2: Create a Domain Model">
+      <ul class="md-nav__list">
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#bounded-contexts" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Bounded Contexts
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#structured-domain-concepts-and-domain-driven-design" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Structured Domain Concepts and Domain-Driven Design
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#list-type-domain-concepts" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    List Type Domain Concepts
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#step-3-create-a-service-model" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Step 3: Create a Service Model
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+    <nav class="md-nav" aria-label="Step 3: Create a Service Model">
+      <ul class="md-nav__list">
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#domain-concept-imports" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Domain Concept Imports
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#microservice-definition" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Microservice Definition
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#interface-definition" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Interface Definition
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#operation-definition" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Operation Definition
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#parameter-definition" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Parameter Definition
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#step-4-enrich-the-service-model-with-technology-information" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Step 4: Enrich the Service Model with Technology Information
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+    <nav class="md-nav" aria-label="Step 4: Enrich the Service Model with Technology Information">
+      <ul class="md-nav__list">
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#technology-model-imports-and-applications" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Technology Model Imports and Applications
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#technology-aspects" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Technology Aspects
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#step-5-create-an-operation-model" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Step 5: Create an Operation Model
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+    <nav class="md-nav" aria-label="Step 5: Create an Operation Model">
+      <ul class="md-nav__list">
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#technology-and-microservice-imports" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Technology and Microservice Imports
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#container-definition" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Container Definition
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#container-configuration" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Container Configuration
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+<a href="https://github.com/seelabfhdo/lemma-docs/edit/main/docs/getting-started/tour/index.md" title="Edit this page" class="md-content__button md-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+</a>
+
+
+
+<h1 id="tour">Tour</h1>
+<p>In the following, we will demonstrate some of the basic features of LEMMA
+regarding the construction of models for microservice architectures and their
+processing. To reproduce the presented modeling and processing steps, you may
+first want to <a href="../">install LEMMA</a> on your computer.</p>
+<h2 id="the-park-and-charge-platform-example">The Park and Charge Platform Example</h2>
+<p>For the tour of LEMMA, we refer to a single microservice from an MSA<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>-based
+application that allows the management of parking spaces with capabilities for
+electric vehicle charging. More specifically, we will call this application the
+Park and Charge Platform, or short PACP.</p>
+<p>The PACP consists of several microservices, e.g., for user management, parking
+space configuration and provisioning, and parking space searching. For the tour
+of LEMMA, we are going to model the domain data, API, and deployment of the
+latter microservice, i.e., the <code>SearchForFreeSpace</code> microservice. This
+microservice shall provide its clients with means to search for spare parking
+spaces with electric vehicle charging capabilities in a given location.</p>
+<h2 id="what-you-will-learn-during-the-tour">What you will Learn During the Tour</h2>
+<p>In the following you will learn how to construct the following types of LEMMA
+models for the <code>SearchForFreeSpace</code> microservice:</p>
+<ul>
+<li>Domain model: Defines the domain information of the microservice.</li>
+<li>Service model: Defines the API of the microservice.</li>
+<li>Operation model: Defines the deployment of the microservice.</li>
+</ul>
+<p>In addition, you will receive an impression on how model processing works with
+LEMMA. More specifically, you will learn how to derive executable Java code from
+the constructed models.</p>
+<p>The next sections will teach you how to construct the aforementioned LEMMA
+models for the <code>SearchForFreeSpace</code> microservice by means of a
+<a href="../">LEMMA-enabled Eclipse installation</a>. If you do not want to
+construct the models on your own, you can also
+<a href="example_model_code/search-for-free-space.zip">download a ZIP archive</a>,
+which includes all three models.</p>
+<h2 id="step-1-creating-an-eclipse-project">Step 1: Creating an Eclipse Project</h2>
+<p>In the <a href="../">LEMMA-enabled Eclipse installation</a>, create a new Java
+project called <code>search-for-free-space</code>. We will use this project
+to gather all models for the <code>SearchForFreeSpace</code> microservice. In addition,
+create a folder called <code>models</code> within the project.</p>
+<p>The Project Explorer of your Eclipse workspace should now look similar to this:</p>
+<figure>
+  <img src="figures/tour-step1-project.png" loading="lazy"/>
+</figure>
+
+<h2 id="step-2-create-a-domain-model">Step 2: Create a Domain Model</h2>
+<p>LEMMA provides several modeling languages to express different viewpoints on a
+microservice architecture. A crucial viewpoint in almost every software project
+including microservice architecture is the <em>domain viewpoint</em>, for which LEMMA
+comprises the
+<a href="../../user-guide/domain-data-modeling-language/">Domain Data Modeling Language</a>
+that enables domain experts and microservice developers to collaboratively
+construct <em>domain models</em>.</p>
+<p>LEMMA recognizes domain models in the Eclipse IDE by means of the file extension
+<code>data</code>. For the <code>SearchForFreeSpace</code> microservice, we cluster related domain
+data in a file called <code>domain.data</code> within the <code>models</code> folder of the previously
+created <code>search-for-free-space</code> Eclipse project. Create this file
+leveraging the Eclipse IDE. In case a dialog pops up, asking you to convert the
+<code>search-for-free-space</code> project to an Xtext project, just confirm
+it with <code>Yes</code>.</p>
+<p>The Project Explorer of your Eclipse workspace should now look similar to this:</p>
+<figure>
+  <img src="figures/tour-step2-domain-model.png" loading="lazy"/>
+</figure>
+
+<p>As you can see, Eclipse displays an error marker for the model. That is, because
+LEMMA's
+<a href="../../user-guide/domain-data-modeling-language/">Domain Data Modeling Language</a>
+does not allow empty domain models. To fix this issue, add the following model
+code to the <code>domain.data</code> file by double-clicking the file in Eclipse's Project
+Explorer and entering the code in the text editor that just opened:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">context</span><span class="err"> ParkingSpace {</span>
+<span class="err">    </span><span class="k">structure</span><span class="err"> Location</span>&lt;<span class="bp">valueObject</span>&gt;<span class="err"> {</span>
+<span class="err">        </span><span class="k">immutable</span><span class="err"> </span><span class="k">double</span><span class="err"> latitude,</span>
+<span class="err">        </span><span class="k">immutable</span><span class="err"> </span><span class="k">double</span><span class="err"> longitude,</span>
+<span class="err">        </span><span class="k">immutable</span><span class="err"> </span><span class="k">string</span><span class="err"> street,</span>
+<span class="err">        </span><span class="k">immutable</span><span class="err"> </span><span class="k">string</span><span class="err"> zip,</span>
+<span class="err">        </span><span class="k">immutable</span><span class="err"> </span><span class="k">string</span><span class="err"> city,</span>
+<span class="err">        </span><span class="k">immutable</span><span class="err"> </span><span class="k">string</span><span class="err"> country</span>
+<span class="err">    }</span>
+
+<span class="err">    </span><span class="k">structure</span><span class="err"> ParkingSpace</span>&lt;<span class="bp">aggregate</span>,<span class="bp">entity</span>&gt;<span class="err"> {</span>
+<span class="err">        </span><span class="k">long</span><span class="err"> id</span>&lt;<span class="bp">identifier</span>&gt;<span class="err">,</span>
+<span class="err">        </span><span class="k">string</span><span class="err"> name,</span>
+<span class="err">        </span><span class="k">string</span><span class="err"> description,</span>
+<span class="err">        </span><span class="k">boolean</span><span class="err"> parkingNotAllowed,</span>
+<span class="err">        VehicleCounts capacities</span>&lt;<span class="bp">part</span>&gt;<span class="err">,</span>
+<span class="err">        Location location</span>&lt;<span class="bp">part</span>&gt;
+<span class="err">    }</span>
+
+<span class="err">    </span><span class="k">list</span><span class="err"> ParkingSpaces { ParkingSpace parkingSpace }</span>
+
+<span class="err">    </span><span class="k">structure</span><span class="err"> VehicleCount</span>&lt;<span class="bp">valueObject</span>&gt;<span class="err"> {</span>
+<span class="err">        </span><span class="k">string</span><span class="err"> vehicleClass,</span>
+<span class="err">        </span><span class="k">int</span><span class="err"> count,</span>
+<span class="err">        </span><span class="k">date</span><span class="err"> timestamp</span>
+<span class="err">    }</span>
+
+<span class="err">    </span><span class="k">list</span><span class="err"> VehicleCounts { VehicleCount vehicleCount }</span>
+<span class="err">}</span>
+</code></pre></div>
+</td></tr></table>
+<h3 id="bounded-contexts">Bounded Contexts</h3>
+<p>The
+<a href="../../user-guide/domain-data-modeling-language/">Domain Data Modeling Language</a>
+enables to organize the concepts of a microservice's domain excerpt within
+contexts. You can introduce a context with the keyword <code>context</code> followed by the
+name of the context and a pair of curly brackets. With this approach, the
+example domain model for the <code>SearchForFreeSpace</code> microservice defines a context
+called <code>ParkingSpace</code>. LEMMA's notion of context as a cluster for domain
+concepts is inspired by the <a href="https://martinfowler.com/bliki/BoundedContext.html">Bounded Context pattern</a>
+from <a href="https://en.wikipedia.org/wiki/Domain-driven_design">Domain-driven Design (DDD)</a> and its importance for the
+<a href="https://martinfowler.com/articles/microservices.html#DecentralizedDataManagement">tailoring of microservices' domain responsibility</a>.</p>
+<p>A context clusters one or more domain concepts between a pair of curly brackets.
+LEMMA supports several kinds of domain concepts and the above example
+illustrates the definition of structured and list concepts.</p>
+<h3 id="structured-domain-concepts-and-domain-driven-design">Structured Domain Concepts and Domain-Driven Design</h3>
+<p>A structured concept (or <em>data structure</em>) is introduced by the keyword
+<code>structure</code>, followed by the name of the structure and an arbitrary number of
+<em>features</em>. In LEMMA domain models, a feature assigns additional semantics like
+patterns from <a href="https://thedomaindrivendesign.io/what-is-tactical-design/">tactical DDD</a> to a domain
+concept. Furthermore, a data structure consists of an arbitrary number of typed
+and named <em>data fields</em> clustered in curly brackets. Consider the <code>Location</code>
+structure from the example domain model above. It receives the <em>valueObject</em>
+feature to identify it as a <a href="https://martinfowler.com/bliki/ValueObject.html">DDD Value Object</a>.
+Moreover, the structure consists of six data fields, which all exhibit the
+<code>immutable</code> identifier. That is, the values of the fields remain stable after
+their initialization. LEMMA supports all primitive types of Java and also treats
+<code>String</code> as a primitive type that can store a sequence of characters of
+arbitrary length. Take for example the fields <code>latitude</code> and <code>street</code> of the
+<code>Location</code> structure, which have the types <code>double</code> and <code>string</code>, respectively.</p>
+<p>The <code>ParkingSpace</code> concept is another example of a domain-specific data
+structure. It receives the features <code>aggregate</code> and <code>entity</code>, and is thus a
+<a href="https://martinfowler.com/bliki/DDD_Aggregate.html">DDD Aggregate</a> and
+<a href="https://martinfowler.com/bliki/EvansClassification.html">DDD Entity</a>. In DDD terms, based on this combination
+of patterns, the structure of the <code>ParkingSpace</code> concept also specifies the
+structure of the aggregate's <em>root entity</em> to be stored, e.g., in a database.
+Like the <code>Location</code> concept, the <code>ParkingSpace</code> concept consists of six data
+fields of the <code>id</code> field is the <code>identifier</code> of the root entity, and the
+<code>capacities</code> and <code>location</code> fields are <em>parts</em> of the root entity, whose
+structures are to be embedded into the root entity structure upon storage. In
+addition, both fields show LEMMA's support for complex typing of data fields.
+That is, next to primitive types like <code>double</code> and <code>string</code>, you can also use
+domain concepts such as <code>VehicleCounts</code> (see below) and <code>Location</code> to type data
+fields.</p>
+<p>The example domain model contains a third data structure, i.e., <code>VehicleCount</code>,
+which is a value object and consists of three primitively typed data fields. By
+contrast to the fields of the <code>Location</code> structure, the <code>VehicleCount</code> fields
+are mutable due to the lack of the modifier <code>immutable</code>.</p>
+<h3 id="list-type-domain-concepts">List Type Domain Concepts</h3>
+<p>Next to data structures, the example domain model defines two <em>list types</em> using
+the <code>list</code> keyword. In LEMMA, a list type specifies a sequence of one or more
+data fields that can have a primitive or complex type. Both list types in the
+example domain model, i.e., <code>ParkingSpaces</code> and <code>VehicleCounts</code>, have one field
+(<code>parkingSpace</code> and <code>vehicleCount</code>, respectively) of a structured type
+(<code>ParkingSpace</code> and <code>VehicleCount</code>, respectively).</p>
+<h2 id="step-3-create-a-service-model">Step 3: Create a Service Model</h2>
+<p>In this step, we use LEMMA's
+<a href="../../user-guide/service-modeling-language/">Service Modeling Language</a>
+to construct a <em>service model</em> for the <code>SearchForFreeSpace</code> microservice. The
+modeling language covers the concerns of microservice developers, thereby
+providing a means to express the <em>service viewpoint</em> on a microservice
+architecture.</p>
+<p>In the <code>models</code> folder of the <code>search-for-free-space</code> Eclipse project, create a
+file called <code>micro.services</code> so that the Project Explorer of your Eclipse
+workspace looks similar to this:</p>
+<figure>
+  <img src="figures/tour-step3-service-model.png" loading="lazy"/>
+</figure>
+
+<p>As for the initial domain model constructed in
+<a href="#step-2-create-a-domain-model">Step 2</a>, LEMMA does not allow empty service
+models and thus displays an error marker for the <code>micro.services</code> file. To fix
+this issue, add the following service model code to the file:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">import</span><span class="err"> </span><span class="k">datatypes</span><span class="err"> </span><span class="k">from</span><span class="err"> </span><span class="s">&quot;domain.data&quot;</span><span class="err"> </span><span class="k">as</span><span class="err"> domain</span>
+
+<span class="k">public</span><span class="err"> </span><span class="k">functional</span><span class="err"> </span><span class="k">microservice</span><span class="err"> com.example.pacp.SearchForFreeSpace {</span>
+<span class="err">    </span><span class="k">interface</span><span class="err"> SearchSpace {</span>
+<span class="err">        </span><span class="nf">---</span>
+<span class="nf">        Search for a free parking space.</span>
+
+<span class="nf">        </span><span class="bp">@required</span> inLocation <span class="nf">Input location</span>
+<span class="nf">        </span><span class="bp">@required</span> distance <span class="nf">Search distance around location</span>
+<span class="nf">        ---</span>
+<span class="err">        searchFreeSpace(</span>
+<span class="err">            </span><span class="k">sync</span><span class="err"> </span><span class="k">in</span><span class="err"> inLocation : domain::ParkingSpace.Location,</span>
+<span class="err">            </span><span class="k">sync</span><span class="err"> </span><span class="k">in</span><span class="err"> distance : </span><span class="k">float</span><span class="err">,</span>
+<span class="err">            </span><span class="k">sync</span><span class="err"> </span><span class="k">out</span><span class="err"> freeSpaces : domain::ParkingSpace.ParkingSpace,</span>
+<span class="err">            </span><span class="k">sync</span><span class="err"> </span><span class="k">out</span><span class="err"> allocations : domain::ParkingSpace.VehicleCounts,</span>
+<span class="err">            </span><span class="k">sync</span><span class="err"> </span><span class="k">out</span><span class="err"> </span><span class="k">fault</span><span class="err"> foundNone : </span><span class="k">boolean</span>
+<span class="err">        );</span>
+<span class="err">    }</span>
+<span class="err">}</span>
+</code></pre></div>
+</td></tr></table>
+<h3 id="domain-concept-imports">Domain Concept Imports</h3>
+<p>LEMMA's modeling languages support an <code>import</code> statement that enables to
+integrate models for different viewpoints on a microservice architecture. These
+statements always have the following syntactic form:</p>
+<div class="admonition example">
+<p><code>import [ELEMENT_TYPE] from "[MODEL_PATH]" as [ALIAS]</code></p>
+</div>
+<p>In the example service model, the imported <code>[ELEMENT_TYPE]</code> is <code>datatypes</code>,
+which accounts for the import of domain concepts to be used as data types for
+service operation parameters (see below). The example <code>[MODEL_PATH]</code> is
+<code>domain.data</code>, i.e., it points to the domain model that we constructed above.
+All domain concepts from the model are imported under the <code>[ALIAS]</code> <code>domain</code>.
+The alias of a LEMMA import provides a shortcut to access the elements of an
+imported model.</p>
+<h3 id="microservice-definition">Microservice Definition</h3>
+<p>A microservice definition is introduced by an optional <em>visibility modifier</em>,
+followed by a mandatory <em>service type identifier</em>, the keyword <code>microservice</code>,
+and the fully-qualified name of the microservice.</p>
+<p>In the example service model, the visibility modifier of the
+<code>SearchForFreeSpace</code> microservice is <code>public</code>, which expresses the intent to
+make the microservice available to consumers that are not part of the same
+microservice architecture. Microservices without an explicit visibility modifier
+receive have <code>architecture</code> visibility, i.e., they are visible only to
+microservices that belong to the same architecture and are not to be exposed to
+external consumers.</p>
+<p>The service type identifier is <code>functional</code>, which marks the microservice to
+fulfill a functional, usually business-oriented capability within the considered
+microservice architecture. Other available type identifiers are <code>infrastructure</code>
+(the microservice provides an infrastructure capability, e.g., monitoring) and
+<code>utility</code> (the microservice provides a reusable utility capability that is not
+motivated by only a single business case, e.g., currency conversion).</p>
+<p>The <code>microservice</code> keyword determines the name of the microservice, which must
+have at least one qualifying level to configure the microservice's <em>namespace</em>. 
+Qualifying levels are separated by dots (<code>.</code>) and, except for the last
+qualifying level, determine the microservice's namespace. This mechanism in fact
+follows the rules for package declaration in Java. Consequently, the
+fully-qualified name of the <code>SearchForFreeSpace</code> microservice is 
+<code>com.example.pacp.SearchForFreeSpace</code>. It consists of the namespace
+<code>com.example.pacp</code> and the microservice's simple name <code>SearchForFreeSpace</code>.</p>
+<h3 id="interface-definition">Interface Definition</h3>
+<p>In LEMMA, the definition of a microservice must cluster at least one interface
+in curly brackets. The modeled interfaces of a microservice specifies one of the
+service's APIs as a collection of one or more service operations (see below).</p>
+<p>LEMMA provides the <code>interface</code> keyword to introduce an interface definition and
+expects the interface's simple name after the keyword. That is, the example
+service model defines an interface called <code>SearchSpace</code> for the
+<code>SearchForFreeSpace</code> microservice.</p>
+<p>Similar to microservices, interfaces can receive visibility modifiers and by
+default "inherit" the visibility of their microservices. As a result, the
+visibility of the <code>SearchSpace</code> is <code>public</code> as is the visibility of the 
+<code>SearchForFreeSpace</code> microservice.</p>
+<h3 id="operation-definition">Operation Definition</h3>
+<p>In LEMMA, a microservice interface must cluster at least one service operation
+between curly brackets. An operation definition does not require a special
+keyword. Instead, you state the name of the operation, followed by a pair of
+round brackets for possible parameters and a semicolon to end the operation
+definition. Thus, in the example service model the <code>SearchSpace</code> interface
+consists of a single operation, <code>searchFreeSpace</code>, which has five parameters
+(see below).</p>
+<p>In addition, the
+<a href="../../user-guide/service-modeling-language/">Service Modeling Language</a>
+integrates a special syntax for <em>API operation comments</em> that allows the
+immediate documentation of an operation's purpose and can later be translated,
+e.g., into <a href="https://www.openapis.org">OpenAPI specifications</a>. An API operation
+comment has to occur prior to an operation definition within a pair of three
+consecutive dashes (<code>---</code>). Hence, the example <code>searchFreeSpace</code> receives the
+API operation comment <code>Search for a free parking space.</code> to communicate its
+intent.</p>
+<p>Furthermore, parameters may also receive documentation as part of API operation
+comments. For this purpose, LEMMA provides the <em>built-in annotations</em> <code>@param</code>
+and <code>@required</code> to communicate the "importance" of a parameter for a service
+operation. While <code>@param</code> documents parameter that may be empty upon operation
+invocation, <code>@required</code> signal callers that a parameter must receive a value for
+a service operation to sensibly execute. After the annotation, the name of the
+parameter and its comment follow. In the example service model, we document the
+purposes of both required, incoming parameters (see below) <code>inLocation</code> and
+<code>distance</code>.</p>
+<h3 id="parameter-definition">Parameter Definition</h3>
+<p>A modeled service operation may receive and return an arbitrary number of
+parameters. A parameter definition starts with a keyword that identifies the
+parameter's <em>communication type</em>. The <code>sync</code> keyword introduces parameters,
+which an operation expects to receive or promises to return in a synchronous
+manner. The <code>async</code> keyword, on the other hand, defines parameters, which an
+operation expects to receive or promises to return in an asynchronous manner.</p>
+<p>Next to a communication type, a parameter definition in LEMMA can explicitly 
+state the <em>direction</em> of a parameter, which can be incoming (<code>in</code> modifier),
+outgoing (<code>out</code> modifier), or bidirectional (<code>inout</code> modifier).</p>
+<p>A parameter definition is concluded by the parameter's name and its type,
+separated by a colon. The type of a parameter may either be primitive type or a
+domain concept imported from a domain model (see above). To reference an
+imported domain concept for typing purposes, you first have to state the alias
+of the import, followed by two colons (<code>::</code>) and the fully-qualified name of the
+type within the imported domain model. The fully-qualified name of a domain
+concept consists, e.g., of the concept's context and simple name, whereby the
+different qualifying levels are separated by a dot.</p>
+<p>The following table identifies the communication type, direction, and type of
+each parameter of the <code>searchFreeSpace</code> operation from the example service model
+above.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Parameter</th>
+<th align="center">Communication Type</th>
+<th align="center">Direction</th>
+<th align="left">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>inLocation</code></td>
+<td align="center">synchronous (<code>sync</code>)</td>
+<td align="center">incoming (<code>in</code>)</td>
+<td align="left"><code>Location</code> domain concept (from context <code>ParkingSpace</code> of imported model with alias <code>domain</code>)</td>
+</tr>
+<tr>
+<td align="left"><code>distance</code></td>
+<td align="center">synchronous (<code>sync</code>)</td>
+<td align="center">incoming (<code>in</code>)</td>
+<td align="left">primitive type <code>float</code></td>
+</tr>
+<tr>
+<td align="left"><code>freeSpaces</code></td>
+<td align="center">synchronous (<code>sync</code>)</td>
+<td align="center">outgoing (<code>out</code>)</td>
+<td align="left"><code>ParkingSpace</code> domain concept (from context <code>ParkingSpace</code> of imported model with alias <code>domain</code>)</td>
+</tr>
+<tr>
+<td align="left"><code>allocations</code></td>
+<td align="center">synchronous (<code>sync</code>)</td>
+<td align="center">outgoing (<code>out</code>)</td>
+<td align="left"><code>VehicleCounts</code> domain concept (from context <code>ParkingSpace</code> of imported model with alias <code>domain</code>)</td>
+</tr>
+<tr>
+<td align="left"><code>foundNone</code></td>
+<td align="center">synchronous (<code>sync</code>)</td>
+<td align="center">outgoing (<code>out</code>)</td>
+<td align="left">primitive type <code>boolean</code></td>
+</tr>
+</tbody>
+</table>
+<p>In addition, the <code>foundNone</code> parameter constitutes a <code>fault</code> parameter, i.e.,
+the <code>searchFreeSpace</code> operation will use the parameter as a flag to communicate
+potential errors to callers.</p>
+<p>From the definitions of the parameters, we can phrase the purpose of the
+<code>searchFreeSpace</code> operation in natural language as follows:</p>
+<div class="admonition abstract">
+<p class="admonition-title">Purpose of the <code>searchFreeSpace</code> operation in natural language</p>
+<p>Take a location and a distance, and return all free parking spaces and their
+allocations by vehicles. In case no parking spaces could be found, return an
+error flag.</p>
+</div>
+<h2 id="step-4-enrich-the-service-model-with-technology-information">Step 4: Enrich the Service Model with Technology Information</h2>
+<p>So far, we have used LEMMA's
+<a href="../../user-guide/domain-data-modeling-language/">Domain Data Modeling Language</a>
+and
+<a href="../../user-guide/service-modeling-language/">Service Modeling Language</a>
+to construct the domain and service model of the <code>SearchForFreeSpace</code>
+microservice. Recall that LEMMA organizes its modeling languages into different
+architecture viewpoints on microservice architectures. That is, the example
+domain model reifies the concepts of the domain view on the <code>SearchForFreeSpace</code>
+microservice and the example service model represents the service view on the
+microservice.</p>
+<p>Next to domain and service characteristics, another crucial aspect of MSA is
+technology or, more precisely, the possibility to employ an arbitrary number of
+heterogeneous technologies in microservice development. In fact,
+<a href="https://www.oreilly.com/library/view/building-microservices/9781491950340/ch01.html"><em>technology heterogeneity</em></a> may be considered
+one of the benefits introduced by MSA as it enables to employ the most
+sufficient technologies to implement a microservice. On the other hand, it can
+make microservices prone to technical debt and increase the learning curve for
+new team members.</p>
+<p>LEMMA treats technology heterogeneity as a dedicated concern in microservice
+development and thus provides the
+<a href="../../user-guide/technology-modeling-language/">Technology Modeling Language</a>
+to cluster technology information in <em>technology models</em> that are flexibly
+applicable to modeled microservices.</p>
+<p>In the following, we enrich the technology-agnostic example service model from 
+above with technology information for Java and the
+<a href="https://www.spring.io">Spring framework</a>. While this binds the <code>SearchForFreeSpace</code>
+microservice to a certain technology stack, it makes it also possible to later
+generate executable microservice code from the model.</p>
+<p>To extend the model of the <code>SearchForFreeSpace</code> microservice with technology
+information, we first require applicable technology models. To this end, create
+the files <code>Java.technology</code> and <code>Spring.technology</code> in the <code>models</code> folder of
+the <code>search-for-free-space</code> Eclipse project so that the Project Explorer of your
+Eclipse workspace looks similar to this:</p>
+<figure>
+  <img src="figures/tour-step4-technology-models.png" loading="lazy"/>
+</figure>
+
+<p>Next, copy the contents of the following two listings to the corresponding
+technology model file.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Here, we will not go into further details concerning the construction of
+technology models. Please refer to the user guide of the 
+<a href="../../user-guide/technology-modeling-language/">Technology Modeling Language</a>
+to learn about technology model construction.</p>
+</div>
+<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Java.technology</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">technology</span><span class="err"> java {</span>
+<span class="err">    </span><span class="k">types</span><span class="err"> {</span>
+<span class="err">        </span><span class="k">primitive type</span><span class="err"> Boolean </span><span class="k">based on</span><span class="err"> </span><span class="k">boolean</span><span class="err"> </span><span class="k">default</span><span class="err">;</span>
+<span class="err">        </span><span class="k">primitive type</span><span class="err"> Byte </span><span class="k">based on</span><span class="err"> </span><span class="k">byte</span><span class="err"> </span><span class="k">default</span><span class="err">;</span>
+<span class="err">        </span><span class="k">primitive type</span><span class="err"> Character </span><span class="k">based on</span><span class="err"> </span><span class="k">char</span><span class="err"> </span><span class="k">default</span><span class="err">;</span>
+<span class="err">        </span><span class="k">primitive type</span><span class="err"> Date </span><span class="k">based on</span><span class="err"> </span><span class="k">date</span><span class="err"> </span><span class="k">default</span><span class="err">;</span>
+<span class="err">        </span><span class="k">primitive type</span><span class="err"> Double </span><span class="k">based on</span><span class="err"> </span><span class="k">double</span><span class="err"> </span><span class="k">default</span><span class="err">;</span>
+<span class="err">        </span><span class="k">primitive type</span><span class="err"> Float </span><span class="k">based on</span><span class="err"> </span><span class="k">float</span><span class="err"> </span><span class="k">default</span><span class="err">;</span>
+<span class="err">        </span><span class="k">primitive type</span><span class="err"> Integer </span><span class="k">based on</span><span class="err"> </span><span class="k">int</span><span class="err"> </span><span class="k">default</span><span class="err">;</span>
+<span class="err">        </span><span class="k">primitive type</span><span class="err"> Long </span><span class="k">based on</span><span class="err"> </span><span class="k">long</span><span class="err"> </span><span class="k">default</span><span class="err">;</span>
+<span class="err">        </span><span class="k">primitive type</span><span class="err"> Short </span><span class="k">based on</span><span class="err"> </span><span class="k">short</span><span class="err"> </span><span class="k">default</span><span class="err">;</span>
+<span class="err">        </span><span class="k">primitive type</span><span class="err"> String </span><span class="k">based on</span><span class="err"> </span><span class="k">string</span><span class="err"> </span><span class="k">default</span><span class="err">;</span>
+<span class="err">        </span><span class="k">primitive type</span><span class="err"> Object </span><span class="k">based on</span><span class="err"> </span><span class="k">unspecified</span><span class="err"> </span><span class="k">default</span><span class="err">;</span>
+<span class="err">        </span><span class="k">primitive type</span><span class="err"> BigDecimal;</span>
+
+<span class="err">        </span><span class="k">compatibility matrix</span><span class="err"> {</span>
+<span class="err">            Double -&gt; BigDecimal;</span>
+<span class="err">        }</span>
+<span class="err">    }</span>
+
+<span class="err">    </span><span class="k">service aspects</span><span class="err"> {</span>
+<span class="err">        </span><span class="k">aspect</span><span class="err"> Table</span>&lt;<span class="bp">singleval</span>&gt;<span class="err"> </span><span class="k">for types</span><span class="err"> {</span>
+<span class="err">            </span><span class="k">string</span><span class="err"> name</span>&lt;<span class="bp">mandatory</span>&gt;<span class="err">;</span>
+<span class="err">        }</span>
+<span class="err">        </span><span class="k">aspect</span><span class="err"> Version</span>&lt;<span class="bp">singleval</span>&gt;<span class="err"> </span><span class="k">for fields</span><span class="err">;</span>
+<span class="err">        </span><span class="k">aspect</span><span class="err"> Enumerated</span>&lt;<span class="bp">singleval</span>&gt;<span class="err"> </span><span class="k">for fields</span><span class="err"> {</span>
+<span class="err">            </span><span class="k">string</span><span class="err"> value = </span><span class="s">&quot;STRING&quot;</span><span class="err">;</span>
+<span class="err">        }</span>
+<span class="err">        </span><span class="k">aspect</span><span class="err"> Access</span>&lt;<span class="bp">singleval</span>&gt;<span class="err"> </span><span class="k">for types</span><span class="err"> {</span>
+<span class="err">            </span><span class="k">string</span><span class="err"> value = </span><span class="s">&quot;FIELD&quot;</span><span class="err">;</span>
+<span class="err">        }</span>
+<span class="err">        </span><span class="k">aspect</span><span class="err"> Embedded</span>&lt;<span class="bp">singleval</span>&gt;<span class="err"> </span><span class="k">for fields</span><span class="err">;</span>
+<span class="err">        </span><span class="k">aspect</span><span class="err"> AttributeOverride </span><span class="k">for fields</span><span class="err"> {</span>
+<span class="err">            </span><span class="k">string</span><span class="err"> name</span>&lt;<span class="bp">mandatory</span>&gt;<span class="err">;</span>
+<span class="err">            </span><span class="k">string</span><span class="err"> column</span>&lt;<span class="bp">mandatory</span>&gt;<span class="err">;</span>
+<span class="err">        }</span>
+<span class="err">    }</span>
+<span class="err">}</span>
+</code></pre></div>
+</td></tr></table>
+</div>
+<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Spring.technology</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">technology</span><span class="err"> Spring {</span>
+<span class="err">    </span><span class="k">protocols</span><span class="err"> {</span>
+<span class="err">        </span><span class="k">sync</span><span class="err"> rest </span><span class="k">data formats</span><span class="err"> </span><span class="s">&quot;application/json&quot;</span><span class="err"> </span><span class="k">default with format</span><span class="err"> </span><span class="s">&quot;application/json&quot;</span><span class="err">;</span>
+<span class="err">    }</span>
+
+<span class="err">    </span><span class="k">service aspects</span><span class="err"> {</span>
+<span class="err">        </span><span class="k">aspect</span><span class="err"> Application</span>&lt;<span class="bp">singleval</span>&gt;<span class="err"> </span><span class="k">for microservices</span><span class="err"> {</span>
+<span class="err">            </span><span class="k">string</span><span class="err"> name;</span>
+<span class="err">            </span><span class="k">int</span><span class="err"> port;</span>
+<span class="err">        }</span>
+<span class="err">        </span><span class="k">aspect</span><span class="err"> CrudRepository </span><span class="k">for types</span><span class="err">;</span>
+<span class="err">        </span><span class="k">aspect</span><span class="err"> Transactional</span>&lt;<span class="bp">singleval</span>&gt;<span class="err"> </span><span class="k">for types</span><span class="err">;</span>
+<span class="err">        </span><span class="k">aspect</span><span class="err"> Post</span>&lt;<span class="bp">singleval</span>&gt;<span class="err"> </span><span class="k">for operations</span><span class="err"> {</span>
+<span class="err">            </span><span class="k">selector</span><span class="err">(protocol = rest);</span>
+<span class="err">        }</span>
+<span class="err">        </span><span class="k">aspect</span><span class="err"> Put</span>&lt;<span class="bp">singleval</span>&gt;<span class="err"> </span><span class="k">for operations</span><span class="err"> {</span>
+<span class="err">            </span><span class="k">selector</span><span class="err">(protocol = rest);</span>
+<span class="err">        }</span>
+<span class="err">        </span><span class="k">aspect</span><span class="err"> Delete</span>&lt;<span class="bp">singleval</span>&gt;<span class="err"> </span><span class="k">for operations</span><span class="err"> {</span>
+<span class="err">            </span><span class="k">selector</span><span class="err">(protocol = rest);</span>
+<span class="err">        }</span>
+<span class="err">        </span><span class="k">aspect</span><span class="err"> Patch</span>&lt;<span class="bp">singleval</span>&gt;<span class="err"> </span><span class="k">for operations</span><span class="err"> {</span>
+<span class="err">            </span><span class="k">selector</span><span class="err">(protocol = rest);</span>
+<span class="err">        }</span>
+<span class="err">        </span><span class="k">aspect</span><span class="err"> Get</span>&lt;<span class="bp">singleval</span>&gt;<span class="err"> </span><span class="k">for operations</span><span class="err"> {</span>
+<span class="err">            </span><span class="k">selector</span><span class="err">(protocol = rest);</span>
+<span class="err">        }</span>
+<span class="err">        </span><span class="k">aspect</span><span class="err"> PathVariable</span>&lt;<span class="bp">singleval</span>&gt;<span class="err"> </span><span class="k">for parameters</span><span class="err"> {</span>
+<span class="err">            </span><span class="k">selector</span><span class="err">(protocol = rest, exchange_pattern = in);</span>
+<span class="err">        }</span>
+<span class="err">        </span><span class="k">aspect</span><span class="err"> ResponseEntity</span>&lt;<span class="bp">singleval</span>&gt;<span class="err"> </span><span class="k">for parameters</span><span class="err"> {</span>
+<span class="err">            </span><span class="k">selector</span><span class="err">(protocol = rest, exchange_pattern = out);</span>
+<span class="err">        }</span>
+<span class="err">        </span><span class="k">aspect</span><span class="err"> RequestBody </span><span class="k">for parameters</span><span class="err"> {</span>
+<span class="err">            </span><span class="k">selector</span><span class="err">(exchange_pattern = in);</span>
+<span class="err">        }</span>
+<span class="err">        </span><span class="k">aspect</span><span class="err"> ResponseStatus </span><span class="k">for parameters</span><span class="err"> {</span>
+<span class="err">            </span><span class="k">selector</span><span class="err">(exchange_pattern = out);</span>
+<span class="err">            </span><span class="k">string</span><span class="err"> status</span>&lt;<span class="bp">mandatory</span>&gt;<span class="err">;</span>
+<span class="err">        }</span>
+<span class="err">        </span><span class="k">aspect</span><span class="err"> Valid </span><span class="k">for parameters</span><span class="err">;</span>
+<span class="err">    }</span>
+<span class="err">}</span>
+</code></pre></div>
+</td></tr></table>
+</div>
+</div>
+<p>With the technology models at hand, you can now extend the example service model
+and its elements with the technology information identified by the
+<code>// EXTENSION</code> comments:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">import</span><span class="err"> </span><span class="k">datatypes</span><span class="err"> </span><span class="k">from</span><span class="err"> </span><span class="s">&quot;domain.data&quot;</span><span class="err"> </span><span class="k">as</span><span class="err"> domain</span>
+<span class="k">import</span><span class="err"> </span><span class="k">technology</span><span class="err"> </span><span class="k">from</span><span class="err"> </span><span class="s">&quot;Java.technology&quot;</span><span class="err"> </span><span class="k">as</span><span class="err"> Java                        </span><span class="c c-Singleline">// EXTENSION (1)</span>
+<span class="k">import</span><span class="err"> </span><span class="k">technology</span><span class="err"> </span><span class="k">from</span><span class="err"> </span><span class="s">&quot;Spring.technology&quot;</span><span class="err"> </span><span class="k">as</span><span class="err"> Spring                    </span><span class="c c-Singleline">// EXTENSION (2)</span>
+
+<span class="bp">@technology</span><span class="err">(Java)                                                       </span><span class="c c-Singleline">// EXTENSION (3)</span>
+<span class="bp">@technology</span><span class="err">(Spring)                                                     </span><span class="c c-Singleline">// EXTENSION (4)</span>
+<span class="k">public</span><span class="err"> </span><span class="k">functional</span><span class="err"> </span><span class="k">microservice</span><span class="err"> com.example.pacp.SearchForFreeSpace {</span>
+<span class="err">    </span><span class="k">interface</span><span class="err"> SearchSpace {</span>
+<span class="err">        </span><span class="nf">---</span>
+<span class="nf">        Search for a free parking space.</span>
+
+<span class="nf">        </span><span class="bp">@required</span> inLocation <span class="nf">Input location</span>
+<span class="nf">        </span><span class="bp">@required</span> distance <span class="nf">Search distance around location</span>
+<span class="nf">        ---</span>
+<span class="err">        </span><span class="bp">@Spring::_aspects.Get</span><span class="err">                                           </span><span class="c c-Singleline">// EXTENSION (5)</span>
+<span class="err">        searchFreeSpace(</span>
+<span class="err">            </span><span class="k">sync</span><span class="err"> </span><span class="k">in</span><span class="err"> inLocation : domain::ParkingSpace.Location,</span>
+<span class="err">            </span><span class="k">sync</span><span class="err"> </span><span class="k">in</span><span class="err"> distance : </span><span class="k">float</span><span class="err">,</span>
+<span class="err">            </span><span class="bp">@Spring::_aspects.ResponseStatus</span><span class="err">(</span><span class="s">&quot;OK&quot;</span><span class="err">)                      </span><span class="c c-Singleline">// EXTENSION (6)</span>
+<span class="err">            </span><span class="k">sync</span><span class="err"> </span><span class="k">out</span><span class="err"> freeSpaces : domain::ParkingSpace.ParkingSpace,</span>
+<span class="err">            </span><span class="bp">@Spring::_aspects.ResponseStatus</span><span class="err">(</span><span class="s">&quot;OK&quot;</span><span class="err">)                      </span><span class="c c-Singleline">// EXTENSION (7)</span>
+<span class="err">            </span><span class="k">sync</span><span class="err"> </span><span class="k">out</span><span class="err"> allocations : domain::ParkingSpace.VehicleCounts,</span>
+<span class="err">            </span><span class="bp">@Spring::_aspects.ResponseStatus</span><span class="err">(</span><span class="s">&quot;404&quot;</span><span class="err">)                     </span><span class="c c-Singleline">// EXTENSION (8)</span>
+<span class="err">            </span><span class="k">sync</span><span class="err"> </span><span class="k">out</span><span class="err"> </span><span class="k">fault</span><span class="err"> foundNone : </span><span class="k">boolean</span>
+<span class="err">        );</span>
+<span class="err">    }</span>
+<span class="err">}</span>
+</code></pre></div>
+</td></tr></table>
+<h3 id="technology-model-imports-and-applications">Technology Model Imports and Applications</h3>
+<p>The example service model extensions with the numbers <strong>(1)</strong> and <strong>(2)</strong> import
+the constructed technology models into the example service model. The syntax for
+importing technology models into service models is almost equal to that for
+importing domain models into service models (see above). Specifically, it only
+differs for the element type, which is <code>technology</code> instead of <code>datatypes</code>.</p>
+<p>Extensions <strong>(3)</strong> and <strong>(4)</strong> apply the imported technology models to the
+<code>SearchForFreeSpace</code> microservice using the built-in annotation <code>@technology</code>
+followed by the import aliases of the models in round brackets. The application
+of technology models to microservices by means of the annotation is mandatory to
+indicate that a microservice depends on a certain technology and also makes</p>
+<h3 id="technology-aspects">Technology Aspects</h3>
+<p>Extensions <strong>(5)</strong> to <strong>(8)</strong> of the example service model apply <em>technology</em>
+<em>aspects</em> from the imported <code>Spring</code> technology model to the
+<code>SearchForFreeSpace</code> microservice's <code>searchFreeSpace</code> operation and some of its
+parameters.</p>
+<p>In LEMMA, a technology aspect is similar to an annotation in Java or an
+attribute in C# in that it enables to attach metadata to modeled elements. The
+syntax for aspect application follows this pattern:</p>
+<div class="admonition example">
+<p><code>[IMPORTED_TECHNOLOGY_MODEL_ALIAS]::_aspects.[ASPECT_NAME]</code></p>
+</div>
+<p>That is, the example service model applies two technology aspects from the
+<code>Spring</code> technology model. More precisely, it applies the <code>Get</code> aspect to the
+<code>searchFreeSpace</code> operation and the <code>ResponseStatus</code> aspect to the operation's
+<code>freeSpaces</code>, <code>allocations</code>, and <code>foundNone</code> parameters. The <code>Spring</code> technology
+model defines these aspects to make the semantics of the Java annotations 
+<a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/GetMapping.html"><code>GetMapping</code></a> and
+<a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/ResponseStatus.html"><code>ResponseStatus</code></a> available to
+LEMMA modelers. As a result, the <code>searchFreeSpace</code> operation will be invokable
+by consumers using an HTTP <code>GET</code> request, whose outcome will be the HTTP status
+<code>OK</code> (or <code>200</code>) when the parameters <code>freeSpaces</code> and <code>allocations</code> are returned,
+and <code>404</code> (or <code>NOT FOUND</code>) when the <code>foundNone</code> error flag (see above) is
+returned.</p>
+<p>In fact, the technology aspect mechanism is not constrained to technology alone.
+Instead, the
+<a href="../../user-guide/technology-modeling-language/">Technology Modeling Language</a>
+does not constrain the semantic scope of metadata, thereby making technology
+aspects a powerful feature that allows semantic enrichment of LEMMA models as
+required by a microservice team and its members. For instance, next to
+technology-related configuration metadata, technology aspects are used to
+integrate patterns such as <a href="https://microservices.io/patterns/data/cqrs.html">CQRS</a> and
+<a href="https://microservices.io/patterns/data/saga.html">Saga</a> with LEMMA.</p>
+<h2 id="step-5-create-an-operation-model">Step 5: Create an Operation Model</h2>
+<p>Until now we relied on three LEMMA modeling languages, which enabled us to
+express different viewpoints on the <code>SearchForFreeSpace</code> microservice:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Modeling Language</th>
+<th align="center">Viewpoint</th>
+<th align="left">Relevance to <code>SearchForFreeSpace</code> microservice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><a href="../../user-guide/domain-data-modeling-language/">Domain Data Modeling Language</a></td>
+<td align="center">Domain Viewpoint</td>
+<td align="left"><a href="#step-2-create-a-domain-model">Modeling of structured and sequential domain data based on DDD</a></td>
+</tr>
+<tr>
+<td align="left"><a href="../../user-guide/service-modeling-language/">Service Modeling Language</a></td>
+<td align="center">Service Viewpoint</td>
+<td align="left"><a href="#step-3-create-a-service-model">Modeling of the microservice's API</a></td>
+</tr>
+<tr>
+<td align="left"><a href="../../user-guide/technology-modeling-language/">Technology Modeling Language</a></td>
+<td align="center">Technology Viewpoint</td>
+<td align="left"><a href="#step-4-enrich-the-service-model-with-technology-information">Addition of technology information to the microservice</a></td>
+</tr>
+</tbody>
+</table>
+<p>In this section, we will use LEMMA's
+<a href="../../user-guide/operation-modeling-language/">Operation Modeling Language</a> to
+construct an <em>operation model</em> for the <code>SearchForFreeSpace</code> microservice. In
+LEMMA, operation models specify the deployment of one or more microservices, as
+well as the relevant deployment and operation infrastructure consisting of,
+e.g., service discoveries, API gateways, tracing and monitoring components etc.</p>
+<p>By contrast to service models, LEMMA does not support the technology-agnostic
+modeling of operation models. Instead, elements in an operation model must
+always refer to one or more technologies being imported from technology models.
+This circumstance reflects the fact that the deployment and operation of a
+microservice architecture is always bound to a determined set of technologies.
+Consequently, we first need to create an operation-oriented technology model. To
+this end, create a file called <code>Kubernetes.technology</code> in the <code>models</code> folder of
+the <code>search-for-free-space</code> Eclipse project. The Project Explorer of your
+Eclipse workspace should now look similar to this:</p>
+<figure>
+  <img src="figures/tour-step5-technology-model.png" loading="lazy"/>
+</figure>
+
+<p>Next, copy the model code in the following listing expressed with LEMMA's
+<a href="../../user-guide/technology-modeling-language/">Technology Modeling Language</a>
+to <code>Kubernetes.technology</code> file.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Here, we will not go into further details concerning the construction of
+technology models. Please refer to the user guide of the 
+<a href="../../user-guide/technology-modeling-language/">Technology Modeling Language</a>
+to learn about technology model construction.</p>
+</div>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">technology</span><span class="err"> Kubernetes {</span>
+<span class="err">    </span><span class="k">deployment technologies</span><span class="err"> {</span>
+<span class="err">        Kubernetes {</span>
+<span class="err">            </span><span class="k">operation environments</span><span class="err"> = </span><span class="s">&quot;openjdk:11-jdk-slim&quot;</span><span class="err"> </span><span class="k">default</span><span class="err">;</span>
+
+<span class="err">            </span><span class="k">service properties</span><span class="err"> {</span>
+<span class="err">                </span><span class="k">string</span><span class="err"> springApplicationName</span>&lt;<span class="bp">mandatory</span>&gt;<span class="err">;</span>
+<span class="err">                </span><span class="k">int</span><span class="err"> serverPort</span>&lt;<span class="bp">mandatory</span>&gt;<span class="err">;</span>
+<span class="err">            }</span>
+<span class="err">        }</span>
+<span class="err">    }</span>
+<span class="err">}</span>
+</code></pre></div>
+</td></tr></table>
+<p>Now, in the <code>models</code> folder of the <code>search-for-free-space</code> Eclipse project,
+create a file called <code>deployment.operation</code> so that the Project Explorer of
+your Eclipse workspace looks similar to this:</p>
+<figure>
+  <img src="figures/tour-step5-operation-model.png" loading="lazy"/>
+</figure>
+
+<p>The <code>deployment.operation</code> file shall store the operation model, which specifies
+the deployment of the <code>SearchForFreeSpace</code> microservice in LEMMA's
+<a href="../../user-guide/operation-modeling-language/">Operation Modeling Language</a>.
+However, as in the previous steps, LEMMA recognizes empty operation models as
+erroneous. To fix this issue, enter the following model code in the
+<code>deployment.operation</code> file:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">import</span><span class="err"> </span><span class="k">technology</span><span class="err"> </span><span class="k">from</span><span class="err"> </span><span class="s">&quot;Kubernetes.technology&quot;</span><span class="err"> </span><span class="k">as</span><span class="err"> Kubernetes</span>
+<span class="k">import</span><span class="err"> </span><span class="k">technology</span><span class="err"> </span><span class="k">from</span><span class="err"> </span><span class="s">&quot;Spring.technology&quot;</span><span class="err"> </span><span class="k">as</span><span class="err"> Spring</span>
+<span class="k">import</span><span class="err"> </span><span class="k">microservices</span><span class="err"> </span><span class="k">from</span><span class="err"> </span><span class="s">&quot;micro.services&quot;</span><span class="err"> </span><span class="k">as</span><span class="err"> SearchForFreeService</span>
+
+<span class="bp">@technology</span><span class="err">(Spring)</span>
+<span class="bp">@technology</span><span class="err">(Kubernetes)</span>
+<span class="k">container</span><span class="err"> SearchForFreeServiceContainer</span>
+<span class="err">    </span><span class="k">deployment technology</span><span class="err"> Kubernetes::_deployment.Kubernetes</span>
+<span class="err">    </span><span class="k">deploys</span><span class="err"> SearchForFreeService::com.example.pacp.SearchForFreeSpace {</span>
+<span class="err">    </span><span class="k">default values</span><span class="err"> {</span>
+<span class="err">        springApplicationName = </span><span class="s">&quot;SearchForFreeService&quot;</span>
+<span class="err">        serverPort = 8080</span>
+
+<span class="err">        </span><span class="k">basic endpoints</span><span class="err"> {</span>
+<span class="err">            Spring::_protocols.rest: </span><span class="s">&quot;localhost:8080&quot;</span><span class="err">;</span>
+<span class="err">        }</span>
+<span class="err">    }</span>
+<span class="err">}</span>
+</code></pre></div>
+</td></tr></table>
+<h3 id="technology-and-microservice-imports">Technology and Microservice Imports</h3>
+<p>As already mentioned, LEMMA operation models are never technology-agnostic and
+thus must rely on technologies captured in technology models. Hence, an
+operation model must import one or more technology models. The operation model
+for the <code>SearchForFreeSpace</code> microservice first imports the model in the
+<code>Kubernetes.technology</code> file, which we have created above. Next, it also imports
+the <code>Spring.technology</code> model from
+<a href="#step-4-enrich-the-service-model-with-technology-information">Step 4</a>. Notice
+that for technology model imports the
+<a href="../../user-guide/operation-modeling-language/">Operation Modeling Language</a>
+relies on the same syntactic construct as the 
+<a href="../../user-guide/service-modeling-language/">Service Modeling Language</a>:</p>
+<div class="admonition example">
+<p><code>import technology from "[MODEL_PATH]" as [ALIAS]</code></p>
+</div>
+<p>In case an operation model shall specify the deployment of a microservice or its
+usage of infrastructure components, the model must also import the corresponding
+service model. In the above example code, the operation model imports the 
+<code>SearchForFreeSpace</code> microservice from the service model in the file
+<code>micro.services</code> (cf. Steps <a href="#step-3-create-a-service-model">3</a> and
+<a href="#step-4-enrich-the-service-model-with-technology-information">4</a>). To this end,
+the operation model employs the syntactic form of LEMMA's <code>import</code> statement
+with the element type <code>microservices</code>:</p>
+<div class="admonition example">
+<p><code>import microservices from "[MODEL_PATH]" as [ALIAS]</code></p>
+</div>
+<h3 id="container-definition">Container Definition</h3>
+<p>LEMMA relies on the notion of
+<em><a href="https://www.docker.com/resources/what-container">container-based-deployment</a></em> to specify the
+deployment of a microservice. More precisely, the
+<a href="../../user-guide/operation-modeling-language/">Operation Modeling Language</a>
+provides the <code>container</code> keyword, which expects the name of the container, a
+<em>deployment technology</em>, and one or more imported microservices to be deployed,
+followed by a pair of curly brackets:</p>
+<div class="admonition example">
+<p><code>container [CONTAINER_NAME]</code>
+<code>deployment technology [IMPORTED_DEPLOYMENT_TECHNOLOGY]</code>
+<code>deploys [IMPORTED_MICROSERVICE1] (, [IMPORTED_MICROSERVICEx])* { ... }</code></p>
+</div>
+<p>The deployment technology of a container must originate from an imported
+technology model that is assigned to the container using the built-in
+<code>@technology</code> annotation. That is, in the above example operation model, the
+container with the name <code>SearchForFreeServiceContainer</code> receives the imported
+technologies <code>Spring</code> and <code>Kubernetes</code>. The former originates from the
+<code>Spring.technology</code> model constructed in
+<a href="#step-4-enrich-the-service-model-with-technology-information">Step 4</a> and the
+latter refers to the technology model file <code>Kubernetes.technology</code>, which we
+constructed at the beginning of the current step. While we require the <code>Spring</code>
+technology to configure the endpoints of the container (see below), we use the
+<code>Kubernetes</code> technology to determine the deployment technology of the
+<code>SearchForFreeServiceContainer</code> using the following pattern to refer to the
+deployment technology imported from the <code>Kubernetes.technology</code> model:</p>
+<div class="admonition example">
+<p><code>[IMPORTED_TECHNOLOGY_MODEL_ALIAS]::_deployment.[TECHNOLOGY_NAME]</code></p>
+</div>
+<p>Notice that the syntax for referencing imported deployment technologies is
+basically consistent with the syntax for referencing imported technology aspects
+(cf. <a href="#step-4-enrich-the-service-model-with-technology-information">Step 4</a>),
+but expects the namespace <code>_deployment</code> instead of <code>_aspects</code>. You can read more
+about technology namespaces in the
+<a href="../../user-guide/technology-modeling-language/">Technology Modeling Language</a>
+chapter.</p>
+<p>After its deployment technology, a modeled container must state the deployed
+microservices using the <code>deploys</code> directive. Microservices originate from
+imported service models and thus we refer to them in operation models using the
+same syntactic form as for typing microservice operation parameters with
+imported domain concepts (cf. <a href="#step-3-create-a-service-model">Step 3</a>):</p>
+<div class="admonition example">
+<p><code>[IMPORTED_SERVICE_MODEL_ALIAS]::[FULLY_QUALIFIED_MICROSERVICE_NAME]</code></p>
+</div>
+<p>Since the <code>SearchForFreeServiceContainer</code> container shall deploy the
+<code>SearchForFreeSpace</code> microservice from the <code>micro.services</code> file (cf. 
+Steps <a href="#step-3-create-a-service-model">3</a> and
+<a href="#step-4-enrich-the-service-model-with-technology-information">4</a>), which we
+imported with the alias <code>SearchForFreeService</code>, we refer to the service for its
+deployment via the example operation model as
+<code>SearchForFreeService::com.example.pacp.SearchForFreeSpace</code>.</p>
+<h3 id="container-configuration">Container Configuration</h3>
+<p>LEMMA allows the configuration of containers and microservice deployments within
+the curly brackets of a <code>container</code> definition. In the example operation model,
+we configure the container within the <code>default values</code> section. The
+configuration values in this section account for all microservices that a
+container deploys. However, it is also possible to only configure a selected
+microservice or overwrite the default configuration values for a selected
+microservice. You can learn more about service-specific container configurations
+in the
+<a href="../../user-guide/operation-modeling-language/">Operation Modeling Language</a>
+chapter.</p>
+<p>Basically, container configurations consist of value assignments to
+technology-specific <em>configuration properties</em>. In the example operation model
+above, we specify the values <code>SearchForFreeService</code> and <code>8080</code> for the
+<code>springApplicationName</code> and <code>serverPort</code> properties from the
+<code>Kubernetes.technology</code> model. Notice that the semantics of the configuration
+properties always depend on the technology model. In this case, the
+<code>Kubernetes.technology</code> model uses the properties to extend the configuration of
+Spring-based microservices with deployment-relevant information.</p>
+<p>Next to configuration properties, container configurations may contain a
+<code>basic endpoints</code> section. It allows for determination of a container's
+<em>endpoints</em>. In LEMMA, endpoints are combinations of communication protocols
+specified in technology models, and one or more addresses. The example operation
+model above defines an endpoint for RESTful HTTP interaction (represented by the
+<code>rest</code> protocol from the <code>Spring.technology</code> model; cf.
+<a href="#step-4-enrich-the-service-model-with-technology-information">Step 4</a>), which
+is reachable at the physical address <code>localhost:8080</code>.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>MSA: The <strong>M</strong>icro<strong>s</strong>ervice <strong>A</strong>rchitecture style.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+  <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-file.html 
+-->
+
+
+
+<!-- Last updated date -->
+
+<hr />
+<div class="md-source-date">
+  <small>
+
+    <!-- mkdocs-git-revision-date-localized-plugin -->
+    
+      Last update: 2022-04-07
+    
+
+    <!-- EXTENSION BEGIN -->
+    <!-- mkdocs-git-authors-plugin -->
+    
+      by <span class='git-page-authors git-authors'><a href='mailto:florian.rademacher@fh-dortmund.de'>Florian Rademacher</a></span>
+    
+    <!-- EXTENSION END -->
+  </small>
+</div>
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Installation" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Installation
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../user-guide/" class="md-footer__link md-footer__link--next" aria-label="Next: Introduction" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Introduction
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.top"], "search": "../../assets/javascripts/workers/search.5e67fbfe.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c44cc438.min.js"></script>
+      
+    
+  </body>
+</html>

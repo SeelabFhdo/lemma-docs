@@ -1,0 +1,18 @@
+import technology from "Kubernetes.technology" as Kubernetes
+import technology from "Spring.technology" as Spring
+import microservices from "micro.services" as SearchForFreeService
+
+@technology(Spring)
+@technology(Kubernetes)
+container SearchForFreeServiceContainer
+    deployment technology Kubernetes::_deployment.Kubernetes
+    deploys SearchForFreeService::com.example.pacp.SearchForFreeSpace {
+    default values {
+        springApplicationName = "SearchForFreeService"
+        serverPort = 8080
+
+        basic endpoints {
+            Spring::_protocols.rest: "localhost:8080";
+        }
+    }
+}
