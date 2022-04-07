@@ -1384,6 +1384,19 @@ intermediate_domain_model_specification:
                         internal_ref_kind: concept
                     description: >
                         `IntermediateDataField` to which the aspect was applied.
+                getEffectivePropertyValues:
+                    kind: method
+                    type:
+                        name: Map<IntermediateAspectProperty, String>
+                    description:
+                        Helper to return the effective property values for an
+                        aspect application. The effective property values
+                        consist of the
+                        [default values](#attribute-IntermediateAspectProperty-defaultValue)
+                        for the
+                        [aspect's properties](#concept-IntermediateAspectProperty)
+                        and the
+                        [property values specific to the aspect's application](#concept-IntermediateAspectPropertyValue).
         IntermediateAspectProperty:
             description:
                 Specification of an [aspect](#concept-IntermediateImportedAspect)
