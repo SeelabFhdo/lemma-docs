@@ -17,7 +17,7 @@ context ParkingSpace {
         Location location<part>
     }
 
-    list ParkingSpaces { ParkingSpace parkingSpace }
+    collection ParkingSpaces { ParkingSpace parkingSpace }
 
     structure VehicleCount<valueObject> {
         string vehicleClass,
@@ -25,5 +25,5 @@ context ParkingSpace {
         date timestamp
     }
 
-    list VehicleCounts { VehicleCount vehicleCount }
+    collection VehicleCounts { VehicleCount vehicleCount }
 }

@@ -52,7 +52,7 @@ intermediate_domain_model_specification:
                         internal_ref_kind: concept
                     description: >
                         [`IntermediateDataStructure`](#concept-IntermediateDataStructure),
-                        [`IntermediateListType`](#concept-IntermediateListType),
+                        [`IntermediateCollectionType`](#concept-IntermediateCollectionType),
                         and
                         [`IntermediateEnumeration`](#concept-IntermediateEnumeration),
                         instances being defined in the source domain model. If a
@@ -273,14 +273,14 @@ intermediate_domain_model_specification:
                 referenced in some place.
             kind: enum
             attributes:
+                COLLECTION:
+                    description:
+                        Referenced type is an
+                        [`IntermediateCollectionType`](#concept-IntermediateCollectionType).
                 ENUMERATION:
                     description:
                         Referenced type is an
                         [`IntermediateEnumeration`](#concept-IntermediateEnumeration).
-                LIST:
-                    description:
-                        Referenced type is an
-                        [`IntermediateListType`](#concept-IntermediateListType).
                 PRIMITIVE:
                     description:
                         Referenced type is an
@@ -310,7 +310,7 @@ intermediate_domain_model_specification:
                         technology-specific types, e.g., `float` to `float32` in
                         the [Go programming language](https://www.golang.org).
                         Moreover, they may be used to declare
-                        technology-specific structure or list types. Code
+                        technology-specific structure or collection types. Code
                         generators need to be able to interpret
                         technology-specific types that were defined in a LEMMA
                         technology model.
@@ -327,15 +327,15 @@ intermediate_domain_model_specification:
                             <th>Origin</th>
                         </tr>
                         <tr>
-                            <td><code>ENUMERATION</code></td>
-                            <td><code>DATA_MODEL</code></td>
-                        </tr>
-                        <tr>
-                            <td><code>LIST</code></td>
+                            <td><code>COLLECTION</code></td>
                             <td>
                                 <code>DATA_MODEL</code>,
                                 <code>TECHNOLOGY</code>
                             </td>
+                        </tr>
+                        <tr>
+                            <td><code>ENUMERATION</code></td>
+                            <td><code>DATA_MODEL</code></td>
                         </tr>
                         <tr>
                             <td><code>PRIMITIVE</code></td>
@@ -470,7 +470,8 @@ intermediate_domain_model_specification:
             description:
                 Super class of complex types like
                 [`IntermediateDataStructure`](#concept-IntermediateDataStructure),
-                [`IntermediateListType`](#concept-IntermediateListType), and
+                [`IntermediateCollectionType`](#concept-IntermediateCollectionType),
+                and
                 [`IntermediateEnumeration`](#concept-IntermediateEnumeration).
             references:
                 super_concept:
@@ -930,7 +931,7 @@ intermediate_domain_model_specification:
                     description:
                         Name of the field. Unique within the same
                         [structure](#concept-IntermediateDataStructure) or
-                        [list type](#concept-IntermediateListType).
+                        [collection type](#concept-IntermediateCollectionType).
                 qualifiedName:
                     type:
                         name: String
@@ -1089,53 +1090,53 @@ intermediate_domain_model_specification:
                     description:
                         Link to the defining `IntermediateDataStructure`
                         instance.
-        IntermediateListType:
+        IntermediateCollectionType:
             description:
-                A domain-specific list type.
+                A domain-specific collection type.
             references:
                 super_concept:
                     name: IntermediateComplexType
                     internal_ref_kind: concept
             attributes:
-                primitiveList:
+                primitiveCollection:
                     type:
                         name: boolean
                     description:
-                        Flag to indicate if this is a list that contains a
+                        Flag to indicate if this is a collection that contains a
                         sequence of primitive values.
-                structuredList:
+                structuredCollection:
                     type:
                         name: boolean
                     description:
-                        Flag to indicate if this list consists of one or more
-                        [data fields](#concept-IntermediateDataField).
+                        Flag to indicate if this collection consists of one or
+                        more [data fields](#concept-IntermediateDataField).
                     notes:
                         - Exactly one of the flags
-                          [`primitiveList`](#attribute-IntermediateListType-primitiveList)
-                          or `structuredList` will always be `true`.
+                          [`primitiveCollection`](#attribute-IntermediateCollectionType-primitiveCollection)
+                          or `structuredCollection` will always be `true`.
                 primitiveType:
                     type:
                         name: IntermediatePrimitiveType
                         internal_ref_kind: concept
                     description:
-                        In case the list is a
-                        [primitive list](#attribute-IntermediateListType-primitiveList),
+                        In case the collection is a
+                        [primitive collection](#attribute-IntermediateCollectionType-primitiveCollection),
                         this attribute contains the
                         [`IntermediatePrimitiveType`](#concept-IntermediatePrimitiveType)
                         instance that identifies the primitive type of the
-                        list's values.
+                        collection's values.
                 dataFields:
                     type:
                         name: IntermediateDataField
                         multiplicity: "*"
                         internal_ref_kind: concept
                     description:
-                        In case the list is a
-                        [structured list](#attribute-IntermediateListType-structuredList),
+                        In case the collection is a
+                        [structured collection](#attribute-IntermediateCollectionType-structuredCollection),
                         this attribute contains the
                         [`IntermediateDataStructure`](#concept-IntermediateDataStructure)
-                        instances that prescribe the structure of the list's
-                        values.
+                        instances that prescribe the structure of the
+                        collection's values.
         IntermediateEnumeration:
             description:
                 A domain-specific enumeration.

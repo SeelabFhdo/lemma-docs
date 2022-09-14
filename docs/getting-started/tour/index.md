@@ -95,7 +95,7 @@ from [Domain-driven Design (DDD)]({{ ddd_def_url }}) and its importance for the
 
 A context clusters one or more domain concepts between a pair of curly brackets.
 LEMMA supports several kinds of domain concepts and the above example
-illustrates the definition of structured and list concepts.
+illustrates the definition of structured and collection concepts.
 
 ### Structured Domain Concepts and Domain-Driven Design
 A structured concept (or *data structure*) is introduced by the keyword
@@ -133,13 +133,14 @@ which is a value object and consists of three primitively typed data fields. By
 contrast to the fields of the `Location` structure, the `VehicleCount` fields
 are mutable due to the lack of the modifier `immutable`.
 
-### List Type Domain Concepts
-Next to data structures, the example domain model defines two *list types* using
-the `list` keyword. In LEMMA, a list type specifies a sequence of one or more
-data fields that can have a primitive or complex type. Both list types in the
-example domain model, i.e., `ParkingSpaces` and `VehicleCounts`, have one field
-(`parkingSpace` and `vehicleCount`, respectively) of a structured type
-(`ParkingSpace` and `VehicleCount`, respectively).
+### Collection Type Domain Concepts
+Next to data structures, the example domain model defines two *collection types*
+using the `collection` keyword. In LEMMA, a collection type specifies a sequence
+of one or more data fields that can have a primitive or complex type. Both
+collection types in the example domain model, i.e., `ParkingSpaces` and
+`VehicleCounts`, have one field (`parkingSpace` and `vehicleCount`,
+respectively) of a structured type (`ParkingSpace` and `VehicleCount`,
+respectively).
 
 ## Step 3: Create a Service Model
 In this step, we use LEMMA's
@@ -202,11 +203,11 @@ microservice architecture. Other available type identifiers are `infrastructure`
 motivated by only a single business case, e.g., currency conversion).
 
 The `microservice` keyword determines the name of the microservice, which must
-have at least one qualifying level to configure the microservice's *namespace*. 
+have at least one qualifying level to configure the microservice's *namespace*.
 Qualifying levels are separated by dots (`.`) and, except for the last
 qualifying level, determine the microservice's namespace. This mechanism in fact
 follows the rules for package declaration in Java. Consequently, the
-fully-qualified name of the `SearchForFreeSpace` microservice is 
+fully-qualified name of the `SearchForFreeSpace` microservice is
 `com.example.pacp.SearchForFreeSpace`. It consists of the namespace
 `com.example.pacp` and the microservice's simple name `SearchForFreeSpace`.
 
@@ -222,7 +223,7 @@ service model defines an interface called `SearchSpace` for the
 
 Similar to microservices, interfaces can receive visibility modifiers and by
 default "inherit" the visibility of their microservices. As a result, the
-visibility of the `SearchSpace` is `public` as is the visibility of the 
+visibility of the `SearchSpace` is `public` as is the visibility of the
 `SearchForFreeSpace` microservice.
 
 ### Operation Definition
@@ -262,7 +263,7 @@ which an operation expects to receive or promises to return in a synchronous
 manner. The `async` keyword, on the other hand, defines parameters, which an
 operation expects to receive or promises to return in an asynchronous manner.
 
-Next to a communication type, a parameter definition in LEMMA can explicitly 
+Next to a communication type, a parameter definition in LEMMA can explicitly
 state the *direction* of a parameter, which can be incoming (`in` modifier),
 outgoing (`out` modifier), or bidirectional (`inout` modifier).
 
@@ -326,7 +327,7 @@ development and thus provides the
 to cluster technology information in *technology models* that are flexibly
 applicable to modeled microservices.
 
-In the following, we enrich the technology-agnostic example service model from 
+In the following, we enrich the technology-agnostic example service model from
 above with technology information for Java and the
 [Spring framework]({{ spring_url }}). While this binds the `SearchForFreeSpace`
 microservice to a certain technology stack, it makes it also possible to later
@@ -346,7 +347,7 @@ technology model file.
 
 !!! note
     Here, we will not go into further details concerning the construction of
-    technology models. Please refer to the user guide of the 
+    technology models. Please refer to the user guide of the
     [Technology Modeling Language](../../user-guide/technology-modeling-language/index.md)
     to learn about technology model construction.
 
@@ -400,7 +401,7 @@ That is, the example service model applies two technology aspects from the
 `Spring` technology model. More precisely, it applies the `Get` aspect to the
 `searchFreeSpace` operation and the `ResponseStatus` aspect to the operation's
 `freeSpaces`, `allocations`, and `foundNone` parameters. The `Spring` technology
-model defines these aspects to make the semantics of the Java annotations 
+model defines these aspects to make the semantics of the Java annotations
 [`GetMapping`]({{ spring_get_mapping_annotation_url }}) and
 [`ResponseStatus`]({{ spring_response_status_annotation_url }}) available to
 LEMMA modelers. As a result, the `searchFreeSpace` operation will be invokable
@@ -456,7 +457,7 @@ to `Kubernetes.technology` file.
 
 !!! note
     Here, we will not go into further details concerning the construction of
-    technology models. Please refer to the user guide of the 
+    technology models. Please refer to the user guide of the
     [Technology Modeling Language](../../user-guide/technology-modeling-language/index.md)
     to learn about technology model construction.
 
@@ -493,7 +494,7 @@ the `Spring.technology` model from
 [Step 4](#step-4-enrich-the-service-model-with-technology-information). Notice
 that for technology model imports the
 [Operation Modeling Language](../../user-guide/operation-modeling-language/index.md)
-relies on the same syntactic construct as the 
+relies on the same syntactic construct as the
 [Service Modeling Language](../../user-guide/service-modeling-language/index.md):
 
 !!! example ""
@@ -501,7 +502,7 @@ relies on the same syntactic construct as the
 
 In case an operation model shall specify the deployment of a microservice or its
 usage of infrastructure components, the model must also import the corresponding
-service model. In the above example code, the operation model imports the 
+service model. In the above example code, the operation model imports the
 `SearchForFreeSpace` microservice from the service model in the file
 `micro.services` (cf. Steps [3](#step-3-create-a-service-model) and
 [4](#step-4-enrich-the-service-model-with-technology-information)). To this end,
@@ -561,7 +562,7 @@ imported domain concepts (cf. [Step 3](#step-3-create-a-service-model)):
     `[IMPORTED_SERVICE_MODEL_ALIAS]::[FULLY_QUALIFIED_MICROSERVICE_NAME]`
 
 Since the `SearchForFreeServiceContainer` container shall deploy the
-`SearchForFreeSpace` microservice from the `micro.services` file (cf. 
+`SearchForFreeSpace` microservice from the `micro.services` file (cf.
 Steps [3](#step-3-create-a-service-model) and
 [4](#step-4-enrich-the-service-model-with-technology-information)), which we
 imported with the alias `SearchForFreeService`, we refer to the service for its

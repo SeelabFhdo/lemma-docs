@@ -92,8 +92,8 @@ m1=1..*</panel_attributes>
 *Intermediate*
 *TypeKind*
 --
+COLLECTION
 ENUMERATION
-LIST
 PRIMITIVE
 STRUCTURE</panel_attributes>
     <additional_attributes/>
@@ -348,13 +348,13 @@ r2=type</panel_attributes>
     <coordinates>
       <x>850</x>
       <y>450</y>
-      <w>190</w>
+      <w>240</w>
       <h>60</h>
     </coordinates>
-    <panel_attributes>*IntermediateListType*
+    <panel_attributes>*IntermediateCollectionType*
 --
-primitiveList : Boolean
-structuredList : Boolean</panel_attributes>
+primitiveCollection : Boolean
+structuredCollection : Boolean</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -433,7 +433,7 @@ featureNames
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1050</x>
+      <x>1100</x>
       <y>390</y>
       <w>190</w>
       <h>100</h>
@@ -451,24 +451,24 @@ initializationValue : String</panel_attributes>
     <coordinates>
       <x>990</x>
       <y>480</y>
-      <w>170</w>
+      <w>220</w>
       <h>110</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;&gt;&gt;
 m1=*</panel_attributes>
-    <additional_attributes>10.0;80.0;150.0;80.0;150.0;10.0</additional_attributes>
+    <additional_attributes>10.0;80.0;200.0;80.0;200.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>1030</x>
       <y>360</y>
-      <w>150</w>
+      <w>200</w>
       <h>50</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;&gt;&gt;
 m1=1..*</panel_attributes>
-    <additional_attributes>110.0;30.0;110.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>160.0;30.0;160.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
