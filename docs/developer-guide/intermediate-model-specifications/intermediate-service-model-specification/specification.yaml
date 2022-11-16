@@ -647,6 +647,12 @@ intermediate_service_model_specification:
                         - It is possible to even document parameters that were
                           [modeled optional](#attribute-IntermediateParameter-optional)
                           as required.
+                returned:
+                    type:
+                        name: boolean
+                    description:
+                        Flag to indicate if this parameter is returned by the
+                        described API.
                 parameter:
                     type:
                         name: IntermediateParameter
