@@ -8,3 +8,4 @@ docs/getting-started/tour/example_model_code/run_model_processor.py
 docs/getting-started/tour/example_model_code/lemma_tour_models.zip
 *__pycache__/
 *.metadata/
+*.code-workspace
