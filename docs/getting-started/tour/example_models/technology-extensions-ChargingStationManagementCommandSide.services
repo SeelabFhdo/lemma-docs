@@ -1,0 +1,48 @@
+import datatypes from "../../domain/ChargingStationManagement.data" as Domain
+// EXTENSION (1)
+import technology from "../../technology/Java.technology" as Java
+// EXTENSION (2)
+import technology from "../../technology/Spring.technology" as Spring
+
+// EXTENSION (3)
+@technology(Java)
+// EXTENSION (4)
+@technology(Spring)
+// EXTENSION (5)
+@Spring::_aspects.Application(name="ChargingStationManagementCommandSide")
+// EXTENSION (6)
+@Spring::_aspects.DatasourceConfiguration(
+	url = "jdbc:h2:mem:command-side-db",
+	username = "${COMMAND_SIDE_SERVICE_DB_USER}",
+	password = "${COMMAND_SIDE_SERVICE_DB_PASSWORD}"
+)
+public functional microservice de.puls.ChargingStationManagementCommandSide {
+    // EXTENSION (7)
+    @endpoints(Spring::_protocols.rest: "/resources";)
+    interface CommandSide {
+        ---
+        API endpoint for creating a parking area
+        @requires command Command object to specify the values of the new
+                          parking area
+        @returns response CreateParkingAreaCommandResponse with the
+                          identifier of the created parking area or an error
+                          message
+        ---
+        // EXTENSION (8)
+        @endpoints(Spring::_protocols.rest: "/parkingarea";)
+        // EXTENSION (9)
+        @Spring::_aspects.Post
+        createParkingArea(
+            // EXTENSION (10)
+            @Spring::_aspects.RequestBody
+            // EXTENSION (11)
+            @Spring::_aspects.Valid
+            sync in command
+                : Domain::ChargingStationManagement.CreateParkingAreaCommand,
+            // EXTENSION (12)
+            @Spring::_aspects.ResponseEntity
+            sync out response
+                : Domain::ChargingStationManagement.CreateParkingAreaCommandResponse
+        );
+    }
+}

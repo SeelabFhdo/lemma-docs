@@ -84,26 +84,37 @@ nav:
   - 'Research': 'research/index.md'
   - 'Contact': 'contact/index.md'
 extra:
+  api_definition_url: https://en.wikipedia.org/wiki/API
   atl_url: https://www.eclipse.org/atl
-  bounded_context_url: https://martinfowler.com/bliki/BoundedContext.html
+  bounded_context_url: https://www.martinfowler.com/bliki/BoundedContext.html
+  cite_thesis: "Rademacher, Florian: <emph>A Language Ecosystem for Modeling
+  Microservice Architecture</emph>. University of Kassel, Department of
+  Electrical Engineering and Computer Science, PhD Thesis, October 2022.
+  <a href=\"https://kobra.uni-kassel.de/handle/123456789/14176\">
+  https://kobra.uni-kassel.de/handle/123456789/14176
+  </a>. – 867 p."
   coding_style_column_width: 100
   coding_style_language: American English
   coding_style_tab_size: 4
   container_def_url: https://www.docker.com/resources/what-container
   current_eclipse_release: 2022-09
   cqrs_pattern_def_url: https://microservices.io/patterns/data/cqrs.html
-  ddd_aggregate_def_url: https://martinfowler.com/bliki/DDD_Aggregate.html
+  ddd_aggregate_def_url: https://www.martinfowler.com/bliki/DDD_Aggregate.html
   ddd_def_url: https://en.wikipedia.org/wiki/Domain-driven_design
-  ddd_entity_def_url: https://martinfowler.com/bliki/EvansClassification.html
-  ddd_tactical_patterns_url: https://thedomaindrivendesign.io/what-is-tactical-design/
-  ddd_value_object_def_url: https://martinfowler.com/bliki/ValueObject.html
+  ddd_entity_def_url: https://www.martinfowler.com/bliki/EvansClassification.html
+  ddd_tactical_patterns_url: https://www.thedomaindrivendesign.io/what-is-tactical-design/
+  ddd_value_object_def_url: https://www.martinfowler.com/bliki/ValueObject.html
   default_indent_level1: 2%
   default_indent_level2: 4%
-  devops_culture_url: https://martinfowler.com/bliki/DevOpsCulture.html
+  devops_culture_url: https://www.martinfowler.com/bliki/DevOpsCulture.html
+  docker_url: https://www.docker.com
+  docker_installation_url: https://docs.docker.com/get-docker
+  dto_definition_url: https://www.martinfowler.com/eaaCatalog/dataTransferObject.html
   employed_gradle_releases: 5.2.1, 6.1.1, 6.3, 6.8, 7.1.1
   gradle_url: https://gradle.org
   info_email: florian.rademacher@fh-dortmund.de
   kr_coding_style_url: https://en.wikipedia.org/wiki/Indentation_style#K&R_style
+  java_primitive_types_url: https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html
   lemma_build_server_url: https://build.seelab.fh-dortmund.de
   lemma_build_job_url: https://build.seelab.fh-dortmund.de/job/SeelabFhdo/job/lemma
   lemma_github_url: https://github.com/SeelabFhdo/lemma
@@ -111,9 +122,15 @@ extra:
   lemma_repository_server_url: https://repository.seelab.fh-dortmund.de/
   lemma_repository_artifacts_url: https://repository.seelab.fh-dortmund.de/#browse/search/maven
   lemma_repository_docker_images_url: https://repository.seelab.fh-dortmund.de/#browse/search/docker
-  lemma_tour_models_project_name: search-for-free-space
-  lemma_tour_domain_model_file: domain.data
-  lemma_tour_service_model_file: micro.services
+  lemma_tour_cqrs_model_repository_url: https://github.com/SeelabFhdo/lemma/blob/main/examples/charging-station-management/models/technology/Cqrs.technology
+  lemma_tour_domain_model_file: ChargingStationManagement.data
+  lemma_tour_java_technology_model_url: https://github.com/SeelabFhdo/lemma/blob/main/examples/charging-station-management/models/technology/Java.technology
+  lemma_tour_models_project_name: charging-station-management
+  lemma_tour_model_repository_url: https://www.github.com/SeelabFhdo/lemma/tree/main/examples/charging-station-management/models
+  lemma_tour_model_repository_query_side_url: https://www.github.com/SeelabFhdo/lemma/tree/main/examples/charging-station-management/models/microservices/query-side
+  lemma_tour_service_model_file: ChargingStationManagementCommandSide.services
+  lemma_tour_service_name: ChargingStationManagement
+  lemma_tour_spring_technology_model_url: https://github.com/SeelabFhdo/lemma/blob/main/examples/charging-station-management/models/technology/Spring.technology
   lemma_updatesite_url: https://microservices.fh-dortmund.de/lemma/
   maven_url: https://maven.apache.org
   maven_build_profiles_url: https://maven.apache.org/guides/introduction/introduction-to-profiles.html
@@ -126,11 +143,13 @@ extra:
   minimum_maven_release: 3.6.3
   minimum_windows_release: 10
   monolith_def_url: https://en.wikipedia.org/wiki/Monolithic_application
-  msa_bc_url: https://martinfowler.com/articles/microservices.html#DecentralizedDataManagement
-  msa_def_url: https://martinfowler.com/articles/microservices.html
+  msa_bc_url: https://www.martinfowler.com/articles/microservices.html#DecentralizedDataManagement
+  msa_def_url: https://www.martinfowler.com/articles/microservices.html
   msa_tech_heterogeneity_url: https://www.oreilly.com/library/view/building-microservices/9781491950340/ch01.html
   ntier_def_url: https://en.wikipedia.org/wiki/Multitier_architecture
+  openapi_spec_url: https://www.openapis.org
   pep8_url: https://www.python.org/dev/peps/pep-0008
+  rest_definition_url: https://en.wikipedia.org/wiki/Representational_state_transfer
   saga_pattern_def_url: https://microservices.io/patterns/data/saga.html
   spring_get_mapping_annotation_url: https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/GetMapping.html
   spring_response_status_annotation_url: https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/ResponseStatus.html

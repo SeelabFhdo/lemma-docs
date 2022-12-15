@@ -1,0 +1,28 @@
+context ChargingStationManagement {
+    structure Location<valueObject> {
+        immutable double latitude,
+        immutable double longitude
+    }
+
+    structure ParkingArea<aggregate, entity> {
+        long id<identifier>,
+        string name,
+        string description,
+        Location location<part>,
+        ChargerSpeed chargerSpeed,
+        TimePeriods availability<part>,
+        boolean activated
+    }
+
+    enum ChargerSpeed {
+        FAST,
+        NORMAL
+    }
+
+    collection TimePeriods { TimePeriod p }
+
+    structure TimePeriod<valueObject> {
+        immutable date start,
+        immutable date end
+    }    
+}

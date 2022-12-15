@@ -23,7 +23,7 @@ of imported models depends on their kind:
 - **Service Models**: By default, the derivation of intermediate service models
     also comprises the derivation of the intermediate representations of all
     imported LEMMA service models.
-- **Mapping Models**: Similarly to technology models, the information from 
+- **Mapping Models**: Similarly to technology models, the information from
     [mapping models](../../../user-guide/service-technology-mapping-modeling-language/index.md)
     is always incorporated into intermediate domain, service, or operation
     models. In addition, LEMMA supports the derivation of intermediate models
@@ -56,7 +56,7 @@ intermediate models from LEMMA mapping and operation models.
 
     The code of the `{{ lemma_tour_service_model_file }}` is as follows:
     ```lemmaservices
-    --8<-- "getting-started/tour/example_model_code/doc-models/technology-extensions-micro.services"
+    --8<-- "getting-started/tour/example_models/technology-extensions-ChargingStationManagementCommandSide.services"
     ```
 
 ### Step 1: Start an Intermediate Model Derivation Process
@@ -118,7 +118,7 @@ intermediate representations by their projects in the current Eclipse workspace.
 Furthermore, a model clusters all transformable models, which it imports. Thus,
 the above model selection dialog window for the
 `{{ lemma_tour_service_model_file }}` service model comprises a node for the
-model's Eclipse project, i.e., `{{ lemma_tour_models_project_name }}`, a node 
+model's Eclipse project, i.e., `{{ lemma_tour_models_project_name }}`, a node
 for the service model, as well as a node for the
 [`{{ lemma_tour_domain_model_file }}` domain model](../../../getting-started/tour/#step-2-create-a-domain-model),
 which is imported by the service model and represents a transformable model.

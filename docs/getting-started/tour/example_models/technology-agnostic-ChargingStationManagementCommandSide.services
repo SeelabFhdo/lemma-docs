@@ -1,0 +1,20 @@
+import datatypes from "../../domain/ChargingStationManagement.data" as Domain
+
+public functional microservice de.puls.ChargingStationManagementCommandSide {
+    interface CommandSide {
+        ---
+        API endpoint for creating a parking area
+        @requires command Command object to specify the values of the new
+                          parking area
+        @returns response CreateParkingAreaCommandResponse with the
+                          identifier of the created parking area or an error
+                          message
+        ---
+        createParkingArea(
+            sync in command
+                : Domain::ChargingStationManagement.CreateParkingAreaCommand,
+            sync out response
+                : Domain::ChargingStationManagement.CreateParkingAreaCommandResponse
+        );
+    }
+}
