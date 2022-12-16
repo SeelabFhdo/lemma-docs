@@ -65,9 +65,9 @@ nav:
     - 'Service Modeling Language': 'user-guide/service-modeling-language/index.md'
     - 'Service Technology Mapping Modeling Language': 'user-guide/service-technology-mapping-modeling-language/index.md'
     - 'Operation Modeling Language': 'user-guide/operation-modeling-language/index.md'
-    - 'Model Processing':
-      - 'Introduction': 'user-guide/model-processing/index.md'
-      - 'Static Analysis': 'user-guide/model-processing/static-analysis/index.md'
+#    - 'Model Processing':
+#      - 'Introduction': 'user-guide/model-processing/index.md'
+#      - 'Static Analysis': 'user-guide/model-processing/static-analysis/index.md'
   - 'Developer Guide':
     - 'Introduction': 'developer-guide/index.md'
     - 'Coding Style': 'developer-guide/coding-style/index.md'
