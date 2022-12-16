@@ -113,6 +113,7 @@ extra:
   employed_gradle_releases: 5.2.1, 6.1.1, 6.3, 6.8, 7.1.1
   gradle_url: https://gradle.org
   info_email: florian.rademacher@fh-dortmund.de
+  ioc_def_url: https://en.wikipedia.org/wiki/Inversion_of_control
   kr_coding_style_url: https://en.wikipedia.org/wiki/Indentation_style#K&R_style
   java_primitive_types_url: https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html
   lemma_build_server_url: https://build.seelab.fh-dortmund.de
