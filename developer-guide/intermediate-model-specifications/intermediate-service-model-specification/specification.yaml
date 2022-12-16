@@ -1,0 +1,1506 @@
+intermediate_service_model_specification:
+    ____source_code_uri____: https://github.com/SeelabFhdo/lemma/blob/main/de.fhdo.lemma.service.intermediate.metamodel/model/IntermediateServiceModel.xcore
+
+    Model Root:
+        IntermediateServiceModel:
+            description:
+                Root of an intermediate service model.
+            attributes:
+                sourceModelUri:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description: >
+                        `file://` URI pointing to the source service model file
+                        from which this intermediate service model was derived.
+                    notes:
+                        - Model processors must not depend on this URI being
+                          absolute or relative. Both cases may occur in practice
+                          and are up to the modeler.
+                imports:
+                    type:
+                        name: IntermediateImport
+                        multiplicity: "*"
+                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateImport
+                    description:
+                        References to imported
+                        [technology models](https://seelabfhdo.github.io/lemma-docs/user-guide/technology-modeling-language),
+                        [intermediate domain models](https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateDataModel),                        
+                        or
+                        intermediate service models.
+                microservices:
+                    type:
+                        name: IntermediateMicroservice
+                        multiplicity: "1..*"
+                        internal_ref_kind: concept
+                    description:
+                        Microservices defined in the service model.
+    Microservices:
+        IntermediateMicroservice:
+            description:
+                A modeled microservice.
+            attributes:
+                sourceModelUri:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description: >
+                        `file://` URI pointing to the source service model file
+                        from which this microservice originates.
+                    notes:
+                        - Model processors must not depend on this URI being
+                          absolute or relative. Both cases may occur in practice
+                          and are up to the modeler.
+                name:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Name of the microservice. Unique within the same
+                        [service model](#concept-IntermediateServiceModel).
+                version:
+                    type:
+                        name: String
+                    description:
+                        Optional version of the service.
+                qualifiedName:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Qualified name of the service. Consists of the service's
+                        [name](#attribute-IntermediateMicroservice-name)
+                        prefixed by its
+                        [version](#attribute-IntermediateMicroservice-version),
+                        if any. Both name fragments are separated by dots.
+                type:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description: >
+                        Type of the microservice. The following values are
+                        possible:
+                        <table>
+                            <tr>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr>
+                                <td>"FUNCTIONAL"</td>
+                                <td>
+                                    A functional microservice realizes the
+                                    business functions of a microservice
+                                    architecture.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>"INFRASTRUCTURE"</td>
+                                <td>
+                                    Infrastructure microservices provide the
+                                    architecture with capabilities that are not
+                                    related to business but technical functions.
+                                    Examples of such functions comprise database
+                                    lookups or integration of legacy systems.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>"UTILITY"</td>
+                                <td>
+                                    Teams may realize utility microservices to
+                                    implement reusable, business-related helper
+                                    functions, e.g., for currency conversion.
+                                </td>
+                            </tr>
+                        </table>
+                visibility:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description: >
+                        Visibility of the microservice. The following values are
+                        possible:
+                        <table>
+                            <tr>
+                                <th>Visibility</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr>
+                                <td>"INTERNAL"</td>
+                                <td>
+                                    Service must only be visible to the services
+                                    of the same team.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>"ARCHITECTURE"</td>
+                                <td>
+                                    Service must only be visible to the services
+                                    of the same architecture, but not to
+                                    external consumers.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>"PUBLIC"</td>
+                                <td>
+                                    Service must be visible to all services of
+                                    the same architecture and also to external
+                                    consumers.
+                                </td>
+                            </tr>
+                        </table>
+                effectivelyImplemented:
+                    type:
+                        name: boolean
+                    description:
+                        Flag to indicate if the microservice has at least one
+                        [operation](#concept-IntermediateOperation) that is not
+                        marked as being not implemented (either directly or
+                        transitively via its defining
+                        [interface](#concept-IntermediateInterface).
+                    hints:
+                        - Model processors should consider to also handle not
+                          (yet) implemented microservices. Code generators, for
+                          example, might produce code that returns failures upon
+                          invocation of non-implemented service capabilities.
+                technologies:
+                    type:
+                        name: IntermediateTechnology
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        Technologies assigned to the microservice.
+                    hints:
+                        - There can only be one technology that defines
+                          [default primitive types](https://seelabfhdo.github.io/lemma-docs/user-guide/technology-modeling-language).
+                          Moreover, it is guaranteed that
+                          [default protocol/data format combinations](https://seelabfhdo.github.io/lemma-docs/user-guide/technology-modeling-language)
+                          are unambiguous. For instance, there can only be one
+                          default synchronous protocol across all referenced
+                          technologies.
+                    notes:
+                        - In case no fitting technologies are specified for a
+                          microservice, model processors are free to omit
+                          processing steps if they cover only specific
+                          technologies.
+                endpoints:
+                    type:
+                        name: IntermediateEndpoint
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        Endpoints specified for the microservice.
+                    hints:
+                        - If no endpoints were modeled for the microservice's
+                          (default)
+                          [protocol specifications ](#attribute-IntermediateMicroservice-protocols),
+                          the
+                          [`addresses`](#attribute-IntermediateEndpoint-addresses)
+                          attribute of the `IntermediateEndpoint` instance will
+                          be empty.
+                        - If no endpoints were specified or could be determined
+                          from (default)
+                          [protocol specifications ](#attribute-IntermediateMicroservice-protocols),
+                          or in case the
+                          [`addresses`](#attribute-IntermediateEndpoint-addresses)
+                          attribute is empty, model processors may assume
+                          sensible defaults.
+                protocols:
+                    type:
+                        name: IntermediateProtocolSpecification
+                        multiplicity: 0..2
+                        internal_ref_kind: concept
+                    description:
+                        Protocol specifications of the microservice. There
+                        might be at most one protocol specification per
+                        communication type (synchronous or asynchronous).
+                    hints:
+                        - If the service has no protocol specifications, code
+                          generators may produce sensible defaults, e.g., from
+                          the microservice's name.
+                    notes:
+                        - In case the microservice had no protocols assigned in
+                          the source service model, the default protocols of the
+                          missing communication types are taken from the
+                          service's
+                          [technologies](#attribute-IntermediateMicroservice-technologies),
+                          if any. That is, the attribute will only be empty if
+                          the microservice had no protocol-defining technology
+                          assigned.
+                requiredMicroservices:
+                    type:
+                        name: MicroserviceReference
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        References to required microservices.
+                requiredInterfaces:
+                    type:
+                        name: InterfaceReference
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        References to required interfaces.
+                requiredOperations:
+                    type:
+                        name: OperationReference
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        References to required operations.
+                aspects:
+                    type:
+                        name: IntermediateImportedAspect
+                        multiplicity: "*"
+                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateImportedAspect
+                    description:
+                        Aspects of the microservice.
+                serviceModel:
+                    type:
+                        name: IntermediateServiceModel
+                        internal_ref_kind: concept
+                    description:
+                        Link to the defining `IntermediateServiceModel`
+                        instance.
+        IntermediateInterface:
+            description:
+                This class represents an interface of an
+                [`IntermediateMicroservice`](#concept-IntermediateMicroservice).
+            attributes:
+                name:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Name of the interface. Unique within the same
+                        [microservice](#concept-IntermediateMicroservice).
+                version:
+                    type:
+                        name: String
+                    description:
+                        Optional version of the interface.
+                qualifiedName:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Qualified name of the interface. Consists of the
+                        defining microservice's
+                        [qualified name](#attribute-IntermediateMicroservice-qualifiedName),
+                        and the interface's version and name. All name fragments
+                        are separated by dots.
+                visibility:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description: >
+                        Visibility of the interface. The following values are
+                        possible:
+                        <table>
+                            <tr>
+                                <th>Visibility</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr>
+                                <td>"INTERNAL"</td>
+                                <td>
+                                    Interface must only be visible to the
+                                    services of the same team.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>"IN_MODEL"</td>
+                                <td>
+                                    Interface must only be visible to the
+                                    services within the same service model file.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>"ARCHITECTURE"</td>
+                                <td>
+                                    Interface must only be visible to the
+                                    services of the same architecture, but not
+                                    to external consumers.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>"PUBLIC"</td>
+                                <td>
+                                    Interface must be visible to all services of
+                                    the same architecture and also to external
+                                    consumers.
+                                </td>
+                            </tr>
+                        </table>
+                notImplemented:
+                    type:
+                        name: boolean
+                    description:
+                        Flag to indicate if the interface was marked as being
+                        not implemented.
+                    hints:
+                        - Model processors should consider to also handle not
+                          (yet) implemented interfaces. Code generators, for
+                          example, might produce code that returns failures upon
+                          invocation of non-implemented service capabilities.
+                hasImplementedOperations:
+                    type:
+                        name: boolean
+                    description:
+                        Flag to indicate if the interface has at least one
+                        [operation](#concept-IntermediateOperation) that is not
+                        marked as being not implemented.
+                    hints:
+                        - Model processors should consider to also handle not
+                          (yet) implemented interfaces. Code generators, for
+                          example, might produce code that returns failures upon
+                          invocation of non-implemented service capabilities.
+                    notes:
+                        - The
+                          [`notImplemented`](#attribute-IntermediateInterface-notImplemented)
+                          and
+                          [`hasImplementedOperations`](#attribute-IntermediateInterface-hasImplementedOperations)
+                          flags are independent of each other. The former is set
+                          by the modeler, while the latter is derived from the
+                          corresponding flags of the interface's
+                          [`operations`](#concept-IntermediateOperation).
+                endpoints:
+                    type:
+                        name: IntermediateEndpoint
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        Endpoints specified for the interface.
+                    hints:
+                        - If no endpoints were modeled for the interface's
+                          (default)
+                          [protocol specifications ](#attribute-IntermediateInterface-protocols),
+                          the
+                          [`addresses`](#attribute-IntermediateEndpoint-addresses)
+                          attribute of the `IntermediateEndpoint` instance will
+                          be empty.
+                        - If no endpoints were specified or could be determined
+                          from (default)
+                          [protocol specifications ](#attribute-IntermediateInterface-protocols),
+                          or in case the
+                          [`addresses`](#attribute-IntermediateEndpoint-addresses)
+                          attribute is empty, model processors may assume
+                          sensible defaults.
+                protocols:
+                    type:
+                        name: IntermediateProtocolSpecification
+                        multiplicity: 0..2
+                        internal_ref_kind: concept
+                    description:
+                        Protocol specifications of the interface. There
+                        might be at most one protocol specification per
+                        communication type (synchronous or asynchronous).
+                    hints:
+                        - If no protocols were explicitly specified for the
+                          interface, it "inherits" the specifications of its
+                          [microservice](#attribute-IntermediateMicroservice-protocols).
+                          In case the service does also not exhibit protocol
+                          specifications, model processors should assume
+                          sensible defaults.
+                    notes:
+                        - In case the microservice had no protocols assigned in
+                          the source service model, the default protocols of the
+                          missing communication types are taken from the
+                          service's
+                          [technologies](#attribute-IntermediateMicroservice-technologies),
+                          if any. That is, the attribute will only be empty if
+                          the microservice had no protocol-defining technology
+                          assigned.
+                operations:
+                    type:
+                        name: IntermediateOperation
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        Operations of the interface.
+                referredOperations:
+                    type:
+                        name: IntermediateReferredOperation
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        Referred operations of the interface.
+                    notes:
+                        - An interface defines at least one operation or refers
+                          to an existing operation, i.e., at least one of the
+                          attributes
+                          [`operations`](#attribute-IntermediateInterface-operations)
+                          and
+                          [`referredOperations`] is not empty.
+                aspects:
+                    type:
+                        name: IntermediateImportedAspectconcept-
+                        multiplicity: "*"
+                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateImportedAspect
+                    description:
+                        Aspects of the interface.
+                microservice:
+                    type:
+                        name: IntermediateMicroservice
+                        internal_ref_kind: concept
+                    description:
+                        Link to the defining `IntermediateMicroservice`
+                        instance.
+        IntermediateOperation:
+            description:
+                This class represents an operation of an
+                [`IntermediateInterface`](#concept-IntermediateInterface).
+            attributes:
+                name:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Name of the operation. Unique within the same
+                        [interface](#concept-IntermediateInterface).
+                qualifiedName:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Qualified name of the operation. Consists of the
+                        operation's [name](#attribute-IntermediateOperation-name)
+                        prefixed by its interface's
+                        [qualified name](#attribute-IntermediateInterface-qualifiedName).
+                        Both name fragments are separated by dots.
+                visibility:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description: >
+                        Visibility of the microservice. The following values are
+                        possible:
+                        <table>
+                            <tr>
+                                <th>Visibility</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr>
+                                <td>"INTERNAL"</td>
+                                <td>
+                                    Operation must only be visible to the
+                                    services of the same team.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>"IN_MODEL"</td>
+                                <td>
+                                    Operation must only be visible to the
+                                    services within the same service model file.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>"ARCHITECTURE"</td>
+                                <td>
+                                    Operation must only be visible to the
+                                    services of the same architecture, but not
+                                    to external consumers.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>"PUBLIC"</td>
+                                <td>
+                                    Operation must be visible to all services of
+                                    the same architecture and also to external
+                                    consumers.
+                                </td>
+                            </tr>
+                        </table>
+                notImplemented:
+                    type:
+                        name: boolean
+                    description:
+                        Flag to indicate if the operation was marked as being
+                        not implemented.
+                    hints:
+                        - Model processors should consider to also handle not
+                          (yet) implemented operations. Code generators, for
+                          example, might produce code that returns failures upon
+                          invocation of non-implemented service capabilities.
+                endpoints:
+                    type:
+                        name: IntermediateEndpoint
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        Endpoints specified for the interface.
+                    hints:
+                        - If no endpoints were modeled for the operation's
+                          (default)
+                          [protocol specifications ](#attribute-IntermediateOperation-protocols),
+                          the
+                          [`addresses`](#attribute-IntermediateEndpoint-addresses)
+                          attribute of the `IntermediateEndpoint` instance will
+                          be empty.
+                        - If no endpoints were specified or could be determined
+                          from (default)
+                          [protocol specifications ](#attribute-IntermediateOperation-protocols),
+                          or in case the
+                          [`addresses`](#attribute-IntermediateEndpoint-addresses)
+                          attribute is empty, model processors may assume
+                          sensible defaults.
+                protocols:
+                    type:
+                        name: IntermediateProtocolSpecification
+                        multiplicity: 0..2
+                        internal_ref_kind: concept
+                    description:
+                        Protocol specifications of the operation. There
+                        might be at most one protocol specification per
+                        communication type (synchronous or asynchronous).
+                    hints:
+                        - If no protocols were explicitly specified for the
+                          operation, it "inherits" the specifications of its
+                          [interface](#attribute-IntermediateInterface-protocols).
+                          In case the interface does also not exhibit protocol
+                          specifications, model processors should assume
+                          sensible defaults.
+                parameters:
+                    type:
+                        name: IntermediateParameter
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        The operation's parameters.
+                    hints:
+                        - There might be more than one outgoing parameter and it
+                          is up to model processors on how to interpret such
+                          circumstances. For example, a code generator might
+                          represent all outgoing parameters as fields of a
+                          uniforming data structure.
+                apiOperationComment:
+                    type:
+                        name: IntermediateApiOperationComment
+                        multiplicity: 0..1
+                        internal_ref_kind: concept
+                    description:
+                        API comment of the operation.
+                aspects:
+                    type:
+                        name: IntermediateImportedAspect
+                        multiplicity: "*"
+                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateImportedAspect
+                    description:
+                        Aspects of the operation.
+                interface:
+                    type:
+                        name: IntermediateInterface
+                        internal_ref_kind: concept
+                    description:
+                        Link to the defining `IntermediateInterface` instance.
+        IntermediateApiOperationComment:
+            description:
+                This concept represents an API-related comment of a
+                [microservice operation](#concept-IntermediateOperation).
+                Such comments shall describe the purpose of a microservice
+                operation, possibly including its
+                parameters (cf. the
+                [`IntermediateApiParameterComment`](#concept-IntermediateApiParameterComment)
+                concept).
+            attributes:
+                comment:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Comment content.
+                parameterComments:
+                    type:
+                        name: IntermediateApiParameterComment
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        API comments for the operation's parameters.
+                    hints:
+                        - It is possible that a parameter is commented more than
+                          once. It is up to model processors how they treat such
+                          a situation. For instance, a code generator might
+                          ignore all comments except for the last one.
+                operation:
+                    type:
+                        name: IntermediateOperation
+                        internal_ref_kind: concept
+                    description:
+                        The operation documented by this comment.
+        IntermediateApiParameterComment:
+            description:
+                This concept represents an API-related comment of a
+                [microservice operation parameter](#concept-IntermediateParameter).
+            attributes:
+                comment:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Comment content.
+                required:
+                    type:
+                        name: boolean
+                    description:
+                        Flag to indicate if this parameter is required by the
+                        described API.
+                    notes:
+                        - It is possible to even document parameters that were
+                          [modeled optional](#attribute-IntermediateParameter-optional)
+                          as required.
+                returned:
+                    type:
+                        name: boolean
+                    description:
+                        Flag to indicate if this parameter is returned by the
+                        described API.
+                parameter:
+                    type:
+                        name: IntermediateParameter
+                        internal_ref_kind: concept
+                    description:
+                        The parameter documented by this comment.
+                operationComment:
+                    type:
+                        name: IntermediateApiOperationComment
+                        internal_ref_kind: concept
+                    description:
+                        The API operation comment to which this parameter
+                        comment belongs.
+        IntermediateParameter:
+            description:
+                A [microservice operation](#concept-IntermediateOperation)
+                parameter.
+            attributes:
+                name:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Name of the parameter. Unique within the same
+                        [operation](#concept-IntermediateOperation).
+                qualifiedName:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Qualified name of the parameter. Consists of the
+                        parameter's [name](#attribute-IntermediateParameter-name)
+                        prefixed by its operation's
+                        [qualified name](#attribute-IntermediateOperation-qualifiedName).
+                        Both name fragments are separated by dots.
+                exchangePattern:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description: >
+                        Exchange pattern of the parameter. The following values
+                        are possible:
+                        <table>
+                            <tr>
+                                <th>Pattern</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr>
+                                <td>"IN"</td>
+                                <td>
+                                    Incoming information exchange.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>"OUT"</td>
+                                <td>
+                                    Outgoing information exchange.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>"INOUT"</td>
+                                <td>
+                                    Incoming and outgoing information exchange.
+                                </td>
+                            </tr>
+                        </table>
+                communicationType:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description: >
+                        Communication type of the parameter. The following
+                        values are possible:
+                        <table>
+                            <tr>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr>
+                                <td>"ASYNCHRONOUS"</td>
+                                <td>
+                                    Asynchronous communication.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>"SYNCHRONOUS"</td>
+                                <td>
+                                    Synchronous communication.
+                                </td>
+                            </tr>
+                        </table>
+                communicatesFault:
+                    type:
+                        name: boolean
+                    description:
+                        Flag to indicate that the parameter communicates
+                        failure values to the caller.
+                    notes:
+                        - If necessary, it is up to model processors to ensure
+                          that callers are aware of the parameter communicating
+                          failure values.
+                optional:
+                    type:
+                        name: boolean
+                    description:
+                        Flag to indicate that the parameter is optional.
+                    notes:
+                        - >
+                              The combination of
+                              [exchange pattern](#attribute-IntermediateParameter-exchangePattern),
+                              [communication type](#attribute-IntermediateParameter-communicationType),
+                              and the `optional` attribute determines a
+                              parameter's and thus
+                              [operation's](#concept-IntermediateOperation)
+                              "timing behavior":
+                              <table>
+                                  <tr>
+                                      <th>Exchange Pattern</th>
+                                      <th>Communication Type</th>
+                                      <th>Optional?</th>
+                                      <th>Timing Behavior</th>
+                                  </tr>
+                                  <tr>
+                                      <td>"IN"</td>
+                                      <td>"ASYNCHRONOUS"</td>
+                                      <td>`false`</td>
+                                      <td>
+                                          Operation must receive value at some
+                                          point in time during its execution for
+                                          the respective parameter.
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                      <td>"IN"</td>
+                                      <td>"ASYNCHRONOUS"</td>
+                                      <td>`true`</td>
+                                      <td>
+                                          Operation may receive value at some
+                                          point in time during its execution for
+                                          the respective parameter.
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                      <td>"IN"</td>
+                                      <td>"SYNCHRONOUS"</td>
+                                      <td>`false`</td>
+                                      <td>
+                                          Operation is only executable with the
+                                          respective parameter receiving a
+                                          value.
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                      <td>"IN"</td>
+                                      <td>"SYNCHRONOUS"</td>
+                                      <td>`true`</td>
+                                      <td>
+                                          Operation is executable without the
+                                          respective parameter receiving a
+                                          value. Furthermore, the operation
+                                          cannot expect to ever receive a value
+                                          for the respective parameter.
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                      <td>"OUT"</td>
+                                      <td>"ASYNCHRONOUS"</td>
+                                      <td>`false`</td>
+                                      <td>
+                                          Operation uses the respective
+                                          parameter to emit a value at some
+                                          point in time during its execution.
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                      <td>"OUT"</td>
+                                      <td>"ASYNCHRONOUS"</td>
+                                      <td>`true`</td>
+                                      <td>
+                                          Operation may use the respective
+                                          parameter to emit a value at some
+                                          point in time during its execution.
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                      <td>"OUT"</td>
+                                      <td>"SYNCHRONOUS"</td>
+                                      <td>`false`</td>
+                                      <td>
+                                          Operation uses the respective
+                                          parameter to emit a value after its
+                                          execution.
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                      <td>"OUT"</td>
+                                      <td>"SYNCHRONOUS"</td>
+                                      <td>`true`</td>
+                                      <td>
+                                          Operation may use the respective
+                                          parameter to emit a value after its
+                                          execution.
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                      <td>"INOUT"</td>
+                                      <td>*all*</td>
+                                      <td>*all*</td>
+                                      <td>
+                                          Operation treats the parameter as an
+                                          incoming and outgoing parameter for
+                                          the concrete communication type and
+                                          `optional` flag.
+                                      </td>
+                                  </tr>
+                              </table>
+                type:
+                    type:
+                        name: IntermediateType
+                        multiplicity: 1
+                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateType
+                    description:
+                        The type of the parameter.
+                    hints:
+                        - Model processors must use this type as the parameter's
+                          type and not the
+                          [`originalType`](#attribute-IntermediateParameter-originalType).
+                    notes:
+                        - A parameter can receive the
+                          [`unspecified` type](https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#built-in-type-system)
+                          only if the operation is [not implemented](#attribute-IntermediateOperation-notImplemented).
+                originalType:
+                    type:
+                        name: IntermediateType
+                        multiplicity: 1
+                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateType
+                    description:
+                        The original type of the parameter.
+                    hints:
+                        - The attribute always holds a value. In case the value
+                          differs from that of the
+                          [`type` attribute](#attribute-IntermediateParameter-type),
+                          the parameter type got altered in a
+                          [mapping model](https://seelabfhdo.github.io/lemma-docs/user-guide/service-technology-mapping-modeling-language)
+                          and the
+                          [`type` attribute](#attribute-IntermediateParameter-type)
+                          attribute holds an instance of the
+                          [`IntermediateImportedTechnologySpecificType`](https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateImportedTechnologySpecificType)
+                          concept that identifies the technology-specific type
+                          to which the original return type was mapped.
+                initializedByOperation:
+                    type:
+                        name: OperationReference
+                        internal_ref_kind: concept
+                    description:
+                        Link to the
+                        [`IntermediateOperation`](#concept-IntermediateOperation)
+                        that initializes the parameter.
+                    notes:
+                        - It is not guaranteed that the operation's return
+                          values and the parameter's type are compatible. This
+                          is due to LEMMA's
+                          [Service Modeling Language](https://seelabfhdo.github.io/lemma-docs/user-guide/service-modeling-language)
+                          yielding a warning only in case it detected a
+                          (possible) type incompatibility.
+                aspects:
+                    type:
+                        name: IntermediateImportedAspect
+                        multiplicity: "*"
+                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateImportedAspect
+                    description:
+                        Aspects of the parameter.
+                fieldAspects:
+                    type:
+                        name: DataFieldAspects
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        Aspects that were assigned to fields of the
+                        [structure type](https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateDataStructure)
+                        or
+                        [enumeration type](https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateEnumeration)
+                        of the parameter within a
+                        [mapping model](https://seelabfhdo.github.io/lemma-docs/user-guide/service-technology-mapping-modeling-language).
+                    hints:
+                        - These aspects are relevant only in the context of the
+                          parameter within its defining operation. That is, they
+                          are not relevant in the context of the type that
+                          defines the fields within its
+                          [domain model](https://seelabfhdo.github.io/lemma-docs/user-guide/domain-data-modeling-language).
+                operation:
+                    type:
+                        name: IntermediateOperation
+                        internal_ref_kind: concept
+                    description:
+                        Link to the defining `IntermediateOperation` instance.
+        DataFieldAspects:
+            description:
+                This concept gathers
+                [aspects](#concept-IntermediateImportedAspect), which were
+                assigned to fields of a
+                [parameter's](#concept-IntermediateParameter)
+                [structure type](https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateDataStructure)
+                or
+                [enumeration type](https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateEnumeration)
+                within a
+                [mapping model](https://seelabfhdo.github.io/lemma-docs/user-guide/service-technology-mapping-modeling-language).
+            attributes:
+                name:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        The name of the
+                        [structure type's](https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateDataStructure)
+                        or
+                        [enumeration type's](https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateEnumeration)
+                        field to which the aspects were assigned in the context
+                        of the parameter.
+                qualifiedName:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Qualified name of the field. Consists of the field's
+                        [name](#attribute-DataFieldAspects-name) prefixed by
+                        the parameter's
+                        [qualified name](#attribute-IntermediateParameter-qualifiedName).
+                        Both name fragments are separated by dots.
+                aspects:
+                    type:
+                        name: IntermediateImportedAspect
+                        multiplicity: "1..*"
+                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateImportedAspect
+                    description:
+                        The aspects that were assigned to the field in the
+                        context of the parameter.
+                parameter:
+                    type:
+                        name: IntermediateParameter
+                        internal_ref_kind: concept
+                    description:
+                        Link to the defining `IntermediateParameter` instance.
+        IntermediateReferredOperation:
+            description:
+                Referred operation of an
+                [interface](#concept-IntermediateInterface). By
+                contrast to "locally defined" [operations](#concept-IntermediateOperation),
+                referred operations do not implement their own business logic.
+                Instead, they act as façades to implemented operations within
+                the same microservice. That is, requests/responses to the
+                original operation/the caller are just forwarded by referred
+                operations.
+
+
+                Referred operations exhibit the same
+                [parameters](#concept-IntermediateParameter) as the original
+                operations. However, they may have different
+                [endpoints](#concept-IntermediateEndpoint),
+                [protocols](#concept-IntermediateProtocolSpecification), and
+                [aspects](#concept-IntermediateImportedAspect).
+            attributes:
+                nameInReferringInterface:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        The name of the referred operation within the referring
+                        interface. Currently, this name is identical to the
+                        [name of the original operation](#attribute-IntermediateOperation-name).
+                        However, model processors should not rely on that fact
+                        and instead use the content of this attribute to process
+                        the referring operation.
+                qualifiedNameInReferringInterface:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        The qualified name of the referred operation within the
+                        referring interface. It consists of the
+                        [name of the referring operation](#attribute-IntermediateReferredOperation-nameInReferringInterface)
+                        prefixed by the [defining interface's qualified name](#attribute-IntermediateInterface-qualifiedName).
+                        Both name fragments are separated by dots.
+                operation:
+                    type:
+                        name: IntermediateOperation
+                        multiplicity: 1
+                        internal_ref_kind: concept
+                    description:
+                        Link to the original [operation](#concept-IntermediateOperation).
+                    notes:
+                        - The type of the attribute is `IntermediateOperation`
+                          instead of [`OperationReference`](#concept-OperationReference)
+                          because the original operation must reside in the same
+                          microservice as the referring operation and can thus
+                          not originate from an
+                          [imported service model](#attribute-IntermediateServiceModel-imports).
+                endpoints:
+                    type:
+                        name: IntermediateEndpoint
+                        multiplicity: "*"
+                        internal_ref_kind: concept
+                    description:
+                        Endpoints specified for the referred operation.
+                    hints:
+                        - If no endpoints were modeled for the referred
+                          operation's (default)
+                          [protocol specifications ](#attribute-IntermediateOperation-protocols),
+                          the
+                          [`addresses`](#attribute-IntermediateEndpoint-addresses)
+                          attribute of the `IntermediateEndpoint` instance will
+                          be empty.
+                        - If no endpoints were specified or could be determined
+                          from (default)
+                          [protocol specifications ](#attribute-IntermediateOperation-protocols),
+                          or in case the
+                          [`addresses`](#attribute-IntermediateEndpoint-addresses)
+                          attribute is empty, model processors may assume
+                          sensible defaults.
+                protocols:
+                    type:
+                        name: IntermediateProtocolSpecification
+                        multiplicity: 0..2
+                        internal_ref_kind: concept
+                    description:
+                        Protocol specifications of the referred operation. There
+                        might be at most one protocol specification per
+                        communication type (synchronous or asynchronous).
+                    hints:
+                        - If no protocols were explicitly specified for the
+                          referred operation, it "inherits" the specifications
+                          of its
+                          [interface](#attribute-IntermediateInterface-protocols).
+                          In case the interface does also not exhibit protocol
+                          specifications, model processors should assume
+                          sensible defaults.
+                aspects:
+                    type:
+                        name: IntermediateImportedAspect
+                        multiplicity: "*"
+                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateImportedAspect
+                    description:
+                        Aspects of the referred operation.
+                referringInterface:
+                    type:
+                        name: IntermediateInterface
+                        internal_ref_kind: concept
+                    description:
+                        Link to the `IntermediateInterface` instance, which
+                        refers to the operation.
+    Communication:
+        ____introduction____:
+            This subsection describes concepts for the specification of
+            microservice communication.
+        IntermediateEndpoint:
+            description:
+                A protocol- and format-specific endpoint, e.g.,
+                "http://example.org" for the HTTP protocol and
+                "application/json" for the JSON data format.
+            attributes:
+                communicationType:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description: >
+                        Communication type of the endpoint. Corresponds to the
+                        type of the endpoint's
+                        [protocol](#attribute-IntermediateEndpoint-protocol).
+                        The following values are possible:
+                        <table>
+                            <tr>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr>
+                                <td>"ASYNCHRONOUS"</td>
+                                <td>
+                                    Asynchronous communication.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>"SYNCHRONOUS"</td>
+                                <td>
+                                    Synchronous communication.
+                                </td>
+                            </tr>
+                        </table>
+                protocol:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Name of the endpoint's protocol.
+                dataFormat:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Name of the endpoint's data format. LEMMA does not
+                        prescribe the notation of data formats in defining
+                        [technology models](https://seelabfhdo.github.io/lemma-docs/user-guide/technology-modeling-language).
+                        For instance, model processors may refer to the JSON
+                        format by means of its simple name, e.g., "json", or its
+                        MIME type, i.e., "application/json". Hence, it is in the
+                        responsibility of model processor developers to ensure
+                        that processors are compatible with technology models.
+                addresses:
+                    type:
+                        name: String
+                        multiplicity: "*"
+                    description:
+                        List of protocol- and format-specific addresses that
+                        were assigned to the endpoint, e.g.,
+                        "http://example.org".
+                    hints:
+                        - If the list of addresses is empty, model processors
+                          should assume sensible defaults as described for
+                          [microservices](#attribute-IntermediateMicroservice-endpoints),
+                          [interfaces](#attribute-IntermediateInterface-endpoints),
+                          [operations](#attribute-IntermediateOperation-endpoints),
+                          and
+                          [referred operations](#attribute-IntermediateReferredOperation-endpoints).
+                        - >
+                          In case the modeler did not specify a data format for
+                          an endpoint, it depends on the technology model, which
+                          endpoints are created in the intermediate service
+                          model:
+                          <ul>
+                              <li>
+                                  If the technology model defines a default
+                                  protocol and thus a default format, an
+                                  endpoint for this protocol and format is
+                                  created in the intermediate service model.
+                              </li>
+                              <li>
+                                  If the protocol is not the default protocol
+                                  for the communication type and hence does not
+                                  define a default format, endpoints for all
+                                  formats supported by the protocol are created.
+                              </li>
+                          </ul>
+                        - The addresses are not checked for validity by the
+                          Service Modeling Language. Model processors are
+                          required to perform validation, if necessary.
+                technology:
+                    type:
+                        name: IntermediateTechnology
+                        multiplicity: 1
+                        internal_ref_kind: concept
+                    description:
+                        Link to the
+                        [technology model](https://seelabfhdo.github.io/lemma-docs/user-guide/technology-modeling-language),
+                        which defines the protocol and data format.
+                microservice:
+                    type:
+                        name: IntermediateMicroservice
+                        internal_ref_kind: concept
+                    description:
+                        Microservice for which the endpoint was specified.
+                interface:
+                    type:
+                        name: IntermediateInterface
+                        internal_ref_kind: concept
+                    description:
+                        Interface for which the endpoint was specified.
+                operation:
+                    type:
+                        name: IntermediateOperation
+                        internal_ref_kind: concept
+                    description:
+                        Operation for which the endpoint was specified.
+                referredOperation:
+                    type:
+                        name: IntermediateReferredOperation
+                        internal_ref_kind: concept
+                    description:
+                        Referred operation for which the endpoint was specified.
+        IntermediateProtocolSpecification:
+            description:
+                A protocol and data format specification.
+            attributes:
+                communicationType:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description: >
+                        Communication type of the specification. The following
+                        values are possible:
+                        <table>
+                            <tr>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr>
+                                <td>"ASYNCHRONOUS"</td>
+                                <td>
+                                    Asynchronous communication.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>"SYNCHRONOUS"</td>
+                                <td>
+                                    Synchronous communication.
+                                </td>
+                            </tr>
+                        </table>
+                protocol:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Name of the specification's protocol.
+                dataFormat:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Name of the specification's data format.
+    Technologies:
+        IntermediateTechnology:
+            description:
+                Intermediate representation of a technology that originates from
+                an imported
+                [technology model](https://seelabfhdo.github.io/lemma-docs/user-guide/technology-modeling-language)
+                and has been applied to a microservice.
+            attributes:
+                name:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        The technology's name.
+                import:
+                    type:
+                        name: IntermediateImport
+                        multiplicity: 1
+                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateImport
+                    description:
+                        Intermediate representation of the technology model's
+                        import.
+                microservice:
+                    type:
+                        name: IntermediateMicroservice
+                        multiplicity: 1
+                        internal_ref_kind: concept
+                    description:
+                        Intermediate representation of the microservice to which
+                        the technology has been applied.
+    References:
+        ____introduction____:
+            This subsection describes concepts that model references to possibly
+            imported [microservices](#concept-IntermediateMicroservice),
+            [interfaces](#concept-IntermediateInterface), or
+            [operations](#concept-IntermediateOperation).
+        MicroserviceReference:
+            description:
+                Reference to a possibly imported
+                [microservice](#concept-IntermediateMicroservice).
+            attributes:
+                name:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Name of the referenced microservice.
+                version:
+                    type:
+                        name: String
+                    description:
+                        Version of the referenced microservice.
+                qualifiedName:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description: >
+                        [Qualified name](#attribute-IntermediateMicroservice-qualifiedName)
+                        of the referenced microservice.
+                imported:
+                    type:
+                        name: boolean
+                    description:
+                        Flag to indicate if the referenced microservice was
+                        imported from another service model.
+                import:
+                    type:
+                        name: IntermediateImport
+                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateImport
+                    description:
+                        The import, which points to the imported service model
+                        from which the referenced microservice originates. Iff
+                        the [`imported` flag](#attribute-MicroserviceReference-imported)
+                        flag is `true`, this attribute also contains a value.
+                localMicroservice:
+                    type:
+                        name: IntermediateMicroservice
+                        internal_ref_kind: concept
+                    description:
+                        Link to the referenced microservice in the same service
+                        model as the `MicroserviceReference`. Iff the
+                        [`imported` flag](#attribute-MicroserviceReference-imported)
+                        flag is `false`, this attribute also contains a value.
+                    hints:
+                        - If the attribute is `null`, i.e., the referenced
+                          microservice is defined in another, imported service
+                          model, model processors need to retrieve details about
+                          the referenced service from the imported service model
+                          themselves. That is, they need to parse the imported
+                          model and find the referenced microservice leveraging
+                          the [`qualifiedName` attribute](#attribute-MicroserviceReference-qualifiedName)
+                          of the `MicroserviceReference` instance.
+                requiringMicroservice:
+                    type:
+                        name: IntermediateMicroservice
+                        internal_ref_kind: concept
+                    description:
+                        Link to the microservice that
+                        [requires](#attribute-IntermediateMicroservice-requiredMicroservices)
+                        the referenced microservice.
+        InterfaceReference:
+            description:
+                Reference to a possibly imported
+                [interface](#concept-IntermediateInterface).
+            attributes:
+                name:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Name of the referenced interface.
+                version:
+                    type:
+                        name: String
+                    description:
+                        Version of the referenced interface.
+                qualifiedName:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description: >
+                        [Qualified name](#attribute-IntermediateInterface-qualifiedName)
+                        of the referenced interface.
+                imported:
+                    type:
+                        name: boolean
+                    description:
+                        Flag to indicate if the referenced interface was
+                        imported from another service model.
+                import:
+                    type:
+                        name: IntermediateImport
+                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateImport
+                    description:
+                        The import, which points to the imported service model
+                        from which the referenced interface originates. Iff the
+                        the [`imported` flag](#attribute-InterfaceReference-imported)
+                        flag is `true`, this attribute also contains a value.
+                localInterface:
+                    type:
+                        name: IntermediateInterface
+                        internal_ref_kind: concept
+                    description:
+                        Link to the referenced interface in the same service
+                        model as the `InterfaceReference`. Iff the
+                        [`imported` flag](#attribute-InterfaceReference-imported)
+                        flag is `false`, this attribute also contains a value.
+                    hints:
+                        - If the attribute is `null`, i.e., the referenced
+                          interface is defined in another, imported service
+                          model, model processors need to retrieve details about
+                          the referenced interface from the imported service
+                          model themselves. That is, they need to parse the
+                          imported model and find the referenced interface
+                          leveraging the
+                          [`qualifiedName` attribute](#attribute-InterfaceReference-qualifiedName)
+                          of the `InterfaceReference` instance.
+                requiringMicroservice:
+                    type:
+                        name: IntermediateMicroservice
+                        internal_ref_kind: concept
+                    description:
+                        Link to the microservice that
+                        [requires](#attribute-IntermediateMicroservice-requiredInterfaces)
+                        the referenced interface.
+        OperationReference:
+            description:
+                Reference to a possibly imported
+                [operation](#concept-IntermediateOperation).
+            attributes:
+                name:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description:
+                        Name of the referenced operation.
+                qualifiedName:
+                    type:
+                        name: String
+                        multiplicity: 1
+                    description: >
+                        [Qualified name](#attribute-IntermediateOperation-qualifiedName)
+                        of the referenced operation.
+                imported:
+                    type:
+                        name: boolean
+                    description:
+                        Flag to indicate if the referenced operation was
+                        imported from another service model.
+                import:
+                    type:
+                        name: IntermediateImport
+                        external_ref_uri: https://seelabfhdo.github.io/lemma-docs/developer-guide/intermediate-model-specifications/intermediate-domain-model-specification/#concept-IntermediateImport
+                    description:
+                        The import, which points to the imported service model
+                        from which the referenced operation originates. Iff the
+                        the [`imported` flag](#attribute-OperationReference-imported)
+                        flag is `true`, this attribute also contains a value.
+                localOperation:
+                    type:
+                        name: IntermediateOperation
+                        internal_ref_kind: concept
+                    description:
+                        Link to the referenced operation in the same service
+                        model as the `OperationReference`. Iff the
+                        [`imported` flag](#attribute-OperationReference-imported)
+                        flag is `false`, this attribute also contains a value.
+                    hints:
+                        - If the attribute is `null`, i.e., the referenced
+                          operation is defined in another, imported service
+                          model, model processors need to retrieve details about
+                          the referenced operation from the imported service
+                          model themselves. That is, they need to parse the
+                          imported model and find the referenced operation
+                          leveraging the
+                          [`qualifiedName` attribute](#attribute-OperationReference-qualifiedName)
+                          of the `OperationReference` instance.
+                requiringMicroservice:
+                    type:
+                        name: IntermediateMicroservice
+                        internal_ref_kind: concept
+                    description:
+                        Link to the microservice that
+                        [requires](#attribute-IntermediateMicroservice-requiredOperations)
+                        the referenced operation.
+                initializedParameter:
+                    type:
+                        name: IntermediateParameter
+                        internal_ref_kind: concept
+                    description:
+                        Link to the parameter that is
+                        [initialized by](#attribute-IntermediateParameter-initializedByOperation)
+                        the referenced operation.

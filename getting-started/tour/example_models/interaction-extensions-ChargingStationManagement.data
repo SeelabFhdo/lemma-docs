@@ -1,0 +1,27 @@
+context ChargingStationManagement {
+    ...
+    
+    structure TimePeriod<valueObject> {
+        immutable date start,
+        immutable date end
+    }
+
+    // Domain concepts for microservice interaction
+    structure CreateParkingAreaCommand<valueObject> {
+        immutable ParkingAreaInformation info
+    }
+
+    structure ParkingAreaInformation<valueObject> {
+        immutable string name,
+        immutable string description,
+        immutable Location location,
+        immutable ChargerSpeed chargerSpeed,
+        immutable TimePeriods availability,
+        immutable boolean activated
+    }
+
+    structure CreateParkingAreaCommandResponse<valueObject> {
+        immutable long id,
+        immutable string errorMessage
+    }
+}

@@ -1,0 +1,2527 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+    
+    
+      
+        <title>Integrating New Modules With LEMMA's Continuous Integration Pipeline - LEMMA Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.975780f9.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#integrating-new-modules-with-lemmas-continuous-integration-pipeline" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="LEMMA Documentation" class="md-header__button md-logo" aria-label="LEMMA Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LEMMA Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Integrating New Modules With LEMMA's Continuous Integration Pipeline
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="red"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/seelabfhdo/lemma" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    seelabfhdo/lemma
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Welcome
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../context-motivation/" class="md-tabs__link">
+      Context and Motivation
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../feature-overview/" class="md-tabs__link">
+      Feature Overview
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../getting-started/" class="md-tabs__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../user-guide/" class="md-tabs__link">
+        User Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../" class="md-tabs__link md-tabs__link--active">
+        Developer Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../research/" class="md-tabs__link">
+      Research
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../contact/" class="md-tabs__link">
+      Contact
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="LEMMA Documentation" class="md-nav__button md-logo" aria-label="LEMMA Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    LEMMA Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/seelabfhdo/lemma" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    seelabfhdo/lemma
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Welcome
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../context-motivation/" class="md-nav__link">
+        Context and Motivation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../feature-overview/" class="md-nav__link">
+        Feature Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Getting Started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Getting Started
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/tour/" class="md-nav__link">
+        Tour
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          User Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="User Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          User Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/domain-data-modeling-language/" class="md-nav__link">
+        Domain Data Modeling Language
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/technology-modeling-language/" class="md-nav__link">
+        Technology Modeling Language
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/service-modeling-language/" class="md-nav__link">
+        Service Modeling Language
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/service-technology-mapping-modeling-language/" class="md-nav__link">
+        Service Technology Mapping Modeling Language
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/operation-modeling-language/" class="md-nav__link">
+        Operation Modeling Language
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Developer Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Developer Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Developer Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coding-style/" class="md-nav__link">
+        Coding Style
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_3" type="checkbox" id="__nav_6_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_3">
+          Intermediate Model Specifications
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Intermediate Model Specifications" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_3">
+          <span class="md-nav__icon md-icon"></span>
+          Intermediate Model Specifications
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intermediate-model-specifications/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intermediate-model-specifications/obtaining-intermediate-models/" class="md-nav__link">
+        Obtaining Intermediate Models
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intermediate-model-specifications/intermediate-domain-model-specification/" class="md-nav__link">
+        Intermediate Domain Model Specification
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intermediate-model-specifications/intermediate-service-model-specification/" class="md-nav__link">
+        Intermediate Service Model Specification
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intermediate-model-specifications/intermediate-operation-model-specification/" class="md-nav__link">
+        Intermediate Operation Model Specification
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../model-processing-framework/" class="md-nav__link">
+        Model Processing Framework
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Integrating New Modules With LEMMA's Continuous Integration Pipeline
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Integrating New Modules With LEMMA's Continuous Integration Pipeline
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#module-build" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Module Build
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+    <nav class="md-nav" aria-label="Module Build">
+      <ul class="md-nav__list">
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#relevant-program-versions" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Relevant Program Versions
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#build-scripts" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Build Scripts
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#integrating-new-modules-with-the-build-scripts" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Integrating New Modules With the Build Scripts
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#customizing-module-builds" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Customizing Module Builds
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#eclipse-updatesite-build" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Eclipse Updatesite Build
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+    <nav class="md-nav" aria-label="Eclipse Updatesite Build">
+      <ul class="md-nav__list">
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#updatesite-build-script" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Updatesite Build Script
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#integrating-new-modules-with-the-updatesite-build-script" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Integrating New Modules With the Updatesite Build Script
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#customizing-eclipse-updatesite-builds" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Customizing Eclipse Updatesite Builds
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#artifact-and-eclipse-updatesite-deployment" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Artifact and Eclipse Updatesite Deployment
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+    <nav class="md-nav" aria-label="Artifact and Eclipse Updatesite Deployment">
+      <ul class="md-nav__list">
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#deployment-script" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Deployment Script
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#integrating-new-modules-with-the-deployment-script" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Integrating New Modules With the Deployment Script
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#customizing-module-deployments" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Customizing Module Deployments
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#build-and-deployment-of-module-specific-docker-images" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Build and Deployment of Module-Specific Docker Images
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+    <nav class="md-nav" aria-label="Build and Deployment of Module-Specific Docker Images">
+      <ul class="md-nav__list">
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#deployment-script_1" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Deployment Script
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#integrating-new-modules-with-the-deployment-script_1" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Integrating New Modules With the Deployment Script
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#checklist" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Checklist
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../java-base-generator-extension/" class="md-nav__link">
+        Extending the Java Base Generator
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../static-analysis-library/" class="md-nav__link">
+        Static Analysis Library
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research/" class="md-nav__link">
+        Research
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contact/" class="md-nav__link">
+        Contact
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#module-build" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Module Build
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+    <nav class="md-nav" aria-label="Module Build">
+      <ul class="md-nav__list">
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#relevant-program-versions" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Relevant Program Versions
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#build-scripts" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Build Scripts
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#integrating-new-modules-with-the-build-scripts" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Integrating New Modules With the Build Scripts
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#customizing-module-builds" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Customizing Module Builds
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#eclipse-updatesite-build" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Eclipse Updatesite Build
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+    <nav class="md-nav" aria-label="Eclipse Updatesite Build">
+      <ul class="md-nav__list">
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#updatesite-build-script" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Updatesite Build Script
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#integrating-new-modules-with-the-updatesite-build-script" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Integrating New Modules With the Updatesite Build Script
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#customizing-eclipse-updatesite-builds" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Customizing Eclipse Updatesite Builds
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#artifact-and-eclipse-updatesite-deployment" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Artifact and Eclipse Updatesite Deployment
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+    <nav class="md-nav" aria-label="Artifact and Eclipse Updatesite Deployment">
+      <ul class="md-nav__list">
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#deployment-script" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Deployment Script
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#integrating-new-modules-with-the-deployment-script" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Integrating New Modules With the Deployment Script
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#customizing-module-deployments" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Customizing Module Deployments
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#build-and-deployment-of-module-specific-docker-images" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Build and Deployment of Module-Specific Docker Images
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+    <nav class="md-nav" aria-label="Build and Deployment of Module-Specific Docker Images">
+      <ul class="md-nav__list">
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#deployment-script_1" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Deployment Script
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#integrating-new-modules-with-the-deployment-script_1" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Integrating New Modules With the Deployment Script
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#checklist" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Checklist
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <a href="https://github.com/seelabfhdo/lemma-docs/edit/main/docs/developer-guide/continuous-integration/index.md" title="Edit this page" class="md-content__button md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+<h1 id="integrating-new-modules-with-lemmas-continuous-integration-pipeline">Integrating New Modules With LEMMA's Continuous Integration Pipeline</h1>
+<p>LEMMA provides a sophisticated Continuous Integration (CI) pipeline, whose
+configuration is visible from the
+<a href="https://github.com/SeelabFhdo/lemma/blob/main/Jenkinsfile">Jenkinsfile in LEMMA's <code>main</code> branch</a>.
+This pipeline supports:</p>
+<ul>
+<li>LEMMA builds under Windows</li>
+<li>Dockerized LEMMA builds under Linux</li>
+<li>Deployments of LEMMA artifacts in public Maven repositories (only from
+    <code>main</code> branch)</li>
+<li>Deployment of LEMMA's Eclipse Updatesite (only from
+    <code>main</code> branch)</li>
+<li>Deployment of Docker images specific to LEMMA modules (only from
+    <code>main</code> branch)</li>
+</ul>
+<p>The various results of successful pipeline executions are obtainable from the
+following online resources:</p>
+<ul>
+<li>LEMMA builds: <a href="https://build.seelab.fh-dortmund.de/job/SeelabFhdo/job/lemma">https://build.seelab.fh-dortmund.de/job/SeelabFhdo/job/lemma</a></li>
+<li>Deployed artifacts: <a href="https://repository.seelab.fh-dortmund.de/#browse/search/maven">https://repository.seelab.fh-dortmund.de/#browse/search/maven</a></li>
+<li>Deployed Eclipse Updatesite: <a href="https://microservices.fh-dortmund.de/lemma/">https://microservices.fh-dortmund.de/lemma/</a></li>
+<li>Deployed Docker images: <a href="https://repository.seelab.fh-dortmund.de/#browse/search/docker">https://repository.seelab.fh-dortmund.de/#browse/search/docker</a></li>
+</ul>
+<p>New modules for the LEMMA ecosystem can participate in the CI pipeline, and thus
+provide their own artifacts, Eclipse plugins, and Docker images for publication
+via LEMMA's CI pipeline.</p>
+<p>This page describes how to teach LEMMA's CI pipeline the consideration of new
+modules and their contributions to the ecosystem.</p>
+<h2 id="module-build">Module Build</h2>
+<h3 id="relevant-program-versions">Relevant Program Versions</h3>
+<p>LEMMA builds rely on the following versions of programs or have been tested with
+them:</p>
+<ul>
+<li><a href="https://gradle.org">Gradle</a>: 5.2.1, 6.1.1, 6.3, 6.8, 7.1.1 (mentioned for
+                                completeness as Gradle downloads its required
+                                release for a given module when a build is
+                                triggered)</li>
+<li>Eclipse: 2021-03</li>
+<li>Java: 11</li>
+<li>Linux: Ubuntu 18.04 LTS (Bionic Beaver)</li>
+<li>Linux (in dockerized builds): Debian GNU/Linux 10 (buster)</li>
+<li><a href="https://maven.apache.org">Maven</a>: 3.6.3</li>
+<li>Windows: 10</li>
+</ul>
+<h3 id="build-scripts">Build Scripts</h3>
+<p>LEMMA's codebase comprises two specialized build scripts for Unix-like operating
+systems (including macOS) and Windows. Both scripts are located in the <code>build</code>
+folder of LEMMA's codebase:</p>
+<ul>
+<li><a href="https://github.com/SeelabFhdo/lemma/blob/main/build/lemma.sh"><code>lemma.sh</code></a>:
+    Build script for Unix-like operating systems.</li>
+<li><a href="https://github.com/SeelabFhdo/lemma/blob/main/build/lemma.bat"><code>lemma.bat</code></a>:
+    Build script for Windows.</li>
+</ul>
+<p>These scripts are executed by LEMMA's CI pipeline but it is also possible to
+invoke them on local hardware to build and install all necessary LEMMA
+dependencies in a local development file system.</p>
+<p>By contrast to the <code>lemma.bat</code> script, <code>lemma.sh</code> runs within a Docker container
+during builds with LEMMA's CI pipeline. The corresponding image's Dockerfile and
+related files are available from the
+<a href="https://github.com/SeelabFhdo/lemma/tree/main/build/docker"><code>build/docker</code> folder in LEMMA's GitHub repository</a>.</p>
+<h3 id="integrating-new-modules-with-the-build-scripts">Integrating New Modules With the Build Scripts</h3>
+<p>The <code>lemma.sh</code> script invokes builds consecutively for the LEMMA modules listed
+in the
+<a href="https://github.com/SeelabFhdo/lemma/blob/main/build/lemma-build-modules.txt"><code>lemma-build-modules.txt</code> file</a>
+located in the <code>build</code> folder of LEMMA's codebase. Each module name in the file
+corresponds to the name of a top-level folder in LEMMA's codebase.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>To participate in LEMMA builds, the folder names of new modules may be added
+to the <code>lemma-build-modules.txt</code> file. However, their addition is <strong>only</strong>
+<strong>necessary</strong> if they are not already considered by parent modules. For
+example, the file comprises only the entry
+<code>de.fhdo.lemma.data.datadsl.parent</code> for LEMMA's
+<a href="../../user-guide/domain-data-modeling-language/">Domain Data Modeling Language</a>
+because the
+<a href="https://github.com/SeelabFhdo/lemma/blob/main/de.fhdo.lemma.data.datadsl.parent/pom.xml"><code>pom.xml</code> in this folder</a>
+is the parent Maven <a href="https://maven.apache.org/pom.html">POM</a> for all of the language's
+modules. Consequently, a new module for the Domain Data Modeling Language
+does not belong in the <code>lemma-build-modules.txt</code> file.</p>
+</div>
+<p>Conversely to <code>lemma.sh</code>, the <code>lemma.bat</code> script requires direct modification
+for new LEMMA modules that are not covered by parent modules. More specifically,
+the name of a new module's top-level folder in LEMMA's codebase must be added to
+the <code>modules</code> array:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code>...
+<span class="c1">REM Analyzer</span>
+<span class="k">set</span> <span class="nv">modules</span><span class="p">=</span><span class="nv">%modules%</span>;de.fhdo.lemma.analyzer.lib
+<span class="k">set</span> <span class="nv">modules</span><span class="p">=</span><span class="nv">%modules%</span>;de.fhdo.lemma.analyzer
+
+<span class="c1">REM New (Group of) Module(s)</span>
+<span class="k">set</span> <span class="nv">modules</span><span class="p">=</span><span class="nv">%modules%</span>;{NEW_MODULE_PATH}
+...
+</code></pre></div></td></tr></table></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you want do debug local LEMMA builds on a selected set of modules, you
+may temporarily adapt the <code>lemma-build-modules.txt</code> file (for <code>lemma.sh</code>)
+and/or the <code>modules</code> array (in <code>lemma.bat</code>), and remove modules from the
+local build process you do not care about. However, be aware that module
+removals in should not be become part of 
+<a href="../coding-style/#commits">pull requests</a> when their only purpose is
+build debugging.</p>
+</div>
+<h3 id="customizing-module-builds">Customizing Module Builds</h3>
+<p>Maven is LEMMA's default build system and both <a href="#build-scripts">build scripts</a>
+by default invoke the <code>mvn clean install</code> command to perform module builds (and
+installations to the local file system). However, this behavior is adaptable by
+putting a <code>build.sh</code> and/or <code>build.bat</code> script into the folder of a module. In
+case a <code>build.sh</code> file is present, the <code>lemma.sh</code> script will invoke it instead
+of <code>mvn clean install</code> for the module's builds on Unix-like operating systems.
+A <code>build.bat</code> script will then be employed for Windows builds of the respective
+module.</p>
+<p>We use this mechanism of build customization, for instance, to perform builds
+with other build systems than Maven, e.g., Gradle. The <code>lemma.sh</code> and
+<code>lemma.bat</code> scripts do not pass any information from the build process to
+<code>build.sh</code> or <code>build.bat</code> scripts. However, they check the return codes of
+custom builds and immediately abort the build process if a custom build script
+finishes with a return code greater <code>0</code>.</p>
+<p>You can find many examples of customized builds in LEMMA's codebase. Good
+(and generic) starters are the custom build scripts of LEMMA's
+<a href="../static-analysis-library/">static analysis library</a>, whose code you
+can find under the following links and that trigger the Gradle build of the
+static analysis library:</p>
+<ul>
+<li><a href="https://github.com/SeelabFhdo/lemma/blob/main/de.fhdo.lemma.analyzer.lib/build.sh"><code>de.fhdo.lemma.analyzer.lib/build.sh</code></a></li>
+<li><a href="https://github.com/SeelabFhdo/lemma/blob/main/de.fhdo.lemma.analyzer.lib/build.bat"><code>de.fhdo.lemma.analyzer.lib/build.bat</code></a></li>
+</ul>
+<h2 id="eclipse-updatesite-build">Eclipse Updatesite Build</h2>
+<p>LEMMA's CI pipeline performs an extra build for LEMMA's Eclipse Updatesite in
+case <strong>all</strong> <a href="#module-build">module builds</a> ran successfully.</p>
+<h3 id="updatesite-build-script">Updatesite Build Script</h3>
+<p>By contrast to the scripts that control LEMMA module builds, there exists only
+one script that is responsible for build artifact deployment, i.e.,
+<a href="https://github.com/SeelabFhdo/lemma/blob/main/build/updatesite/lemma-updatesite.sh"><code>lemma-updatesite.sh</code> in the <code>build/updatesite</code> folder of LEMMA's codebase</a>.</p>
+<p>Similarly to the <code>lemma.sh</code> build script, the execution of <code>lemma-updatesite.sh</code>
+during CI pipeline runs happens from a Docker container, whose Dockerfile and
+related files are available from the
+<a href="https://github.com/SeelabFhdo/lemma/tree/main/build/updatesite/docker"><code>build/updatesite/docker</code> folder in LEMMA's GitHub repository</a>.</p>
+<h3 id="integrating-new-modules-with-the-updatesite-build-script">Integrating New Modules With the Updatesite Build Script</h3>
+<p>The <code>lemma-updatesite.sh</code> script invokes builds consecutively for the LEMMA
+modules listed in the
+<a href="https://github.com/SeelabFhdo/lemma/blob/main/build/updatesite/lemma-build-updatesite-modules.txt"><code>lemma-build-updatesite-modules.txt</code> file</a>
+located in the <code>build/updatesite</code> folder of LEMMA's codebase. Each module name
+in the file corresponds to the name of a top-level folder in LEMMA's codebase.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>To participate in Eclipse Updatesite builds, the folder names of new modules
+may be added to the <code>lemma-build-updatesite-modules.txt</code> file. However,
+their addition is <strong>only necessary</strong> if they are not already considered by
+parent modules. For example, the file comprises only the entry
+<code>de.fhdo.lemma.data.datadsl.parent</code> for LEMMA's
+<a href="../../user-guide/domain-data-modeling-language/">Domain Data Modeling Language</a>
+because the
+<a href="https://github.com/SeelabFhdo/lemma/blob/main/de.fhdo.lemma.data.datadsl.parent/pom.xml"><code>pom.xml</code> in this folder</a>
+is the parent Maven POM for all of the language's modules. Consequently, a
+new module for the Domain Data Modeling Language does not belong in the
+<code>lemma-build-updatesite-modules.txt</code> file.</p>
+</div>
+<p>In addition, it is necessary to add new LEMMA modules to the
+<a href="https://github.com/SeelabFhdo/lemma/blob/main/de.fhdo.lemma.eclipse.updatesite.feature/feature.xml"><code>feature.xml</code> file</a>
+in LEMMA's <code>de.fhdo.lemma.eclipse.updatesite.feature</code> module. Otherwise, the
+built Updatesite will not comprise them.</p>
+<h3 id="customizing-eclipse-updatesite-builds">Customizing Eclipse Updatesite Builds</h3>
+<p>Internally, the <code>lemma-updatesite.sh</code> script invokes the
+<a href="#build-scripts"><code>lemma.sh</code> script for module builds</a> on the
+<code>lemma-build-updatesite-modules.txt</code> file. Consequently, the same
+<a href="#customizing-module-builds">customization options</a> apply to Eclipse Updatesite
+builds.</p>
+<p>In addition, the <code>lemma-updatesite.sh</code> script exports the
+<code>LEMMA_UPDATESITE_BUILD</code> environment variable with the value <code>"true"</code> to make
+Eclipse Updatesite builds distinguishable from previous module builds. Using the
+variable, Maven POM files may, for instance, behave differently by applying
+specialized
+<a href="https://maven.apache.org/guides/introduction/introduction-to-profiles.html">Maven build profiles</a>, during Eclipse
+Updatesite builds. See for example the
+<a href="https://github.com/SeelabFhdo/lemma/blob/main/de.fhdo.lemma.data.datadsl.parent/pom.xml"><code>pom.xml</code> file of the parent project of LEMMA's Domain Data Modeling Language</a>. It skips tests in its <code>eclipse-updatesite</code> profile, which gets
+activated when the <code>LEMMA_UPDATESITE_BUILD</code> environment variable has the value
+<code>"true"</code>, to shorten the build time by omitting redundant tests that already
+ran during previous module builds.</p>
+<h2 id="artifact-and-eclipse-updatesite-deployment">Artifact and Eclipse Updatesite Deployment</h2>
+<p>LEMMA's CI pipeline performs the deployment of build artifacts in case <strong>all</strong>
+<a href="#module-build">module builds</a> and
+<a href="#eclipse-updatesite-build">Eclipse Updatesite builds</a> ran successfully.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>The CI pipeline performs the deployment only for changes in LEMMA's
+<code>main</code> branch. Concerning the deployment of the
+Eclipse Updatesite to its <a href="https://microservices.fh-dortmund.de/lemma/">server</a>, it is also
+necessary that the commit, which triggered a CI pipeline run, has a release
+tag of the form <code>v$MAJOR.$MINOR(.$PATCH)?</code> with <code>$MAJOR</code>, <code>$MINOR</code>, and
+<code>$PATCH</code> being numerical<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>. For example, <code>v0.8</code> and <code>v0.8.5</code> are valid
+release tags.</p>
+</div>
+<h3 id="deployment-script">Deployment Script</h3>
+<p>By contrast to the scripts that control LEMMA module builds, there exists only
+one script that is responsible for build artifact deployment, i.e.,
+<a href="https://github.com/SeelabFhdo/lemma/blob/main/build/deploy/lemma-deploy.sh"><code>lemma-deploy.sh</code> in the <code>build/deploy</code> folder of LEMMA's codebase</a>.
+The script is meant to be executed by LEMMA's CI pipeline only. Specifically,
+its intended use does not involve deployments from local hardware.</p>
+<p>Similarly to the <code>lemma.sh</code> build script, the execution of <code>lemma-deploy.sh</code>
+during CI pipeline runs happens from a Docker container, whose Dockerfile and
+related files are available from the
+<a href="https://github.com/SeelabFhdo/lemma/tree/main/build/deploy/docker"><code>build/deploy/docker</code> folder in LEMMA's GitHub repository</a>.</p>
+<h3 id="integrating-new-modules-with-the-deployment-script">Integrating New Modules With the Deployment Script</h3>
+<p>The <code>lemma-deploy.sh</code> script invokes builds consecutively for the LEMMA modules
+listed in the
+<a href="https://github.com/SeelabFhdo/lemma/blob/main/build/deploy/lemma-deployment-modules.txt"><code>lemma-deployment-modules.txt</code> file</a>
+located in the <code>build/deploy</code> folder of LEMMA's codebase. Each module name in
+the file corresponds to the name of a top-level folder in LEMMA's codebase.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>To deploy the artifacts of new modules after their successful build from
+LEMMA's CI pipeline, the modules' folder names may be added to the
+<code>lemma-deployment-modules.txt</code> file. However, their addition is <strong>only</strong>
+<strong>necessary</strong> if they are not already considered by parent modules. For
+example, the file comprises only the entry
+<code>de.fhdo.lemma.data.datadsl.parent</code> for LEMMA's
+<a href="../../user-guide/domain-data-modeling-language/">Domain Data Modeling Language</a>
+because the
+<a href="https://github.com/SeelabFhdo/lemma/blob/main/de.fhdo.lemma.data.datadsl.parent/pom.xml"><code>pom.xml</code> in this folder</a>
+is the parent Maven POM for all of the language's modules. Consequently, a
+new module for the Domain Data Modeling Language does not belong in the
+<code>lemma-deployment-modules.txt</code> file.</p>
+</div>
+<h3 id="customizing-module-deployments">Customizing Module Deployments</h3>
+<p>As with <a href="#customizing-module-builds">module builds</a>, LEMMA by default relies on
+Maven for module deployments. More specifically, the default command invoked by
+<code>lemma-deploy.sh</code> for this purpose is <code>mvn deploy</code>. Again, this behavior is
+however customizable, i.e., modules may provide a script called <code>deploy.sh</code> in
+their top-level folders. The <code>lemma-deploy.sh</code> script will then delegate all
+deployment steps for the module to the custom <code>deploy.sh</code> script.</p>
+<p>We use this mechanism of artifact deployment customization, for instance, to
+deploy artifacts that were built with other systems than Maven, e.g., Gradle.
+The <code>lemma-deploy.sh</code> script provides four environment variables that are
+accessible by custom deployment scripts:</p>
+<ul>
+<li><code>DEPLOY_MAVEN_USER</code>: The user to access the
+                         <a href="https://repository.seelab.fh-dortmund.de/#browse/search/maven">remote artifact repository</a>
+                         for storage of build artifacts.</li>
+<li><code>DEPLOY_MAVEN_PASSWORD</code>: The password to access the remote artifact
+                             repository in combination with the user.</li>
+<li><code>DEPLOY_MAVEN_URL_SNAPSHOTS</code>: The URL of the remote artifact repository for
+                                  snapshot artifacts that are, e.g., not ready
+                                  for production.</li>
+<li><code>DEPLOY_MAVEN_URL_RELEASES</code>: The URL of the remote artifact repository for
+                                 release artifacts.</li>
+</ul>
+<p>The <code>lemma-deploy.sh</code> script checks the return codes of custom deployments and
+immediately abort the deployment process (and thus the current CI pipeline run)
+if a custom deployment script finishes with a return code greater <code>0</code>.</p>
+<p>You can find many examples of customized deployments in LEMMA's codebase. A good
+starter is the custom deployment script of LEMMA's
+<a href="../static-analysis-library/">static analysis library</a>, whose code you
+can find under the
+<a href="https://github.com/SeelabFhdo/lemma/blob/main/de.fhdo.lemma.analyzer.lib/deploy.sh"><code>de.fhdo.lemma.analyzer.lib/deploy.sh</code> file in LEMMA's codebase</a>. The
+script uses Gradle to deploy LEMMA's static analysis library as per the
+configuration in the <a href="https://github.com/SeelabFhdo/lemma/blob/main/de.fhdo.lemma.analyzer.lib/deploy.gradle.kts"><code>de.fhdo.lemma.analyzer.lib/deploy.gradle.kts</code> file</a>.</p>
+<p>Furthermore, the <code>lemma-deploy.sh</code> scripts exports the environment variable
+<code>LEMMA_DEPLOYMENT</code> with the value <code>"true"</code>. As for
+<a href="#customizing-eclipse-updatesite-builds">Eclipse Updatesite builds</a>, the
+variable allows an additional means to recognize module deployments. We use this
+variable, e.g., to skips tests from previous module builds. See for example the
+<a href="https://github.com/SeelabFhdo/lemma/blob/main/de.fhdo.lemma.data.datadsl.parent/pom.xml"><code>pom.xml</code> file of the parent project of LEMMA's Domain Data Modeling Language</a>, which activates its <code>deployment</code> <a href="https://maven.apache.org/guides/introduction/introduction-to-profiles.html">build profile</a>
+for this purpose based on the value of the <code>LEMMA_DEPLOYMENT</code> environment
+variable.</p>
+<h2 id="build-and-deployment-of-module-specific-docker-images">Build and Deployment of Module-Specific Docker Images</h2>
+<p>LEMMA's CI pipeline integrates a step to deploy module-specific Docker images,
+which may enable to, e.g., provide
+<a href="../model-processing-framework/">model processors</a> as standalone
+applications including the required runtime environment.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>The CI pipeline performs the deployment only for changes in LEMMA's
+<code>main</code> branch.</p>
+</div>
+<h3 id="deployment-script_1">Deployment Script</h3>
+<p>The build and deployment of module-specific Docker images is controlled by the
+<a href="https://github.com/SeelabFhdo/lemma/blob/main/build/docker-images-push/docker-images-push.sh"><code>docker-images-push.sh</code> script in the <code>build/docker-images-push</code> folder of LEMMA's codebase</a>. The script is meant to be executed by LEMMA's CI
+pipeline only. Specifically, its intended use does not involve deployments from
+local hardware.</p>
+<h3 id="integrating-new-modules-with-the-deployment-script_1">Integrating New Modules With the Deployment Script</h3>
+<p>The <code>docker-images-push.sh</code> script operates on the same file of module entries
+as the <code>lemma.sh</code> script, i.e.,
+<a href="#integrating-new-modules-with-the-build-scripts"><code>lemma-build-modules.txt</code></a>. In
+case the script encounters a file called <code>build.sh</code> in the <code>docker</code> folder of a
+LEMMA module, it will delegate the build of a Docker image to this script.</p>
+<p>The <code>build.sh</code> script receives as its first (and only) argument the version of
+its module, e.g., <code>"0.8.5-SNAPSHOT"</code>, from the <code>docker-images-push.sh</code> script.
+The version string corresponds to the version configured with the module's build
+system. For example, Maven usually determines versions by the <code>&lt;version&gt;</code> tag in
+a <code>pom.xml</code> file, whereas Gradle assigns the version string to the <code>version</code>
+variable in a <code>gradle.properties</code> file.</p>
+<p>The <code>build.sh</code> script must export an environment variable called
+<code>LEMMA_DOCKER_IMAGE_TAG</code> with the name of the Docker image that it builds, e.g.,
+<code>"lemma/static_analyzer:latest"</code>. The content of this variable will then be used
+by the <code>docker-images-push.sh</code> script to deploy the image, if its build
+succeeded, i.e., the <code>build.sh</code> script exited with a return code of <code>0</code>.</p>
+<p>You can find many examples for the provisioning of module-specific Docker images
+in LEMMA's codebase. A good starter is the <code>build.sh</code> script for the image of
+LEMMA's
+<a href="../../user-guide/model-processing/static-analysis/">static analyzer</a>,
+whose code you
+can find under the
+<a href="https://github.com/SeelabFhdo/lemma/blob/main/de.fhdo.lemma.analyzer/docker/build.sh"><code>de.fhdo.lemma.analyzer/docker/build.sh</code> file in LEMMA's codebase</a>.</p>
+<h2 id="checklist">Checklist</h2>
+<p>The following checklist provides a quick overview for developers to integrate
+their new modules with LEMMA's CI pipeline. It only applies to modules that are
+<strong>standalone</strong>, e.g., Maven <code>parent</code> projects or executable model processors,
+which are not sub-projects of other model processors:</p>
+<ol>
+<li>
+<p><em>Optional</em>: In case the module <strong>uses another build system than Maven</strong>:</p>
+<ul>
+<li>Customize module build for chosen build system via <code>build.sh</code> and
+  <code>build.bat</code> scripts (<a href="#customizing-module-builds">details</a>). Depending on
+  the operating system, LEMMA's CI pipeline will delegate the module's build
+  to these scripts.</li>
+<li>Customize module deployment for chosen build system via <code>deploy.sh</code> script
+  (<a href="#customizing-module-deployments">details</a>). LEMMA's CI pipeline will
+  delegate the module's deployment to this script.</li>
+</ul>
+</li>
+<li>
+<p>Add module folder to <code>lemma-build-modules.txt</code> file and the <code>modules</code> array
+     in the <code>lemma.bat</code> script
+     (<a href="#integrating-new-modules-with-the-build-scripts">details</a>). LEMMA's CI
+     pipeline will consider the module during the build stage.</p>
+</li>
+<li>
+<p>Add module folder to the <code>lemma-deployment-modules.txt</code> file
+     (<a href="#integrating-new-modules-with-the-deployment-script">details</a>). LEMMA's
+     CI pipeline will consider the module during the deployment stage.</p>
+</li>
+<li>
+<p><em>Optional</em>: In case the module <strong>is an Eclipse plugin</strong>:</p>
+<ul>
+<li>Add module folder to <code>lemma-build-updatesite-modules.txt</code> file as well as
+  the <code>feature.xml</code> file in LEMMA's
+  <code>de.fhdo.lemma.eclipse.updatesite.feature</code> module
+  (<a href="#integrating-new-modules-with-the-updatesite-build-script">details</a>).
+  LEMMA's CI pipeline will consider the module during the build <strong>and</strong>
+  deployment of the Eclipse Updatesite.</li>
+</ul>
+</li>
+<li>
+<p><em>Optional</em>: Module shall <strong>provide its own Docker image</strong>:</p>
+<ul>
+<li>Add a <code>build.sh</code> script to a folder called <code>docker</code> in the module's root
+  folder (<a href="#integrating-new-modules-with-the-deployment-script_1">details</a>).
+  LEMMA's CI pipeline will consider the module during the build <strong>and</strong>
+  deployment of module-specific Docker images.</li>
+</ul>
+</li>
+</ol>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Technically speaking, the Bash-specific regular expression for release tags
+is <code>^v[0-9]+\.[0-9]+(\.[0-9]+)?</code>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+  <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-file.html 
+-->
+
+
+
+<!-- Last updated date -->
+
+<hr />
+<div class="md-source-date">
+  <small>
+
+    <!-- mkdocs-git-revision-date-localized-plugin -->
+    
+      Last update: 2022-12-16
+    
+
+    <!-- EXTENSION BEGIN -->
+    <!-- mkdocs-git-authors-plugin -->
+    
+      by <span class='git-page-authors git-authors'><a href='mailto:florian.rademacher@fh-dortmund.de'>Florian Rademacher</a></span>
+    
+    <!-- EXTENSION END -->
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../model-processing-framework/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Model Processing Framework" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Model Processing Framework
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../java-base-generator-extension/" class="md-footer__link md-footer__link--next" aria-label="Next: Extending the Java Base Generator" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Extending the Java Base Generator
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.top"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.5a2dcb6a.min.js"></script>
+      
+    
+    
+  </body>
+</html>

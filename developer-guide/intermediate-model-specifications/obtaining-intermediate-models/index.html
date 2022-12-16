@@ -1,0 +1,1855 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+    
+    
+      
+        <title>Obtaining Intermediate Models - LEMMA Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.975780f9.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.2505c338.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#obtaining-intermediate-models" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="LEMMA Documentation" class="md-header__button md-logo" aria-label="LEMMA Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LEMMA Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Obtaining Intermediate Models
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="red"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/seelabfhdo/lemma" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    seelabfhdo/lemma
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../.." class="md-tabs__link">
+      Welcome
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../context-motivation/" class="md-tabs__link">
+      Context and Motivation
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../feature-overview/" class="md-tabs__link">
+      Feature Overview
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../getting-started/" class="md-tabs__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../user-guide/" class="md-tabs__link">
+        User Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link md-tabs__link--active">
+        Developer Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../research/" class="md-tabs__link">
+      Research
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../contact/" class="md-tabs__link">
+      Contact
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="LEMMA Documentation" class="md-nav__button md-logo" aria-label="LEMMA Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    LEMMA Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/seelabfhdo/lemma" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    seelabfhdo/lemma
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Welcome
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../context-motivation/" class="md-nav__link">
+        Context and Motivation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../feature-overview/" class="md-nav__link">
+        Feature Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Getting Started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Getting Started
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/tour/" class="md-nav__link">
+        Tour
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          User Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="User Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          User Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../user-guide/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../user-guide/domain-data-modeling-language/" class="md-nav__link">
+        Domain Data Modeling Language
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../user-guide/technology-modeling-language/" class="md-nav__link">
+        Technology Modeling Language
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../user-guide/service-modeling-language/" class="md-nav__link">
+        Service Modeling Language
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../user-guide/service-technology-mapping-modeling-language/" class="md-nav__link">
+        Service Technology Mapping Modeling Language
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../user-guide/operation-modeling-language/" class="md-nav__link">
+        Operation Modeling Language
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Developer Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Developer Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Developer Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../coding-style/" class="md-nav__link">
+        Coding Style
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_3" type="checkbox" id="__nav_6_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_3">
+          Intermediate Model Specifications
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Intermediate Model Specifications" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_3">
+          <span class="md-nav__icon md-icon"></span>
+          Intermediate Model Specifications
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Obtaining Intermediate Models
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Obtaining Intermediate Models
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#handling-of-imported-models" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Handling of Imported Models
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+      
+        <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#obtaining-intermediate-service-models-using-the-eclipse-ide" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Obtaining Intermediate Service Models Using the Eclipse IDE
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+    <nav class="md-nav" aria-label="Obtaining Intermediate Service Models Using the Eclipse IDE">
+      <ul class="md-nav__list">
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#step-1-start-an-intermediate-model-derivation-process" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Step 1: Start an Intermediate Model Derivation Process
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+    <nav class="md-nav" aria-label="Step 1: Start an Intermediate Model Derivation Process">
+      <ul class="md-nav__list">
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#single-model-mode" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Single-Model Mode
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#multi-model-mode" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Multi-Model Mode
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#step-2-select-models-for-intermediate-transformation" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Step 2: Select Models for Intermediate Transformation
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#step-3-specify-transformation-target-paths" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Step 3: Specify Transformation Target Paths
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#step-4-intermediate-model-serialization" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Step 4: Intermediate Model Serialization
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intermediate-domain-model-specification/" class="md-nav__link">
+        Intermediate Domain Model Specification
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intermediate-service-model-specification/" class="md-nav__link">
+        Intermediate Service Model Specification
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intermediate-operation-model-specification/" class="md-nav__link">
+        Intermediate Operation Model Specification
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-processing-framework/" class="md-nav__link">
+        Model Processing Framework
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../continuous-integration/" class="md-nav__link">
+        Integrating New Modules With LEMMA's Continuous Integration Pipeline
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../java-base-generator-extension/" class="md-nav__link">
+        Extending the Java Base Generator
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../static-analysis-library/" class="md-nav__link">
+        Static Analysis Library
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../research/" class="md-nav__link">
+        Research
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../contact/" class="md-nav__link">
+        Contact
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#handling-of-imported-models" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Handling of Imported Models
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+      
+        <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#obtaining-intermediate-service-models-using-the-eclipse-ide" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Obtaining Intermediate Service Models Using the Eclipse IDE
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+    <nav class="md-nav" aria-label="Obtaining Intermediate Service Models Using the Eclipse IDE">
+      <ul class="md-nav__list">
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#step-1-start-an-intermediate-model-derivation-process" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Step 1: Start an Intermediate Model Derivation Process
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+    <nav class="md-nav" aria-label="Step 1: Start an Intermediate Model Derivation Process">
+      <ul class="md-nav__list">
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#single-model-mode" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Single-Model Mode
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#multi-model-mode" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Multi-Model Mode
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#step-2-select-models-for-intermediate-transformation" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Step 2: Select Models for Intermediate Transformation
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#step-3-specify-transformation-target-paths" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Step 3: Specify Transformation Target Paths
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+          <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc-item.html 
+-->
+
+<!-- EXTENSION BEGIN -->
+<!--
+    Add special handling for specification pages, on which we want the TOC to
+    only include item names but not their kinds (e.g., "Class") or types (e.g.,
+    "String[1]"). For that purpose, we assume that (i) specification entries
+    begin at TOC level 3; and (ii) the last part in the item is the real name of
+    the item (e.g., "conceptName" for item "Class conceptName" or
+    "Class conceptName : superConceptName").
+-->
+
+        
+
+<!-- EXTENSION END -->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#step-4-intermediate-model-serialization" class="md-nav__link">
+    <!-- EXTENSION BEGIN -->
+    <!-- Changed from toc_item.title to custom item_title variable -->
+    Step 4: Intermediate Model Serialization
+    <!-- EXTENSION END -->
+  </a>
+
+  <!-- Render nested item list -->
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <a href="https://github.com/seelabfhdo/lemma-docs/edit/main/docs/developer-guide/intermediate-model-specifications/obtaining-intermediate-models/index.md" title="Edit this page" class="md-content__button md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+<h1 id="obtaining-intermediate-models">Obtaining Intermediate Models</h1>
+<p>In the following, we exemplify the process to practically obtain the
+intermediate representation of a LEMMA service model, i.e., a LEMMA
+<em>intermediate service model</em>. This model conforms to the
+<a href="../intermediate-service-model-specification/">intermediate specification for LEMMA service models</a>
+or, more precisely, the intermediate metamodel of LEMMA's
+<a href="../../../user-guide/service-modeling-language/">Service Modeling Language</a>.</p>
+<h2 id="handling-of-imported-models">Handling of Imported Models</h2>
+<p>By default, the derivation of the intermediate representation of a LEMMA model
+also considers the handling of imported models. However, the concrete handling
+of imported models depends on their kind:</p>
+<ul>
+<li><strong>Domain Models</strong>: By default, the derivation of intermediate service models
+    also comprises the derivation of the intermediate representations of all
+    imported LEMMA
+    <a href="../../../user-guide/domain-data-modeling-language/">domain models</a>.</li>
+<li><strong>Technology Models</strong>: The information from
+    <a href="../../../user-guide/technology-modeling-language/">technology models</a>
+    is always incorporated into intermediate domain, service, or operation models.</li>
+<li><strong>Service Models</strong>: By default, the derivation of intermediate service models
+    also comprises the derivation of the intermediate representations of all
+    imported LEMMA service models.</li>
+<li><strong>Mapping Models</strong>: Similarly to technology models, the information from
+    <a href="../../../user-guide/service-technology-mapping-modeling-language/">mapping models</a>
+    is always incorporated into intermediate domain, service, or operation
+    models. In addition, LEMMA supports the derivation of intermediate models
+    from service models imported into mapping models. Since the derivation of
+    these intermediate models boils down to the iterative transformation of
+    imported service models into their intermediate representations, it also
+    involves the derivation of the intermediate representations of domain
+    models, which are imported by mapped service models, by default.</li>
+<li><strong>Operation Models</strong>: By default, the derivation of intermediate
+    <a href="../../../user-guide/operation-modeling-language/">operation models</a>
+    also comprises the derivation of the intermediate representations of all
+    imported LEMMA service models and their imported domain models.</li>
+</ul>
+<h2 id="obtaining-intermediate-service-models-using-the-eclipse-ide">Obtaining Intermediate Service Models Using the Eclipse IDE</h2>
+<p>LEMMA provides users with an Eclipse plugin for GUI-based and guided
+intermediate model derivation. While in the following we illustrate the usage of
+this plugin for LEMMA service models, the process is the same for obtaining
+intermediate models from LEMMA mapping and operation models.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We employ the same service model from the
+<a href="../../../getting-started/tour/#step-3-create-a-service-model">tour of LEMMA features</a>.
+Recall that the model resides in a file called
+<code>ChargingStationManagementCommandSide.services</code> visible in the Project Explorer of the
+corresponding Eclipse workspace:
+<figure>
+    <img src="figures/example-service-model.png" loading="lazy"/>
+</figure></p>
+<p>The code of the <code>ChargingStationManagementCommandSide.services</code> is as follows:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">import</span><span class="err"> </span><span class="k">datatypes</span><span class="err"> </span><span class="k">from</span><span class="err"> </span><span class="s">&quot;../../domain/ChargingStationManagement.data&quot;</span><span class="err"> </span><span class="k">as</span><span class="err"> Domain</span>
+<span class="c c-Singleline">// EXTENSION (1)</span>
+<span class="k">import</span><span class="err"> </span><span class="k">technology</span><span class="err"> </span><span class="k">from</span><span class="err"> </span><span class="s">&quot;../../technology/Java.technology&quot;</span><span class="err"> </span><span class="k">as</span><span class="err"> Java</span>
+<span class="c c-Singleline">// EXTENSION (2)</span>
+<span class="k">import</span><span class="err"> </span><span class="k">technology</span><span class="err"> </span><span class="k">from</span><span class="err"> </span><span class="s">&quot;../../technology/Spring.technology&quot;</span><span class="err"> </span><span class="k">as</span><span class="err"> Spring</span>
+
+<span class="c c-Singleline">// EXTENSION (3)</span>
+<span class="bp">@technology</span><span class="err">(Java)</span>
+<span class="c c-Singleline">// EXTENSION (4)</span>
+<span class="bp">@technology</span><span class="err">(Spring)</span>
+<span class="c c-Singleline">// EXTENSION (5)</span>
+<span class="bp">@Spring::_aspects.Application</span><span class="err">(name=</span><span class="s">&quot;ChargingStationManagementCommandSide&quot;</span><span class="err">)</span>
+<span class="c c-Singleline">// EXTENSION (6)</span>
+<span class="bp">@Spring::_aspects.DatasourceConfiguration</span><span class="err">(</span>
+<span class="err">    url = </span><span class="s">&quot;jdbc:h2:mem:command-side-db&quot;</span><span class="err">,</span>
+<span class="err">    username = </span><span class="s">&quot;${COMMAND_SIDE_SERVICE_DB_USER}&quot;</span><span class="err">,</span>
+<span class="err">    password = </span><span class="s">&quot;${COMMAND_SIDE_SERVICE_DB_PASSWORD}&quot;</span>
+<span class="err">)</span>
+<span class="k">public</span><span class="err"> </span><span class="k">functional</span><span class="err"> </span><span class="k">microservice</span><span class="err"> de.puls.ChargingStationManagementCommandSide {</span>
+<span class="err">    </span><span class="c c-Singleline">// EXTENSION (7)</span>
+<span class="err">    </span><span class="bp">@endpoints</span><span class="err">(Spring::_protocols.rest: </span><span class="s">&quot;/resources&quot;</span><span class="err">;)</span>
+<span class="err">    </span><span class="k">interface</span><span class="err"> CommandSide {</span>
+<span class="err">        </span><span class="nf">---</span>
+<span class="nf">        API endpoint for creating a parking area</span>
+<span class="nf">        </span><span class="bp">@requires</span> command <span class="nf">Command object to specify the values of the new</span>
+<span class="nf">                          parking area</span>
+<span class="nf">        </span><span class="bp">@returns</span> response <span class="nf">CreateParkingAreaCommandResponse with the</span>
+<span class="nf">                          identifier of the created parking area or an error</span>
+<span class="nf">                          message</span>
+<span class="nf">        ---</span>
+<span class="err">        </span><span class="c c-Singleline">// EXTENSION (8)</span>
+<span class="err">        </span><span class="bp">@endpoints</span><span class="err">(Spring::_protocols.rest: </span><span class="s">&quot;/parkingarea&quot;</span><span class="err">;)</span>
+<span class="err">        </span><span class="c c-Singleline">// EXTENSION (9)</span>
+<span class="err">        </span><span class="bp">@Spring::_aspects.Post</span>
+<span class="err">        createParkingArea(</span>
+<span class="err">            </span><span class="c c-Singleline">// EXTENSION (10)</span>
+<span class="err">            </span><span class="bp">@Spring::_aspects.RequestBody</span>
+<span class="err">            </span><span class="c c-Singleline">// EXTENSION (11)</span>
+<span class="err">            </span><span class="bp">@Spring::_aspects.Valid</span>
+<span class="err">            </span><span class="k">sync</span><span class="err"> </span><span class="k">in</span><span class="err"> command</span>
+<span class="err">                : Domain::ChargingStationManagement.CreateParkingAreaCommand,</span>
+<span class="err">            </span><span class="c c-Singleline">// EXTENSION (12)</span>
+<span class="err">            </span><span class="bp">@Spring::_aspects.ResponseEntity</span>
+<span class="err">            </span><span class="k">sync</span><span class="err"> </span><span class="k">out</span><span class="err"> response</span>
+<span class="err">                : Domain::ChargingStationManagement.CreateParkingAreaCommandResponse</span>
+<span class="err">        );</span>
+<span class="err">    }</span>
+<span class="err">}</span>
+</code></pre></div></td></tr></table></div></p>
+</div>
+<h3 id="step-1-start-an-intermediate-model-derivation-process">Step 1: Start an Intermediate Model Derivation Process</h3>
+<p>LEMMA's Eclipse plugin for intermediate model derivation supports two modes to
+transform LEMMA models into intermediate representations:</p>
+<h4 id="single-model-mode">Single-Model Mode</h4>
+<p>In this mode, only the currently selected model will be considered for
+intermediate model derivation. To activate this mode, right-click on the model
+in the Eclipse Project Explorer and select the
+"Generate Intermediate <code>$MODEL_KIND</code> Models..." entry from the context menu,
+whereby the <code>$MODEL_KIND</code> string indicates the kind of the selected model, e.g.,
+"Service" or "Operation". For the example service model
+<code>ChargingStationManagementCommandSide.services</code>, the context menu with the transformation
+entry looks as follows:</p>
+<figure>
+    <img src="figures/single-model-context-menu.png" loading="lazy"/>
+</figure>
+
+<p>Alternatively, to activate single-model mode, you might as well hit the
+following button that the Eclipse plugin contributes to the Eclipse toolbar:</p>
+<figure>
+    <img src="figures/single-model-toolbar.png" loading="lazy"/>
+</figure>
+
+<p>In addition, single-model mode is reachable from LEMMA's Eclipse menu:</p>
+<figure>
+    <img src="figures/single-model-menu.png" loading="lazy"/>
+</figure>
+
+<h4 id="multi-model-mode">Multi-Model Mode</h4>
+<p>This mode enables bulk transformation of LEMMA models in the current Eclipse
+workspace into their intermediate representations. The mode can be activated
+from LEMMA's Eclipse menu:</p>
+<figure>
+    <img src="figures/multi-model-menu.png" loading="lazy"/>
+</figure>
+
+<h3 id="step-2-select-models-for-intermediate-transformation">Step 2: Select Models for Intermediate Transformation</h3>
+<p>Independent of the selected intermediate transformation mode (cf. Step
+<a href="#step-1-start-an-intermediate-model-derivation-process">1</a>), LEMMA's Eclipse
+plugin for intermediate model transformation shows a dialog window that allows
+fine-grained selection of the models to derive intermediate representations
+from.</p>
+<p>When activating single-model transformation on the example service model
+<code>ChargingStationManagementCommandSide.services</code>, the model selection dialog window looks
+as follows:</p>
+<figure>
+    <img src="figures/example-model-selection-dialog.png" loading="lazy"/>
+</figure>
+
+<p>The dialog window groups the LEMMA models that can be transformed into
+intermediate representations by their projects in the current Eclipse workspace.
+Furthermore, a model clusters all transformable models, which it imports. Thus,
+the above model selection dialog window for the
+<code>ChargingStationManagementCommandSide.services</code> service model comprises a node for the
+model's Eclipse project, i.e., <code>charging-station-management</code>, a node
+for the service model, as well as a node for the
+<a href="../../../getting-started/tour/#step-2-create-a-domain-model"><code>ChargingStationManagement.data</code> domain model</a>,
+which is imported by the service model and represents a transformable model.</p>
+<p>From the dialog window, we can determine the set of models to derive
+intermediate representations from by selecting them with a mouse click on their
+node and hitting the "Continue with selected models" button. Alternatively, we
+can also hit the "Select all models and continue" button, which will select all
+displayed models for subsequent intermediate transformation.</p>
+<h3 id="step-3-specify-transformation-target-paths">Step 3: Specify Transformation Target Paths</h3>
+<p>After confirmation of the model selection dialog (cf. Step
+<a href="#step-2-select-models-for-intermediate-transformation">2</a>), LEMMA's Eclipse
+plugin for intermediate model transformation expects the specification of target
+paths for the intermediate models to derive. To this end, the plugin displays
+the following dialog window:</p>
+<figure>
+    <img src="figures/example-model-path-specification-dialog.png" loading="lazy"/>
+</figure>
+
+<p>The table in the dialog window contains all models that were selected in the
+previous dialog window and informs about certain transformation-related
+characteristics per model:</p>
+<ol>
+<li><strong>Selection column</strong>: This column contains a checkbox with which a model may
+    be deselected from transformation. By contrast to the previous model
+    selection dialog, the target path specification dialog enables to also
+    deselect imported models like <code>ChargingStationManagement.data</code>. By
+    default, all listed model files are selected for their intermediate
+    transformation.</li>
+<li><strong>Model file</strong>: Model file path relative to its Eclipse project.</li>
+<li><strong>Model type</strong>: Model file type.</li>
+<li><strong>Project-related transformation target path</strong>: Target path for the derived
+    intermediate model. The column is editable and allows specification of
+    transformation target paths <em>relative to the Eclipse project of the model</em>
+    <em>file</em>. The default transformation target path consists of the
+    "intermediate" folder, the "<code>$MODEL_TYPE</code> models" folder (where
+    <code>$MODEL_TYPE</code> corresponds to the type of the model in the third table
+    column), and the name of the model file with its extension changed to "xmi"
+    (to indicate that the resulting intermediate model follows the XMI format).</li>
+</ol>
+<p>In addition to the table, the dialog window comprises two checkboxes, which
+concern the intermediate transformation process of <em>all</em> models:</p>
+<ul>
+<li><strong>Convert absolute URIs in models to relative URIs</strong>: Intermediate
+    transformation involves the conversion of import URIs into absolute file
+    paths. For example, the transformation process will adapt the
+    path to the <code>ChargingStationManagement.data</code> model, which is
+    <a href="../../../getting-started/tour/#step-3-create-a-service-model">imported by the <code>ChargingStationManagementCommandSide.services</code> model</a>
+    via the LEMMA statement
+    <code class="highlight"><span class="k">import</span><span class="err"> </span><span class="k">datatypes</span><span class="err"> </span><span class="k">from</span><span class="err"> </span><span class="s">&quot;ChargingStationManagement.data&quot;</span><span class="err"> </span><span class="k">as</span><span class="err"> domain</span></code>, to an
+    absolute file URI in the user's file system, e.g.,
+    "file:///home/user/models/ChargingStationManagement.data". While this
+    approach supports immediate model processing independent of model files'
+    location on the user's file system, it is not portable. More precisely, when
+    moving model files to another computer, the absolute import paths become
+    invalid as they are system-specific. The checkbox prevents this issue as it
+    converts import URIs to file URIs relative to the most common path of the
+    transformed models as selected in the target path specification dialog. For
+    instance, when not adapting the default transformation target path, the
+    import URI of the <code>ChargingStationManagement.data</code> model within the
+    intermediate representation of the <code>ChargingStationManagementCommandSide.services</code>
+    model will resolve to "../data models/domain.xmi".</li>
+<li><strong>Output models of refinement transformations</strong>: The intermediate
+    transformation process consists of several model transformation modules
+    written in <a href="https://www.eclipse.org/atl">ATL</a>. Depending on the transformation scenario,
+    <em>ATL refinement transformations</em> may occur during the transformation
+    process. The transformations take a LEMMA model as input, adapt it as
+    determined by the transformation scenario, and output this <em>refined</em> model.
+    Such refinement transformations enrich, e.g., domain models with technology
+    information from mapping models. For the user the results of these
+    refinement transformations are not visible by default, because the
+    transformation process passes them to the next transformation step in the
+    form of in-memory object graphs. However, the "Output models of refinement
+    transformations" option allows serialization of possible refined models for
+    debugging purposes.</li>
+</ul>
+<p>When hitting the "OK" button in the target path specification dialog, the
+intermediate model transformation process starts.</p>
+<h3 id="step-4-intermediate-model-serialization">Step 4: Intermediate Model Serialization</h3>
+<p>A dialog window informs about the progress of the intermediate transformation
+process:</p>
+<figure>
+    <img src="figures/example-model-transformation-dialog.png" loading="lazy"/>
+</figure>
+
+<p>If the derivation of the intermediate representations of all selected LEMMA
+models was successful, the progress dialog window disappears and the XMI files
+of the intermediate models can be found in the user's file system at the
+locations determined in the target path specification dialog (cf. Step
+<a href="#step-3-specify-transformation-target-paths">3</a>). In case the default paths
+were not changed, the Eclipse projects of the input LEMMA models comprise an
+"intermediate" folder that stores the XMI files:</p>
+<figure>
+    <img src="figures/example-intermediate-models.png" loading="lazy"/>
+</figure>
+
+  <!--
+  Extended from
+  https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-file.html 
+-->
+
+
+
+<!-- Last updated date -->
+
+<hr />
+<div class="md-source-date">
+  <small>
+
+    <!-- mkdocs-git-revision-date-localized-plugin -->
+    
+      Last update: 2022-12-16
+    
+
+    <!-- EXTENSION BEGIN -->
+    <!-- mkdocs-git-authors-plugin -->
+    
+      by <span class='git-page-authors git-authors'><a href='mailto:florian.rademacher@fh-dortmund.de'>Florian Rademacher</a></span>
+    
+    <!-- EXTENSION END -->
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Introduction" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Introduction
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../intermediate-domain-model-specification/" class="md-footer__link md-footer__link--next" aria-label="Next: Intermediate Domain Model Specification" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Intermediate Domain Model Specification
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.top"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.5a2dcb6a.min.js"></script>
+      
+    
+    
+  </body>
+</html>
